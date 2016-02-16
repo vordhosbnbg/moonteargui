@@ -19,14 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GraphicsEngine.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\Drawable.cpp" />
     <ClCompile Include="..\..\src\SDLRenderer.cpp" />
+    <ClCompile Include="..\..\src\SDLSurface.cpp" />
+    <ClCompile Include="..\..\src\SDLTexture.cpp" />
+    <ClCompile Include="..\..\src\SDLWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Drawable.h" />
+    <ClInclude Include="..\..\src\GraphicsEngine.h" />
     <ClInclude Include="..\..\src\SDLDeleter.h" />
     <ClInclude Include="..\..\src\SDLRenderer.h" />
+    <ClInclude Include="..\..\src\SDLSurface.h" />
+    <ClInclude Include="..\..\src\SDLTexture.h" />
+    <ClInclude Include="..\..\src\SDLWindow.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A6650309-F5FA-4706-8A32-037AD5481A01}</ProjectGuid>
