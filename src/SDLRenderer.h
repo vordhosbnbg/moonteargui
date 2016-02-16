@@ -3,13 +3,16 @@
 #include <memory>
 #include "SDL.h"
 #include "SdlDeleter.h"
+#include "SDLWindow.h"
 
 using namespace std;
 class SDLRenderer
 {
 public:
-    SDLRenderer();
+    SDLRenderer(shared_ptr<SDLWindow> window);
     ~SDLRenderer();
+
+    SDL_Renderer * GetRawHandle();
 
 private:
     unique_ptr<SDL_Renderer, sdl_deleter> renderer_handle;

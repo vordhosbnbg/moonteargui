@@ -8,9 +8,10 @@ using namespace std;
 class SDLWindow 
 {
 public:
-    SDLWindow();
+    SDLWindow(const char * title, int posX, int posY, int width, int height);
     ~SDLWindow();
 
+    SDL_Window * GetRawHandle();
 private:
     unique_ptr<SDL_Window, sdl_deleter> window_handle;
 };
