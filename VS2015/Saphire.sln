@@ -6,12 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Saphire", "Saphire\Saphire.vcxproj", "{A6650309-F5FA-4706-8A32-037AD5481A01}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0948465F-F936-40F0-B925-BCA8127B75C8} = {0948465F-F936-40F0-B925-BCA8127B75C8}
+		{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45} = {8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}
 		{C11951F7-7D37-4AE6-A095-E31AFBDC3D04} = {C11951F7-7D37-4AE6-A095-E31AFBDC3D04}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL2", "SDL\SDL.vcxproj", "{0948465F-F936-40F0-B925-BCA8127B75C8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL_Image", "SDL_Image\SDL_Image.vcxproj", "{C11951F7-7D37-4AE6-A095-E31AFBDC3D04}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pugixml", "pugixml\pugixml.vcxproj", "{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +48,14 @@ Global
 		{C11951F7-7D37-4AE6-A095-E31AFBDC3D04}.Release|x64.Build.0 = Release|x64
 		{C11951F7-7D37-4AE6-A095-E31AFBDC3D04}.Release|x86.ActiveCfg = Release|Win32
 		{C11951F7-7D37-4AE6-A095-E31AFBDC3D04}.Release|x86.Build.0 = Release|Win32
+		{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}.Debug|x64.ActiveCfg = Debug|x64
+		{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}.Debug|x64.Build.0 = Debug|x64
+		{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}.Debug|x86.ActiveCfg = Debug|Win32
+		{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}.Debug|x86.Build.0 = Debug|Win32
+		{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}.Release|x64.ActiveCfg = Release|x64
+		{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}.Release|x64.Build.0 = Release|x64
+		{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}.Release|x86.ActiveCfg = Release|Win32
+		{8F73B179-F7A6-46DA-9D17-F8CDE95C9B45}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
