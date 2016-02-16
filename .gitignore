@@ -16,3 +16,5 @@ VS2015/x64/*
 *.suo
 *.sdf
 *.opensdf
+VS2015/Saphire.VC.db
+VS2015/Saphire.VC.VC.opendb
