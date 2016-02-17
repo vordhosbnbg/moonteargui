@@ -5,50 +5,77 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;hpp;c;h;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Source Files\SDLWrappers">
+      <UniqueIdentifier>{65017d16-c7ce-4fa4-ad61-5ad0aab05da5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Drawable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\SDLRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\SDLTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\SDLWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GraphicsEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Widget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SDLRenderer.cpp">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\SDLSurface.cpp">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SDLTexture.cpp">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SDLWindow.cpp">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\WidgetBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Drawable.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\SDLDeleter.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\SDLRenderer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\SDLTexture.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\SDLWindow.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GraphicsEngine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Widget.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SDLWindow.h">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SDLRenderer.h">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\SDLSurface.h">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SDLTexture.h">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SDLDeleter.h">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Image.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ResourceManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TextureManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\WidgetBuilder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
