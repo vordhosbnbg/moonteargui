@@ -18,3 +18,7 @@ VS2015/x64/*
 *.opensdf
 VS2015/Saphire.VC.db
 VS2015/Saphire.VC.VC.opendb
+*.user
+VS2015/libpng/x64/
+VS2015/zlib/x64/
+VS2015/libjpeg/x64/

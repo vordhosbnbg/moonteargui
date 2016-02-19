@@ -7,11 +7,16 @@
 #include "SDLSurface.h"
 
 using namespace std;
+class SDLRenderer;
 class SDLTexture
 {
 public:
-    SDLTexture(shared_ptr<SDLRenderer> renderer, shared_ptr<SDLSurface> surface);
+    SDLTexture(SDLRenderer * renderer, shared_ptr<SDLSurface> surface);
     ~SDLTexture();
+
+    SDL_Texture * GetRawHandle();
+    int GetWidth();
+    int GetHeight();
 
 private:
     unique_ptr<SDL_Texture, sdl_deleter> texture_handle;

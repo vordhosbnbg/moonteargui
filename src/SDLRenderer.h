@@ -4,14 +4,20 @@
 #include "SDL.h"
 #include "SdlDeleter.h"
 #include "SDLWindow.h"
+#include "SDLTexture.h"
+#include "SDLRect.h"
 
 using namespace std;
+class SDLTexture;
 class SDLRenderer
 {
 public:
     SDLRenderer(shared_ptr<SDLWindow> window);
     ~SDLRenderer();
 
+    void Clear();
+    void Draw(shared_ptr<SDLTexture> texture, SDLRect& srcRect, SDLRect& dstRect, double rotation = 0);
+    void RenderPresent();
     SDL_Renderer * GetRawHandle();
 
 private:

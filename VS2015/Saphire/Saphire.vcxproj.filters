@@ -8,15 +8,18 @@
     <Filter Include="Source Files\SDLWrappers">
       <UniqueIdentifier>{65017d16-c7ce-4fa4-ad61-5ad0aab05da5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Widgets">
+      <UniqueIdentifier>{77e82e1a-b472-4c2a-93e8-e9845dfe38a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourceManagement">
+      <UniqueIdentifier>{c9d40497-571e-415c-bbfa-596372ef6be9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GraphicsSystem">
+      <UniqueIdentifier>{5af43d0f-75db-4885-956f-57ac5aac822c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GraphicsEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Widget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\SDLRenderer.cpp">
@@ -32,25 +35,34 @@
       <Filter>Source Files\SDLWrappers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Image.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Widget.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Resource.cpp">
+      <Filter>Source Files\ResourceManagement</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ResourceManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ResourceManagement</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\TextureManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ResourceManagement</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\WidgetBuilder.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\BitmapResource.cpp">
+      <Filter>Source Files\ResourceManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SDLRect.cpp">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GraphicsEngine.cpp">
+      <Filter>Source Files\GraphicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\RootWindow.cpp">
+      <Filter>Source Files\GraphicsSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\GraphicsEngine.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Widget.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\SDLWindow.h">
       <Filter>Source Files\SDLWrappers</Filter>
     </ClInclude>
@@ -67,16 +79,40 @@
       <Filter>Source Files\SDLWrappers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Image.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Widget.h">
+      <Filter>Source Files\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Resource.h">
+      <Filter>Source Files\ResourceManagement</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ResourceManager.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ResourceManagement</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\TextureManager.h">
+      <Filter>Source Files\ResourceManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\BitmapResource.h">
+      <Filter>Source Files\ResourceManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SDLRect.h">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\main.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\WidgetBuilder.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\WidgetTypes.h">
+      <Filter>Source Files\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ResourceTypes.h">
+      <Filter>Source Files\ResourceManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GraphicsEngine.h">
+      <Filter>Source Files\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\RootWindow.h">
+      <Filter>Source Files\GraphicsSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

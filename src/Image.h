@@ -2,18 +2,22 @@
 #define IMAGE_H
 
 #include "Widget.h"
-#include "SDLTexture.h"
+#include "BitmapResource.h"
 
 class Image : public Widget
 {
 public:
-    Image();
+    Image(shared_ptr<BitmapResource> defaultBitmap);
     ~Image();
 
-    virtual void vDraw();
+    void SetBitmap(shared_ptr<BitmapResource> defaultBitmap);
+    virtual void OnRegisterRenderer();
+
+    virtual void Draw();
 
 private:
-    shared_ptr<SDLTexture> texture;
+    shared_ptr<BitmapResource> bitmap;
+    shared_ptr<SDLTexture> sdlTexture;
 };
 
 #endif // IMAGE_H
