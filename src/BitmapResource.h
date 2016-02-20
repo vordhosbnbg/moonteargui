@@ -7,7 +7,7 @@
 class BitmapResource : public Resource
 {
 public:
-    BitmapResource(string filename);
+    BitmapResource(string path);
     ~BitmapResource();
     
     virtual void Load();

@@ -7,7 +7,7 @@
 class Resource 
 {
 public:
-    Resource(string filename);
+    Resource(string path);
     ~Resource();
 
     virtual void Load();

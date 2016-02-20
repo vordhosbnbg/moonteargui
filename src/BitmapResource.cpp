@@ -1,6 +1,6 @@
 #include "BitmapResource.h"
 
-BitmapResource::BitmapResource(string filename) : Resource(filename)
+BitmapResource::BitmapResource(string path) : Resource(path)
 {
 }
 

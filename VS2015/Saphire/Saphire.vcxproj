@@ -27,6 +27,8 @@
     <ClCompile Include="..\..\src\ResourceManager.cpp" />
     <ClCompile Include="..\..\src\RootWindow.cpp" />
     <ClCompile Include="..\..\src\SDLRect.cpp" />
+    <ClCompile Include="..\..\src\Text.cpp" />
+    <ClCompile Include="..\..\src\TextResource.cpp" />
     <ClCompile Include="..\..\src\TextureManager.cpp" />
     <ClCompile Include="..\..\src\Widget.cpp" />
     <ClCompile Include="..\..\src\SDLRenderer.cpp" />
@@ -43,6 +45,8 @@
     <ClInclude Include="..\..\src\ResourceManager.h" />
     <ClInclude Include="..\..\src\RootWindow.h" />
     <ClInclude Include="..\..\src\SDLRect.h" />
+    <ClInclude Include="..\..\src\Text.h" />
+    <ClInclude Include="..\..\src\TextResource.h" />
     <ClInclude Include="..\..\src\TextureManager.h" />
     <ClInclude Include="..\..\src\Widget.h" />
     <ClInclude Include="..\..\src\GraphicsEngine.h" />
@@ -170,6 +174,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -195,6 +200,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

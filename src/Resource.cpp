@@ -1,6 +1,6 @@
 #include "Resource.h"
 
-Resource::Resource(string filename) : path_to_resource(filename)
+Resource::Resource(string path) : path_to_resource(path)
 {
 }
 

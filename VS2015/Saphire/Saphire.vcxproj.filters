@@ -61,6 +61,12 @@
     <ClCompile Include="..\..\src\RootWindow.cpp">
       <Filter>Source Files\GraphicsSystem</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Text.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TextResource.cpp">
+      <Filter>Source Files\ResourceManagement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\SDLWindow.h">
@@ -113,6 +119,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\RootWindow.h">
       <Filter>Source Files\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Text.h">
+      <Filter>Source Files\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TextResource.h">
+      <Filter>Source Files\ResourceManagement</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
