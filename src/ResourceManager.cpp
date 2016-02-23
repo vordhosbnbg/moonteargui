@@ -1,4 +1,5 @@
 #include "ResourceManager.h"
+using namespace std;
 
 ResourceManager::ResourceManager() : textureManager(make_shared<TextureManager>())
 {

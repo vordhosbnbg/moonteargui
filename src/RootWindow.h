@@ -7,17 +7,17 @@
 class RootWindow 
 {
 public:
-    RootWindow(shared_ptr<SDLWindow> window);
+    RootWindow(std::shared_ptr<SDLWindow> window);
     ~RootWindow();
     void Render();
-    void AddWidget(shared_ptr<Widget> widget);
+    void AddWidget(std::shared_ptr<Widget> widget);
 private:
     void TraverseWidgets();
 
 
-    shared_ptr<Widget> rootWidget;
-    shared_ptr<SDLWindow> sdlWindow;
-    shared_ptr<SDLRenderer> sdlRenderer;
+    std::shared_ptr<Widget> rootWidget;
+    std::shared_ptr<SDLWindow> sdlWindow;
+    std::shared_ptr<SDLRenderer> sdlRenderer;
 
     int widgetCount;
 };

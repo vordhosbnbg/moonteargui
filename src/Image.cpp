@@ -1,4 +1,5 @@
 #include "Image.h"
+using namespace std;
 
 Image::Image(shared_ptr<BitmapResource> defaultBitmap)
 {

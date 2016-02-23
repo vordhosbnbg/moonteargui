@@ -5,7 +5,7 @@
 class TextResource : public Resource
 {
 public:
-    TextResource(string filename);
+    TextResource(std::string filename);
     ~TextResource();
 
 protected:

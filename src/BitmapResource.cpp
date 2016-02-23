@@ -1,4 +1,6 @@
 #include "BitmapResource.h"
+using namespace std;
+
 
 BitmapResource::BitmapResource(string path) : Resource(path)
 {

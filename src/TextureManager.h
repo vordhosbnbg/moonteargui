@@ -6,17 +6,16 @@
 #include <string>
 #include "SDLTexture.h"
 
-using namespace std;
 class TextureManager
 {
 public:
     TextureManager();
     ~TextureManager();
 
-    shared_ptr<SDLTexture> GetTexture(string filename);
+    std::shared_ptr<SDLTexture> GetTexture(std::string filename);
 
 private:
-    shared_ptr<SDLTexture> LoadTexture(string filename);
-    map<string, shared_ptr<SDLTexture>> mapOfTextures;
+    std::shared_ptr<SDLTexture> LoadTexture(std::string filename);
+    std::map<std::string, std::shared_ptr<SDLTexture>> mapOfTextures;
 };
 #endif // TEXTUREMANAGER_H

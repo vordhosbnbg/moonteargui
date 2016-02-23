@@ -6,6 +6,8 @@
 #include "BitmapResource.h"
 #include "Image.h"
 
+using namespace std;
+
 int main(int argc, char *argv[]) 
 {
     GraphicsEngine ge;

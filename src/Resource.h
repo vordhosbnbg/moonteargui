@@ -7,13 +7,13 @@
 class Resource 
 {
 public:
-    Resource(string path);
+    Resource(std::string path);
     ~Resource();
 
     virtual void Load();
 protected:
 
-    string path_to_resource;
+    std::string path_to_resource;
 };
 
 #endif // RESOURCE_H

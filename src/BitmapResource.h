@@ -7,15 +7,15 @@
 class BitmapResource : public Resource
 {
 public:
-    BitmapResource(string path);
+    BitmapResource(std::string path);
     ~BitmapResource();
     
     virtual void Load();
 
-    shared_ptr<SDLSurface> GetSurface();
+    std::shared_ptr<SDLSurface> GetSurface();
 
 private:
-    shared_ptr<SDLSurface> sdlSurface;
+    std::shared_ptr<SDLSurface> sdlSurface;
 };
 
 #endif // BITMAPRESOURCE_H

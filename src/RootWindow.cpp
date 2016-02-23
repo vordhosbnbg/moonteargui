@@ -1,5 +1,6 @@
 #include <stack>
 #include "RootWindow.h"
+using namespace std;
 
 RootWindow::RootWindow(shared_ptr<SDLWindow> window) : sdlWindow(window), widgetCount(0)
 {

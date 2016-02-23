@@ -1,4 +1,6 @@
 #include "TextureManager.h"
+using namespace std;
+
 
 TextureManager::TextureManager()
 {

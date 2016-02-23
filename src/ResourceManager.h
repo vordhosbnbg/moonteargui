@@ -9,10 +9,10 @@ public:
     ResourceManager();
     ~ResourceManager();
 
-    shared_ptr<SDLTexture> GetTexture(string filename);
+    std::shared_ptr<SDLTexture> GetTexture(std::string filename);
 
 private:
-    shared_ptr<TextureManager> textureManager;
+    std::shared_ptr<TextureManager> textureManager;
 };
 
 #endif // RESOURCEMANAGER_H

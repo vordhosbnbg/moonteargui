@@ -6,12 +6,11 @@
 #include "SDLRenderer.h"
 #include "SDLSurface.h"
 
-using namespace std;
 class SDLRenderer;
 class SDLTexture
 {
 public:
-    SDLTexture(SDLRenderer * renderer, shared_ptr<SDLSurface> surface);
+    SDLTexture(SDLRenderer * renderer, std::shared_ptr<SDLSurface> surface);
     ~SDLTexture();
 
     SDL_Texture * GetRawHandle();
@@ -19,6 +18,6 @@ public:
     int GetHeight();
 
 private:
-    unique_ptr<SDL_Texture, sdl_deleter> texture_handle;
+    std::unique_ptr<SDL_Texture, sdl_deleter> texture_handle;
 };
 #endif //SDLTEXTURE_H

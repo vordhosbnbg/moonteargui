@@ -4,7 +4,6 @@
 #include "SDL.h"
 #include "SdlDeleter.h"
 
-using namespace std;
 class SDLWindow 
 {
 public:
@@ -13,6 +12,6 @@ public:
 
     SDL_Window * GetRawHandle();
 private:
-    unique_ptr<SDL_Window, sdl_deleter> window_handle;
+    std::unique_ptr<SDL_Window, sdl_deleter> window_handle;
 };
 #endif //SDLWINDOW_H

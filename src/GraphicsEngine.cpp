@@ -1,5 +1,7 @@
 #include "GraphicsEngine.h"
 #include "SDL_image.h"
+using namespace std;
+
 
 GraphicsEngine::GraphicsEngine()
 {

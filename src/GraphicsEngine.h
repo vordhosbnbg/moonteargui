@@ -9,22 +9,21 @@
 #include "SDLRenderer.h"
 #include "RootWindow.h"
 
-using namespace std;
 class GraphicsEngine 
 {
 public:
     GraphicsEngine();
     ~GraphicsEngine();
 
-    void AddWindow(shared_ptr<RootWindow> wnd);
+    void AddWindow(std::shared_ptr<RootWindow> wnd);
     void Start();
     void MainLoop();
     void Stop();
 private:
-    atomic_flag isRunning;
-    shared_ptr<thread> mainThread;
-    vector<shared_ptr<RootWindow>> windowList;
-    shared_ptr<Widget> widgetTreeRoot;
+    std::atomic_flag isRunning;
+    std::shared_ptr<std::thread> mainThread;
+    std::vector<std::shared_ptr<RootWindow>> windowList;
+    std::shared_ptr<Widget> widgetTreeRoot;
 };
 
 #endif //GRAPHICSENGINE_H

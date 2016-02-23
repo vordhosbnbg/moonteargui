@@ -10,10 +10,10 @@ public:
 
     void RegisterRenderer(SDLRenderer * rend);
     virtual void OnRegisterRenderer();
-    void AttachChild(shared_ptr<Widget> child);
-    void AttachSibling(shared_ptr<Widget> sibling);
-    shared_ptr<Widget> GetFirstChild();
-    shared_ptr<Widget> GetNextSibling();
+    void AttachChild(std::shared_ptr<Widget> child);
+    void AttachSibling(std::shared_ptr<Widget> sibling);
+    std::shared_ptr<Widget> GetFirstChild();
+    std::shared_ptr<Widget> GetNextSibling();
 
     void SetX(int x);
     void SetY(int y);
@@ -29,8 +29,8 @@ protected:
     SDLRenderer * sdlRenderer;
 
 private:
-    shared_ptr<Widget> firstChild;
-    shared_ptr<Widget> nextSibling;
+    std::shared_ptr<Widget> firstChild;
+    std::shared_ptr<Widget> nextSibling;
 };
 
 #endif // WIDGET_H
