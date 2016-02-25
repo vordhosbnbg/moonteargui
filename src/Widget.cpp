@@ -19,7 +19,7 @@ Widget::~Widget()
 {
 }
 
-void Widget::RegisterRenderer(SDLRenderer * rend)
+void Widget::RegisterRenderer(shared_ptr<SDLRenderer> rend)
 {
     sdlRenderer = rend;
     OnRegisterRenderer();

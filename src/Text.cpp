@@ -19,6 +19,11 @@ void Text::SetSizePt(int size)
     cached = false;
 }
 
+void Text::OnRegisterRenderer()
+{
+    RenderText();
+}
+
 void Text::Draw()
 {
     if (sdlRenderer) 

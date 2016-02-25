@@ -22,7 +22,7 @@ void RootWindow::Render()
 void RootWindow::AddWidget(shared_ptr<Widget> widget)
 {
     rootWidget->AttachChild(widget);
-    widget->RegisterRenderer(sdlRenderer.get());
+    widget->RegisterRenderer(sdlRenderer);
     widgetCount++;
 }
 

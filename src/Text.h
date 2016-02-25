@@ -11,6 +11,7 @@ public:
     ~Text();
 
     void SetSizePt(int size);
+    virtual void OnRegisterRenderer();
 
     virtual void Draw();
 protected:

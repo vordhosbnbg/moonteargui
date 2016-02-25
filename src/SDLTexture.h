@@ -10,7 +10,7 @@ class SDLRenderer;
 class SDLTexture
 {
 public:
-    SDLTexture(SDLRenderer * renderer, std::shared_ptr<SDLSurface> surface);
+    SDLTexture(std::shared_ptr<SDLRenderer> renderer, std::shared_ptr<SDLSurface> surface);
     ~SDLTexture();
 
     SDL_Texture * GetRawHandle();
@@ -19,5 +19,6 @@ public:
 
 private:
     std::unique_ptr<SDL_Texture, sdl_deleter> texture_handle;
+    std::shared_ptr<SDLRenderer> sdlRenderer; // keep renderer alive, while texture is alive
 };
 #endif //SDLTEXTURE_H

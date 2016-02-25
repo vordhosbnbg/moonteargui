@@ -8,7 +8,7 @@ public:
     Widget();
     ~Widget();
 
-    void RegisterRenderer(SDLRenderer * rend);
+    void RegisterRenderer(std::shared_ptr<SDLRenderer> rend);
     virtual void OnRegisterRenderer();
     void AttachChild(std::shared_ptr<Widget> child);
     void AttachSibling(std::shared_ptr<Widget> sibling);
@@ -26,7 +26,7 @@ public:
 protected:
     SDLRect srcRect;
     SDLRect dstRect;
-    SDLRenderer * sdlRenderer;
+    std::shared_ptr<SDLRenderer> sdlRenderer;
     bool cached;
 
 private:
