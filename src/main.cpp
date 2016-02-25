@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]) 
+void Test() 
 {
     GraphicsEngine ge;
 
@@ -43,7 +43,11 @@ int main(int argc, char *argv[])
 
     Sleep(5000);
     ge.Stop();
+}
 
+int main(int argc, char *argv[]) 
+{
+    Test();
     return 0;
 }
 
