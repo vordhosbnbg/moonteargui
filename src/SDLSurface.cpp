@@ -6,6 +6,10 @@ SDLSurface::SDLSurface(string filename) : surface_handle(IMG_Load(filename.c_str
 {
 }
 
+SDLSurface::SDLSurface(SDL_Surface *surface) : surface_handle(surface)
+{
+}
+
 SDLSurface::~SDLSurface()
 {
 }

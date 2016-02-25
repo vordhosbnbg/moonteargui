@@ -11,6 +11,7 @@ public:
     ~Resource();
 
     virtual void Load();
+    virtual void Save();
 protected:
 
     std::string path_to_resource;

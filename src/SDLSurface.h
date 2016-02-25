@@ -9,6 +9,7 @@ class SDLSurface
 {
 public:
     SDLSurface(std::string filename);
+    SDLSurface(SDL_Surface * surface);
     ~SDLSurface();
 
     SDL_Surface * GetRawHandle();

@@ -1,5 +1,6 @@
 #include "GraphicsEngine.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 using namespace std;
 
 
@@ -7,6 +8,7 @@ GraphicsEngine::GraphicsEngine()
 {
     int flags = IMG_INIT_JPG | IMG_INIT_PNG;
     int initted = IMG_Init(flags);
+    TTF_Init();
 }
 
 GraphicsEngine::~GraphicsEngine()

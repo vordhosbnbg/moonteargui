@@ -2,7 +2,7 @@
 using namespace std;
 
 
-Widget::Widget()
+Widget::Widget() : cached(false)
 {
     srcRect.SetX(0);
     srcRect.SetY(0);

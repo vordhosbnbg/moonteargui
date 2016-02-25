@@ -27,6 +27,7 @@ protected:
     SDLRect srcRect;
     SDLRect dstRect;
     SDLRenderer * sdlRenderer;
+    bool cached;
 
 private:
     std::shared_ptr<Widget> firstChild;

@@ -16,6 +16,7 @@ public:
     virtual void Draw();
 
 private:
+    void RenderImage();
     std::shared_ptr<BitmapResource> bitmap;
     std::shared_ptr<SDLTexture> sdlTexture;
 };

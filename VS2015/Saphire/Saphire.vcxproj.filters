@@ -67,6 +67,12 @@
     <ClCompile Include="..\..\src\TextResource.cpp">
       <Filter>Source Files\ResourceManagement</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\FontResource.cpp">
+      <Filter>Source Files\ResourceManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TTFFont.cpp">
+      <Filter>Source Files\SDLWrappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\SDLWindow.h">
@@ -125,6 +131,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\TextResource.h">
       <Filter>Source Files\ResourceManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FontResource.h">
+      <Filter>Source Files\ResourceManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TTFFont.h">
+      <Filter>Source Files\SDLWrappers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

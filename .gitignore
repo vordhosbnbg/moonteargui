@@ -19,6 +19,12 @@ VS2015/zlib/x64/
 VS2015/libjpeg/Debug/
 VS2015/libjpeg/Release/
 VS2015/libjpeg/x64/
+VS2015/SDL2_ttf/Debug/
+VS2015/SDL2_ttf/Release/
+VS2015/SDL2_ttf/x64/
+VS2015/freetype2/Debug/
+VS2015/freetype2/Release/
+VS2015/freetype2/x64/
 VS2015/Debug/
 VS2015/Release/
 VS2015/x64/*

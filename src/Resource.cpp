@@ -12,3 +12,8 @@ Resource::~Resource()
 void Resource::Load()
 {
 }
+
+void Resource::Save() 
+{
+
+}
