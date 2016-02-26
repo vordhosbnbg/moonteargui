@@ -114,9 +114,6 @@
     <ClInclude Include="..\..\src\main.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\WidgetTypes.h">
-      <Filter>Source Files\Widgets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\ResourceTypes.h">
       <Filter>Source Files\ResourceManagement</Filter>
     </ClInclude>

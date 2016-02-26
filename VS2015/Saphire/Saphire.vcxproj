@@ -59,7 +59,6 @@
     <ClInclude Include="..\..\src\SDLSurface.h" />
     <ClInclude Include="..\..\src\SDLTexture.h" />
     <ClInclude Include="..\..\src\SDLWindow.h" />
-    <ClInclude Include="..\..\src\WidgetTypes.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A6650309-F5FA-4706-8A32-037AD5481A01}</ProjectGuid>
