@@ -21,6 +21,7 @@ Widget::~Widget()
 
 void Widget::RegisterRenderer(shared_ptr<SDLRenderer> rend)
 {
+    lock_guard<mutex> lock(mxWidget);
     sdlRenderer = rend;
     OnRegisterRenderer();
 }
@@ -31,7 +32,8 @@ void Widget::OnRegisterRenderer()
 
 void Widget::AttachChild(shared_ptr<Widget> child)
 {
-    if (!firstChild) 
+    lock_guard<mutex> lock(mxWidget);
+    if (!firstChild)
     {
         firstChild = child;
     } 
@@ -43,7 +45,8 @@ void Widget::AttachChild(shared_ptr<Widget> child)
 
 void Widget::AttachSibling(shared_ptr<Widget> sibling)
 {
-    if (!nextSibling) 
+    lock_guard<mutex> lock(mxWidget);
+    if (!nextSibling)
     {
         nextSibling = sibling;
     }
@@ -65,31 +68,37 @@ void Widget::AttachSibling(shared_ptr<Widget> sibling)
 
 shared_ptr<Widget> Widget::GetFirstChild()
 {
+    lock_guard<mutex> lock(mxWidget);
     return firstChild;
 }
 
 shared_ptr<Widget> Widget::GetNextSibling()
 {
+    lock_guard<mutex> lock(mxWidget);
     return nextSibling;
 }
 
 void Widget::SetX(int x)
 {
+    lock_guard<mutex> lock(mxWidget);
     dstRect.SetX(x);
 }
 
 void Widget::SetY(int y)
 {
+    lock_guard<mutex> lock(mxWidget);
     dstRect.SetY(y);
 }
 
 void Widget::SetW(int w)
 {
+    lock_guard<mutex> lock(mxWidget);
     dstRect.SetW(w);
 }
 
 void Widget::SetH(int h)
 {
+    lock_guard<mutex> lock(mxWidget);
     dstRect.SetH(h);
 }
 

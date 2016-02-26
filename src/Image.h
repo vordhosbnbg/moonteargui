@@ -11,11 +11,11 @@ public:
     ~Image();
 
     void SetBitmap(std::shared_ptr<BitmapResource> defaultBitmap);
-    virtual void OnRegisterRenderer();
 
     virtual void Draw();
 
 private:
+    virtual void OnRegisterRenderer();
     void RenderImage();
     std::shared_ptr<BitmapResource> bitmap;
     std::shared_ptr<SDLTexture> sdlTexture;

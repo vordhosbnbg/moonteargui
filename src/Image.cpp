@@ -12,6 +12,7 @@ Image::~Image()
 
 void Image::SetBitmap(shared_ptr<BitmapResource> defaultBitmap)
 {
+    lock_guard<mutex> lock(mxWidget);
     bitmap = defaultBitmap;
     cached = false;
 }
@@ -23,7 +24,8 @@ void Image::OnRegisterRenderer()
 
 void Image::Draw()
 {
-    if (sdlRenderer) 
+    lock_guard<mutex> lock(mxWidget);
+    if (sdlRenderer)
     {
         if (!cached) 
         {
@@ -40,8 +42,8 @@ void Image::RenderImage()
     {
         int width = sdlTexture->GetWidth();
         int height = sdlTexture->GetHeight();
-        SetW(width);
-        SetH(height);
+        dstRect.SetW(width);
+        dstRect.SetH(height);
         srcRect.SetW(width);
         srcRect.SetH(height);
         cached = true;

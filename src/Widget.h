@@ -1,5 +1,6 @@
 #ifndef WIDGET_H
 #define WIDGET_H
+#include <mutex>
 #include "SDLRenderer.h"
 
 class Widget
@@ -9,7 +10,6 @@ public:
     ~Widget();
 
     void RegisterRenderer(std::shared_ptr<SDLRenderer> rend);
-    virtual void OnRegisterRenderer();
     void AttachChild(std::shared_ptr<Widget> child);
     void AttachSibling(std::shared_ptr<Widget> sibling);
     std::shared_ptr<Widget> GetFirstChild();
@@ -24,10 +24,12 @@ public:
 
 
 protected:
+    virtual void OnRegisterRenderer();
     SDLRect srcRect;
     SDLRect dstRect;
     std::shared_ptr<SDLRenderer> sdlRenderer;
     bool cached;
+    std::mutex mxWidget;
 
 private:
     std::shared_ptr<Widget> firstChild;

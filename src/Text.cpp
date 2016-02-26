@@ -15,56 +15,66 @@ Text::~Text()
 
 void Text::SetText(std::shared_ptr<TextResource> text)
 {
+    lock_guard<mutex> lock(mxWidget);
     textRes = text;
     cached = false;
 }
 
 std::shared_ptr<TextResource> Text::GetText()
 {
+    lock_guard<mutex> lock(mxWidget);
     return textRes;
 }
 
 void Text::SetFont(std::shared_ptr<FontResource> font)
 {
+    lock_guard<mutex> lock(mxWidget);
     fontRes = font;
     cached = false;
 }
 
 std::shared_ptr<FontResource> Text::GetFont()
 {
+    lock_guard<mutex> lock(mxWidget);
     return fontRes;
 }
 
 void Text::SetSizePt(int size)
 {
+    lock_guard<mutex> lock(mxWidget);
     sizePt = size;
     cached = false;
 }
 
 int Text::GetSizePt()
 {
+    lock_guard<mutex> lock(mxWidget);
     return sizePt;
 }
 
 void Text::SetFGColor(SDL_Color col)
 {
+    lock_guard<mutex> lock(mxWidget);
     fgColor = col;
     cached = false;
 }
 
 SDL_Color Text::GetFGColor()
 {
+    lock_guard<mutex> lock(mxWidget);
     return fgColor;
 }
 
 void Text::SetBGColor(SDL_Color col)
 {
+    lock_guard<mutex> lock(mxWidget);
     bgColor = col;
     cached = false;
 }
 
 SDL_Color Text::GetBGColor()
 {
+    lock_guard<mutex> lock(mxWidget);
     return bgColor;
 }
 
@@ -75,7 +85,8 @@ void Text::OnRegisterRenderer()
 
 void Text::Draw()
 {
-    if (sdlRenderer) 
+    lock_guard<mutex> lock(mxWidget);
+    if (sdlRenderer)
     {
         if (!cached)
         {
@@ -103,8 +114,8 @@ void Text::RenderText()
     sdlTexture = make_shared<SDLTexture>(sdlRenderer, surface);
     int width = sdlTexture->GetWidth();
     int height = sdlTexture->GetHeight();
-    SetW(width);
-    SetH(height);
+    dstRect.SetW(width);
+    dstRect.SetH(height);
     srcRect.SetW(width);
     srcRect.SetH(height);
 

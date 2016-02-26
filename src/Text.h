@@ -25,10 +25,10 @@ public:
     void SetBGColor(SDL_Color col);
     SDL_Color GetBGColor();
 
-    virtual void OnRegisterRenderer();
     virtual void Draw();
 protected:
 
+    virtual void OnRegisterRenderer();
     void RenderText();
 
     int sizePt;

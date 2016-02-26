@@ -42,7 +42,17 @@ void Test()
     RW_Window1->AddWidget(TextWidet1);
     ge.AddWindow(RW_Window1);
     ge.Start();
-
+    Sleep(2000);
+    ImageWidget1->SetX(50);
+    ImageWidget1->SetY(220);
+    Sleep(1000);
+    ImageWidget2->SetX(400);
+    ImageWidget2->SetY(100);
+    Sleep(1000);
+    TextWidet1->SetX(10);
+    TextWidet1->SetY(10);
+    TextWidet1->SetBGColor({ 0xFF,0xFF,0xFF,0x0 });
+    TextWidet1->SetFGColor({ 0x00,0x00,0x00,0x0 });
     Sleep(5000);
     ge.Stop();
 }
