@@ -106,18 +106,20 @@ void Text::RenderText()
     int hinting = TTF_HINTING_NORMAL;
     int kerning = 1;
     TTF_Font * font_handle = fontRes->GetFontHandle();
-    TTF_SetFontStyle(font_handle, renderstyle);
-    TTF_SetFontOutline(font_handle, outline);
-    TTF_SetFontKerning(font_handle, kerning);
-    TTF_SetFontHinting(font_handle, hinting);
-    shared_ptr<SDLSurface> surface = make_shared<SDLSurface>(TTF_RenderText_Shaded(font_handle, textRes->GetString().c_str(), fgColor, bgColor));
-    sdlTexture = make_shared<SDLTexture>(sdlRenderer, surface);
-    int width = sdlTexture->GetWidth();
-    int height = sdlTexture->GetHeight();
-    dstRect.SetW(width);
-    dstRect.SetH(height);
-    srcRect.SetW(width);
-    srcRect.SetH(height);
-
-    cached = true;
+    if (font_handle)
+    {
+        TTF_SetFontStyle(font_handle, renderstyle);
+        TTF_SetFontOutline(font_handle, outline);
+        TTF_SetFontKerning(font_handle, kerning);
+        TTF_SetFontHinting(font_handle, hinting);
+        shared_ptr<SDLSurface> surface = make_shared<SDLSurface>(TTF_RenderText_Shaded(font_handle, textRes->GetString().c_str(), fgColor, bgColor));
+        sdlTexture = make_shared<SDLTexture>(sdlRenderer, surface);
+        int width = sdlTexture->GetWidth();
+        int height = sdlTexture->GetHeight();
+        dstRect.SetW(width);
+        dstRect.SetH(height);
+        srcRect.SetW(width);
+        srcRect.SetH(height);
+        cached = true;
+    }
 }

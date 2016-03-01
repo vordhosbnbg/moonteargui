@@ -51,9 +51,10 @@ void Test()
     Sleep(1000);
     TextWidet1->SetX(10);
     TextWidet1->SetY(10);
+    Sleep(1000);
     TextWidet1->SetBGColor({ 0xFF,0xFF,0xFF,0x0 });
     TextWidet1->SetFGColor({ 0x00,0x00,0x00,0x0 });
-    Sleep(5000);
+    Sleep(2000);
     ge.Stop();
 }
 
