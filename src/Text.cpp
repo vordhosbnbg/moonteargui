@@ -3,7 +3,7 @@
 
 #define DEFAULT_PT_SIZE 18
 using namespace std;
-Text::Text(shared_ptr<TextResource> defaultText, shared_ptr<FontResource> defaultFont) : sizePt(DEFAULT_PT_SIZE), fgColor({0xFF, 0xFF, 0xFF, 0xFF}), bgColor({ 0x00, 0x00, 0x00, 0x00 })
+Text::Text(shared_ptr<TextResource> defaultText, shared_ptr<FontResource> defaultFont) : sizePt(DEFAULT_PT_SIZE), fgColor({0xFF, 0xFF, 0xFF, 0xFF}), bgColor({ 0x00, 0x00, 0x00, 0x00 }), transparent(false)
 {
     textRes = defaultText;
     fontRes = defaultFont;
@@ -78,6 +78,16 @@ SDL_Color Text::GetBGColor()
     return bgColor;
 }
 
+void Text::SetTransparent(bool val)
+{
+    transparent = true;
+}
+
+bool Text::GetTransparent()
+{
+    return transparent;
+}
+
 void Text::OnRegisterRenderer()
 {
     RenderText();
@@ -92,9 +102,13 @@ void Text::Draw()
         {
             RenderText();
         }
-        if (sdlTexture) 
+        if ((!transparent) && (sdlTextureBackground))
         {
-            sdlRenderer->Draw(sdlTexture, srcRect, dstRect);
+            sdlRenderer->Draw(sdlTextureBackground, srcRect, dstRect);
+        }
+        if (sdlTextureText) 
+        {
+            sdlRenderer->Draw(sdlTextureText, srcRect, dstRect);
         }
     }
 }
@@ -112,10 +126,16 @@ void Text::RenderText()
         TTF_SetFontOutline(font_handle, outline);
         TTF_SetFontKerning(font_handle, kerning);
         TTF_SetFontHinting(font_handle, hinting);
-        shared_ptr<SDLSurface> surface = make_shared<SDLSurface>(TTF_RenderText_Shaded(font_handle, textRes->GetString().c_str(), fgColor, bgColor));
-        sdlTexture = make_shared<SDLTexture>(sdlRenderer, surface);
-        int width = sdlTexture->GetWidth();
-        int height = sdlTexture->GetHeight();
+        shared_ptr<SDLSurface> surfaceText = make_shared<SDLSurface>(TTF_RenderText_Blended_Wrapped(font_handle, textRes->GetString().c_str(), fgColor, GetW()));
+        sdlTextureText = make_shared<SDLTexture>(sdlRenderer, surfaceText);
+        if(!transparent)
+        {
+            shared_ptr<SDLSurface> surfaceBackground = make_shared<SDLSurface>(SDL_CreateRGBSurface(0, GetW(), GetH(), 32, 0, 0, 0, 0));
+            SDL_FillRect(surfaceBackground->GetRawHandle(), NULL, SDL_MapRGB(surfaceBackground->GetRawHandle()->format, bgColor.r, bgColor.g, bgColor.b));
+            sdlTextureBackground = make_shared<SDLTexture>(sdlRenderer, surfaceBackground);
+        }
+        int width = sdlTextureText->GetWidth();
+        int height = sdlTextureText->GetHeight();
         dstRect.SetW(width);
         dstRect.SetH(height);
         srcRect.SetW(width);

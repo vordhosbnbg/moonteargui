@@ -35,6 +35,8 @@ void Test()
     ImageWidget2->SetY(20);
     TextWidet1->SetX(400);
     TextWidet1->SetY(400);
+    TextWidet1->SetW(200);
+    TextWidet1->SetH(100);
     TextWidet1->SetBGColor({ 0x0F,0x0F,0x0F,0x0 });
     TextWidet1->SetFGColor({ 0xAF,0xAF,0x0B,0x0 });
     RW_Window1->AddWidget(ImageWidget1);

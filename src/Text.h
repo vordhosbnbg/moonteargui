@@ -25,6 +25,9 @@ public:
     void SetBGColor(SDL_Color col);
     SDL_Color GetBGColor();
 
+    void SetTransparent(bool val);
+    bool GetTransparent();
+
     virtual void Draw();
 protected:
 
@@ -34,9 +37,11 @@ protected:
     int sizePt;
     std::shared_ptr<TextResource> textRes;
     std::shared_ptr<FontResource> fontRes;
-    std::shared_ptr<SDLTexture> sdlTexture;
+    std::shared_ptr<SDLTexture> sdlTextureBackground;
+    std::shared_ptr<SDLTexture> sdlTextureText;
     SDL_Color fgColor;
     SDL_Color bgColor;
+    bool transparent;
 };
 
 
