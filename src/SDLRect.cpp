@@ -36,6 +36,26 @@ void SDLRect::SetH(int h)
     rawRect.h = h;
 }
 
+int SDLRect::GetX()
+{
+    return rawRect.x;
+}
+
+int SDLRect::GetY()
+{
+    return rawRect.y;
+}
+
+int SDLRect::GetW()
+{
+    return rawRect.w;
+}
+
+int SDLRect::GetH()
+{
+    return rawRect.h;
+}
+
 SDL_Rect * SDLRect::GetRawHandle()
 {
     return &rawRect;

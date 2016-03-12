@@ -13,6 +13,10 @@ public:
     void SetY(int y);
     void SetW(int w);
     void SetH(int h);
+    int GetX();
+    int GetY();
+    int GetW();
+    int GetH();
 
     SDL_Rect * GetRawHandle();
 

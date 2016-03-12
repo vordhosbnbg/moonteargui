@@ -102,6 +102,26 @@ void Widget::SetH(int h)
     dstRect.SetH(h);
 }
 
+int Widget::GetX()
+{
+    return dstRect.GetX();
+}
+
+int Widget::GetY()
+{
+    return dstRect.GetY();
+}
+
+int Widget::GetW()
+{
+    return dstRect.GetW();
+}
+
+int Widget::GetH()
+{
+    return dstRect.GetH();
+}
+
 void Widget::Draw()
 {
 }
