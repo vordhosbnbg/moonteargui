@@ -35,7 +35,7 @@ void Test()
     ImageWidget2->SetY(20);
     TextWidet1->SetX(400);
     TextWidet1->SetY(400);
-    TextWidet1->SetW(200);
+    TextWidet1->SetW(250);
     TextWidet1->SetH(100);
     TextWidet1->SetBGColor({ 0x0F,0x0F,0x0F,0x0 });
     TextWidet1->SetFGColor({ 0xAF,0xAF,0x0B,0x0 });
@@ -54,7 +54,7 @@ void Test()
     TextWidet1->SetX(10);
     TextWidet1->SetY(10);
     Sleep(1000);
-    TextWidet1->SetBGColor({ 0xFF,0xFF,0xFF,0x0 });
+    TextWidet1->SetBGColor({ 0xFF,0xFF,0xFF,0x80 });
     TextWidet1->SetFGColor({ 0x00,0x00,0x00,0x0 });
     Sleep(2000);
     ge.Stop();

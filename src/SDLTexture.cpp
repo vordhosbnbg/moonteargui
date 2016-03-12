@@ -32,3 +32,4 @@ int SDLTexture::GetHeight()
 
     return retVal;
 }
+

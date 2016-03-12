@@ -12,6 +12,7 @@ public:
     SDLSurface(SDL_Surface * surface);
     ~SDLSurface();
 
+    void Fill(SDL_Color color);
     SDL_Surface * GetRawHandle();
 private:
     std::unique_ptr<SDL_Surface, sdl_deleter> surface_handle;

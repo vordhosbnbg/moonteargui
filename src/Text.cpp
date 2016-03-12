@@ -131,7 +131,7 @@ void Text::RenderText()
         if(!transparent)
         {
             shared_ptr<SDLSurface> surfaceBackground = make_shared<SDLSurface>(SDL_CreateRGBSurface(0, GetW(), GetH(), 32, 0, 0, 0, 0));
-            SDL_FillRect(surfaceBackground->GetRawHandle(), NULL, SDL_MapRGB(surfaceBackground->GetRawHandle()->format, bgColor.r, bgColor.g, bgColor.b));
+            surfaceBackground->Fill(bgColor);
             sdlTextureBackground = make_shared<SDLTexture>(sdlRenderer, surfaceBackground);
         }
         int width = sdlTextureText->GetWidth();
