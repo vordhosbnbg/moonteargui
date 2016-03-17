@@ -40,6 +40,7 @@ public:
 protected:
 
     virtual void OnRegisterRenderer();
+    void DeleteLastCharacter();
     void RenderText();
 
     int sizePt;

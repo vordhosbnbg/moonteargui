@@ -3,7 +3,7 @@
 
 #define DEFAULT_PT_SIZE 18
 using namespace std;
-Text::Text(shared_ptr<TextResource> defaultText, shared_ptr<FontResource> defaultFont) : sizePt(DEFAULT_PT_SIZE), fgColor({0xFF, 0xFF, 0xFF, 0xFF}), bgColor({ 0x00, 0x00, 0x00, 0x00 }), transparent(false), readOnly(true), useTextResource(false)
+Text::Text(shared_ptr<TextResource> defaultText, shared_ptr<FontResource> defaultFont) : sizePt(DEFAULT_PT_SIZE), fgColor({0xFF, 0xFF, 0xFF, 0xFF}), bgColor({ 0x00, 0x00, 0x00, 0x00 }), transparent(false), readOnly(true), useTextResource(true)
 {
     textRes = defaultText;
     fontRes = defaultFont;
@@ -38,13 +38,26 @@ void Text::SetText(std::string text)
 void Text::AppendText(std::string text)
 {
     cached = false;
+    if (useTextResource) 
+    {
+        internalTextBuffer = textRes->GetString();
+    }
     useTextResource = false;
     internalTextBuffer.append(text);
 }
 
 std::string Text::GetText()
 {
-    return std::string();
+    string retVal;
+    if (useTextResource) 
+    {
+        retVal = textRes->GetString();
+    }
+    else 
+    {
+        retVal = internalTextBuffer;
+    }
+    return retVal;
 }
 
 void Text::SetFont(std::shared_ptr<FontResource> font)
@@ -124,6 +137,20 @@ void Text::OnRegisterRenderer()
     RenderText();
 }
 
+void Text::DeleteLastCharacter()
+{
+    if (useTextResource) 
+    {
+        internalTextBuffer = textRes->GetString();
+        useTextResource = false;
+    }
+    if (internalTextBuffer.size() > 0)
+    {
+        internalTextBuffer.pop_back();
+        cached = false;
+    }
+}
+
 void Text::Draw()
 {
     lock_guard<mutex> lock(mxWidget);
@@ -151,7 +178,17 @@ void Text::ProcessEvent(SDL_Event ev)
         case SDL_TEXTINPUT :
             AppendText(ev.text.text);
             break;
-
+        case SDL_KEYDOWN:
+            switch (ev.key.keysym.sym)
+            {
+            case SDLK_BACKSPACE:
+            case SDLK_KP_BACKSPACE:
+                DeleteLastCharacter();
+                break;
+            default:
+                break;
+            }
+            break;
         default:
             break;
     }
@@ -170,7 +207,7 @@ void Text::RenderText()
         TTF_SetFontOutline(font_handle, outline);
         TTF_SetFontKerning(font_handle, kerning);
         TTF_SetFontHinting(font_handle, hinting);
-        shared_ptr<SDLSurface> surfaceText = make_shared<SDLSurface>(TTF_RenderText_Blended_Wrapped(font_handle, textRes->GetString().c_str(), fgColor, GetW()));
+        shared_ptr<SDLSurface> surfaceText = make_shared<SDLSurface>(TTF_RenderText_Blended_Wrapped(font_handle, GetText().c_str(), fgColor, GetW()));
         sdlTextureText = make_shared<SDLTexture>(sdlRenderer, surfaceText);
         if(!transparent)
         {
