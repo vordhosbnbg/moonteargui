@@ -56,7 +56,8 @@ void Test()
     Sleep(1000);
     TextWidet1->SetBGColor({ 0xFF,0xFF,0xFF,0x80 });
     TextWidet1->SetFGColor({ 0x00,0x00,0x00,0x0 });
-    Sleep(2000);
+    TextWidet1->SetFocused(true);
+    Sleep(20000);
     ge.Stop();
 }
 

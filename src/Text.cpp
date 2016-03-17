@@ -3,7 +3,7 @@
 
 #define DEFAULT_PT_SIZE 18
 using namespace std;
-Text::Text(shared_ptr<TextResource> defaultText, shared_ptr<FontResource> defaultFont) : sizePt(DEFAULT_PT_SIZE), fgColor({0xFF, 0xFF, 0xFF, 0xFF}), bgColor({ 0x00, 0x00, 0x00, 0x00 }), transparent(false)
+Text::Text(shared_ptr<TextResource> defaultText, shared_ptr<FontResource> defaultFont) : sizePt(DEFAULT_PT_SIZE), fgColor({0xFF, 0xFF, 0xFF, 0xFF}), bgColor({ 0x00, 0x00, 0x00, 0x00 }), transparent(false), readOnly(true), useTextResource(false)
 {
     textRes = defaultText;
     fontRes = defaultFont;
@@ -13,17 +13,38 @@ Text::~Text()
 {
 }
 
-void Text::SetText(std::shared_ptr<TextResource> text)
+void Text::SetTextResource(std::shared_ptr<TextResource> text)
 {
     lock_guard<mutex> lock(mxWidget);
     textRes = text;
     cached = false;
+    useTextResource = true;
+    internalTextBuffer = text->GetString();
 }
 
-std::shared_ptr<TextResource> Text::GetText()
+std::shared_ptr<TextResource> Text::GetTextResource()
 {
     lock_guard<mutex> lock(mxWidget);
     return textRes;
+}
+
+void Text::SetText(std::string text)
+{
+    internalTextBuffer = text;
+    cached = false;
+    useTextResource = false;
+}
+
+void Text::AppendText(std::string text)
+{
+    cached = false;
+    useTextResource = false;
+    internalTextBuffer.append(text);
+}
+
+std::string Text::GetText()
+{
+    return std::string();
 }
 
 void Text::SetFont(std::shared_ptr<FontResource> font)
@@ -83,9 +104,19 @@ void Text::SetTransparent(bool val)
     transparent = true;
 }
 
-bool Text::GetTransparent()
+bool Text::IsTransparent()
 {
     return transparent;
+}
+
+void Text::SetReadOnly(bool val)
+{
+    readOnly = val;
+}
+
+bool Text::IsReadOnly()
+{
+    return readOnly;
 }
 
 void Text::OnRegisterRenderer()
@@ -110,6 +141,19 @@ void Text::Draw()
         {
             sdlRenderer->Draw(sdlTextureText, srcRect, dstRect);
         }
+    }
+}
+
+void Text::ProcessEvent(SDL_Event ev)
+{
+    switch (ev.type)
+    {
+        case SDL_TEXTINPUT :
+            AppendText(ev.text.text);
+            break;
+
+        default:
+            break;
     }
 }
 

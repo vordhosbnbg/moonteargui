@@ -22,6 +22,7 @@ public:
 private:
     std::atomic_flag isRunning;
     std::shared_ptr<std::thread> mainThread;
+    std::shared_ptr<std::thread> inputThread;
     std::vector<std::shared_ptr<RootWindow>> windowList;
     std::shared_ptr<Widget> widgetTreeRoot;
 };

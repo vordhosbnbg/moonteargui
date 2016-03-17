@@ -10,8 +10,12 @@ public:
     Text(std::shared_ptr<TextResource> defaultText, std::shared_ptr<FontResource> defaultFont);
     ~Text();
 
-    void SetText(std::shared_ptr<TextResource> text);
-    std::shared_ptr<TextResource> GetText();
+    void SetTextResource(std::shared_ptr<TextResource> text);
+    std::shared_ptr<TextResource> GetTextResource();
+
+    void SetText(std::string text);
+    void AppendText(std::string text);
+    std::string GetText();
 
     void SetFont(std::shared_ptr<FontResource> font);
     std::shared_ptr<FontResource> GetFont();
@@ -26,15 +30,20 @@ public:
     SDL_Color GetBGColor();
 
     void SetTransparent(bool val);
-    bool GetTransparent();
+    bool IsTransparent();
+
+    void SetReadOnly(bool val);
+    bool IsReadOnly();
 
     virtual void Draw();
+    virtual void ProcessEvent(SDL_Event ev);
 protected:
 
     virtual void OnRegisterRenderer();
     void RenderText();
 
     int sizePt;
+    std::string internalTextBuffer;
     std::shared_ptr<TextResource> textRes;
     std::shared_ptr<FontResource> fontRes;
     std::shared_ptr<SDLTexture> sdlTextureBackground;
@@ -42,6 +51,8 @@ protected:
     SDL_Color fgColor;
     SDL_Color bgColor;
     bool transparent;
+    bool readOnly;
+    bool useTextResource;
 };
 
 

@@ -11,6 +11,11 @@ public:
     ~SDLWindow();
 
     SDL_Window * GetRawHandle();
+
+    void Hide();
+    void Show();
+
+    unsigned int windowID;
 private:
     std::unique_ptr<SDL_Window, sdl_deleter> window_handle;
 };

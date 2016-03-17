@@ -2,7 +2,7 @@
 using namespace std;
 
 
-Widget::Widget() : cached(false)
+Widget::Widget() : cached(false), focused(false)
 {
     srcRect.SetX(0);
     srcRect.SetY(0);
@@ -27,6 +27,10 @@ void Widget::RegisterRenderer(shared_ptr<SDLRenderer> rend)
 }
 
 void Widget::OnRegisterRenderer()
+{
+}
+
+void Widget::ProcessEvent(SDL_Event ev)
 {
 }
 
@@ -120,6 +124,18 @@ int Widget::GetW()
 int Widget::GetH()
 {
     return dstRect.GetH();
+}
+
+void Widget::SetFocused(bool val)
+{
+    lock_guard<mutex> lock(mxWidget);
+    focused = val;
+}
+
+bool Widget::IsFocused()
+{
+    lock_guard<mutex> lock(mxWidget);
+    return focused;
 }
 
 void Widget::Draw()

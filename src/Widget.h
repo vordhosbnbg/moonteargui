@@ -23,8 +23,11 @@ public:
     int GetY();
     int GetW();
     int GetH();
+    void SetFocused(bool val);
+    bool IsFocused();
 
     virtual void Draw();
+    virtual void ProcessEvent(SDL_Event ev);
 
 
 protected:
@@ -33,6 +36,7 @@ protected:
     SDLRect dstRect;
     std::shared_ptr<SDLRenderer> sdlRenderer;
     bool cached;
+    bool focused;
     std::mutex mxWidget;
 
 private:
