@@ -32,8 +32,10 @@ public:
 
 protected:
     virtual void OnRegisterRenderer();
-    SDLRect srcRect;
-    SDLRect dstRect;
+    int widgetPosX;
+    int widgetPosY;
+    int widgetWidth;
+    int widgetHeight;
     std::shared_ptr<SDLRenderer> sdlRenderer;
     bool cached;
     bool focused;

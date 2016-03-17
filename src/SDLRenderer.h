@@ -17,11 +17,12 @@ public:
     void Clear();
     void Draw(std::shared_ptr<SDLTexture> texture, SDLRect& srcRect, SDLRect& dstRect, double rotation = 0);
     void RenderPresent();
+    SDL_Surface * GetRenderSurfaceRaw();
     SDL_Renderer * GetRawHandle();
 
 private:
     std::unique_ptr<SDL_Renderer, sdl_deleter> renderer_handle;
-
+    std::shared_ptr<SDLWindow> sdlWindow;
 };
 
 #endif //SDLRENDERER_H

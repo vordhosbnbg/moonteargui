@@ -1,7 +1,7 @@
 #include "Image.h"
 using namespace std;
 
-Image::Image(shared_ptr<BitmapResource> defaultBitmap)
+Image::Image(shared_ptr<BitmapResource> defaultBitmap) : autosize(true)
 {
     bitmap = defaultBitmap;
 }
@@ -31,7 +31,9 @@ void Image::Draw()
         {
             RenderImage();
         }
-        sdlRenderer->Draw(sdlTexture, srcRect, dstRect);
+        dstImgRect.SetX(GetX());
+        dstImgRect.SetY(GetY());
+        sdlRenderer->Draw(sdlTexture, srcImgRect, dstImgRect);
     }
 }
 
@@ -42,10 +44,13 @@ void Image::RenderImage()
     {
         int width = sdlTexture->GetWidth();
         int height = sdlTexture->GetHeight();
-        dstRect.SetW(width);
-        dstRect.SetH(height);
-        srcRect.SetW(width);
-        srcRect.SetH(height);
+        srcImgRect.SetW(width);
+        srcImgRect.SetH(height);
+        if (autosize) 
+        {
+            dstImgRect.SetW(width);
+            dstImgRect.SetH(height);
+        }
         cached = true;
     }
 }

@@ -137,18 +137,29 @@ void Text::OnRegisterRenderer()
     RenderText();
 }
 
-void Text::DeleteLastCharacter()
+void Text::SyncInternalBuffer()
 {
-    if (useTextResource) 
+    if (useTextResource)
     {
         internalTextBuffer = textRes->GetString();
         useTextResource = false;
     }
+}
+
+void Text::DeleteLastCharacter()
+{
+    SyncInternalBuffer();
     if (internalTextBuffer.size() > 0)
     {
         internalTextBuffer.pop_back();
         cached = false;
     }
+}
+
+void Text::InsertNewLineCharacter()
+{
+    SyncInternalBuffer();
+    internalTextBuffer.push_back('\n');
 }
 
 void Text::Draw()
@@ -160,13 +171,17 @@ void Text::Draw()
         {
             RenderText();
         }
+        dstTextRect.SetX(GetX());
+        dstTextRect.SetY(GetY());
+        dstBgRect.SetX(GetX());
+        dstBgRect.SetY(GetY());
         if ((!transparent) && (sdlTextureBackground))
         {
-            sdlRenderer->Draw(sdlTextureBackground, srcRect, dstRect);
+            sdlRenderer->Draw(sdlTextureBackground, srcBgRect, dstBgRect);
         }
         if (sdlTextureText) 
         {
-            sdlRenderer->Draw(sdlTextureText, srcRect, dstRect);
+            sdlRenderer->Draw(sdlTextureText, srcTextRect, dstTextRect);
         }
     }
 }
@@ -184,6 +199,10 @@ void Text::ProcessEvent(SDL_Event ev)
             case SDLK_BACKSPACE:
             case SDLK_KP_BACKSPACE:
                 DeleteLastCharacter();
+                break;
+            case SDLK_RETURN:
+            case SDLK_KP_ENTER:
+                InsertNewLineCharacter();
                 break;
             default:
                 break;
@@ -211,16 +230,22 @@ void Text::RenderText()
         sdlTextureText = make_shared<SDLTexture>(sdlRenderer, surfaceText);
         if(!transparent)
         {
-            shared_ptr<SDLSurface> surfaceBackground = make_shared<SDLSurface>(SDL_CreateRGBSurface(0, GetW(), GetH(), 32, 0, 0, 0, 0));
+            shared_ptr<SDLSurface> surfaceBackground = make_shared<SDLSurface>(SDL_CreateRGBSurface(0, GetW(), GetH(), 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000));
+            surfaceBackground->SetBlendMode(SDL_BLENDMODE_BLEND);
             surfaceBackground->Fill(bgColor);
             sdlTextureBackground = make_shared<SDLTexture>(sdlRenderer, surfaceBackground);
         }
+        srcBgRect.SetW(GetW());
+        srcBgRect.SetH(GetH());
+        dstBgRect.SetW(GetW());
+        dstBgRect.SetH(GetH());
+
         int width = sdlTextureText->GetWidth();
         int height = sdlTextureText->GetHeight();
-        dstRect.SetW(width);
-        dstRect.SetH(height);
-        srcRect.SetW(width);
-        srcRect.SetH(height);
+        dstTextRect.SetW(width);
+        dstTextRect.SetH(height);
+        srcTextRect.SetW(width);
+        srcTextRect.SetH(height);
         cached = true;
     }
 }

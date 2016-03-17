@@ -35,8 +35,8 @@ void Test()
     TextWidet1->SetY(400);
     TextWidet1->SetW(250);
     TextWidet1->SetH(100);
-    TextWidet1->SetBGColor({ 0x0F,0x0F,0x0F,0x0 });
-    TextWidet1->SetFGColor({ 0xAF,0xAF,0x0B,0x0 });
+    TextWidet1->SetBGColor({ 0x0F,0x0F,0x0F,0xFF });
+    TextWidet1->SetFGColor({ 0xAF,0xAF,0x0B,0x80 });
     RW_Window1->AddWidget(ImageWidget1);
     RW_Window1->AddWidget(ImageWidget2);
     RW_Window1->AddWidget(TextWidet1);
@@ -53,7 +53,7 @@ void Test()
     TextWidet1->SetY(10);
     Sleep(1000);
     TextWidet1->SetBGColor({ 0xFF,0xFF,0xFF,0x80 });
-    TextWidet1->SetFGColor({ 0x00,0x00,0x00,0x0 });
+    TextWidet1->SetFGColor({ 0x00,0x00,0x00,0x00 });
     TextWidet1->SetFocused(true);
     Sleep(20000);
     ge.Stop();

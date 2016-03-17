@@ -19,6 +19,9 @@ private:
     void RenderImage();
     std::shared_ptr<BitmapResource> bitmap;
     std::shared_ptr<SDLTexture> sdlTexture;
+    SDLRect srcImgRect;
+    SDLRect dstImgRect;
+    bool autosize;
 };
 
 #endif // IMAGE_H

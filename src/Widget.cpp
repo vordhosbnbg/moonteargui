@@ -2,16 +2,8 @@
 using namespace std;
 
 
-Widget::Widget() : cached(false), focused(false)
+Widget::Widget() : cached(false), focused(false), widgetPosX(0), widgetPosY(0), widgetWidth(0), widgetHeight(0)
 {
-    srcRect.SetX(0);
-    srcRect.SetY(0);
-    srcRect.SetW(0);
-    srcRect.SetH(0);
-    dstRect.SetX(0);
-    dstRect.SetY(0);
-    dstRect.SetW(0);
-    dstRect.SetH(0);
 }
 
 
@@ -85,45 +77,45 @@ shared_ptr<Widget> Widget::GetNextSibling()
 void Widget::SetX(int x)
 {
     lock_guard<mutex> lock(mxWidget);
-    dstRect.SetX(x);
+    widgetPosX = x;
 }
 
 void Widget::SetY(int y)
 {
     lock_guard<mutex> lock(mxWidget);
-    dstRect.SetY(y);
+    widgetPosY = y;
 }
 
 void Widget::SetW(int w)
 {
     lock_guard<mutex> lock(mxWidget);
-    dstRect.SetW(w);
+    widgetWidth = w;
 }
 
 void Widget::SetH(int h)
 {
     lock_guard<mutex> lock(mxWidget);
-    dstRect.SetH(h);
+    widgetHeight = h;
 }
 
 int Widget::GetX()
 {
-    return dstRect.GetX();
+    return widgetPosX;
 }
 
 int Widget::GetY()
 {
-    return dstRect.GetY();
+    return widgetPosY;
 }
 
 int Widget::GetW()
 {
-    return dstRect.GetW();
+    return widgetWidth;
 }
 
 int Widget::GetH()
 {
-    return dstRect.GetH();
+    return widgetHeight;
 }
 
 void Widget::SetFocused(bool val)

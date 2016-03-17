@@ -40,7 +40,9 @@ public:
 protected:
 
     virtual void OnRegisterRenderer();
+    void SyncInternalBuffer();
     void DeleteLastCharacter();
+    void InsertNewLineCharacter();
     void RenderText();
 
     int sizePt;
@@ -54,6 +56,10 @@ protected:
     bool transparent;
     bool readOnly;
     bool useTextResource;
+    SDLRect srcTextRect;
+    SDLRect dstTextRect;
+    SDLRect srcBgRect;
+    SDLRect dstBgRect;
 };
 
 

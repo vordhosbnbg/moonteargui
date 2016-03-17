@@ -2,6 +2,10 @@
 
 SDLRect::SDLRect()
 {
+    rawRect.x = 0;
+    rawRect.y = 0;
+    rawRect.w = 0;
+    rawRect.h = 0;
 }
 
 SDLRect::SDLRect(int x, int y, int w, int h)

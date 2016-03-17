@@ -13,6 +13,7 @@ public:
     ~SDLSurface();
 
     void Fill(SDL_Color color);
+    void SetBlendMode(SDL_BlendMode mode);
     SDL_Surface * GetRawHandle();
 private:
     std::unique_ptr<SDL_Surface, sdl_deleter> surface_handle;
