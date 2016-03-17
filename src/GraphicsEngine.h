@@ -1,7 +1,7 @@
 #ifndef GRAPHICSENGINE_H
 #define GRAPHICSENGINE_H
 #include <memory>
-#include <vector>
+#include <list>
 #include <atomic>
 #include <thread>
 #include "Widget.h"
@@ -15,15 +15,18 @@ public:
     GraphicsEngine();
     ~GraphicsEngine();
 
+    std::shared_ptr<RootWindow> CreateRootWindow(const char * title, int posX, int posY, int width, int height);
     void AddWindow(std::shared_ptr<RootWindow> wnd);
     void Start();
     void MainLoop();
     void Stop();
 private:
+    void InitIfNecessary();
     std::atomic_flag isRunning;
     std::shared_ptr<std::thread> mainThread;
     std::shared_ptr<std::thread> inputThread;
-    std::vector<std::shared_ptr<RootWindow>> windowList;
+    std::list<std::shared_ptr<RootWindow>> windowListActive;
+    std::list<std::shared_ptr<RootWindow>> windowListToInit;
     std::shared_ptr<Widget> widgetTreeRoot;
 };
 

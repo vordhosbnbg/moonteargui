@@ -15,9 +15,7 @@ void Test()
 {
     GraphicsEngine ge;
 
-
-    shared_ptr<SDLWindow> SDLW_Window1 = make_shared<SDLWindow>("Saphire GUI", 50, 50, 1024, 768);
-    shared_ptr<RootWindow> RW_Window1 = make_shared<RootWindow>(SDLW_Window1);
+    shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Saphire GUI", 50, 50, 1024, 768);
     shared_ptr<BitmapResource> Res_lack_of_tests = make_shared<BitmapResource>(".\\res\\img\\lack_of_tests.jpg");
     shared_ptr<BitmapResource> Res_trippy_colors = make_shared<BitmapResource>(".\\res\\img\\trippy-colors.png");
     shared_ptr<TextResource> Res_TestText01 = make_shared<TextResource>(".\\res\\txt\\TestText01.xml");

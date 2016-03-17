@@ -18,11 +18,16 @@ GraphicsEngine::~GraphicsEngine()
     mainThread->join();
 }
 
+shared_ptr<RootWindow> GraphicsEngine::CreateRootWindow(const char * title, int posX, int posY, int width, int height)
+{
+    return make_shared<RootWindow>(title, posX, posY, width, height);
+}
 
 void GraphicsEngine::AddWindow(shared_ptr<RootWindow> wnd)
 {
-    windowList.push_back(wnd);
+    windowListToInit.push_back(wnd);
 }
+
 
 void GraphicsEngine::Start()
 {
@@ -35,7 +40,8 @@ void GraphicsEngine::MainLoop()
     SDL_Event ev;
     while (isRunning.test_and_set())
     {
-        for (auto iterWnd = windowList.begin(); iterWnd != windowList.end(); ++iterWnd) 
+        InitIfNecessary();
+        for (auto iterWnd = windowListActive.begin(); iterWnd != windowListActive.end(); ++iterWnd)
         {
             while(SDL_PollEvent(&ev))
             {
@@ -64,4 +70,18 @@ void GraphicsEngine::MainLoop()
 void GraphicsEngine::Stop()
 {
     isRunning.clear();
+}
+
+void GraphicsEngine::InitIfNecessary()
+{
+    if (windowListToInit.size() > 0)
+    {
+        auto iterWnd = windowListToInit.begin();
+        while (iterWnd != windowListToInit.end())
+        {
+            (*iterWnd)->Init();
+            windowListActive.push_back(*iterWnd);
+            iterWnd = windowListToInit.erase(iterWnd);
+        }
+    }
 }

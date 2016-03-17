@@ -2,15 +2,25 @@
 #include "RootWindow.h"
 using namespace std;
 
-RootWindow::RootWindow(shared_ptr<SDLWindow> window) : sdlWindow(window), widgetCount(0), visible(true)
+
+RootWindow::RootWindow(const char * title, int posX, int posY, int width, int height) : widgetCount(0), visible(true), initialized(false), wPosX(posX), wPosY(posY), wWidth(width), wHeight(height)
 {
-    sdlRenderer = make_shared<SDLRenderer>(sdlWindow);
     rootWidget = make_shared<Widget>();
-    SDL_StartTextInput();
 }
 
 RootWindow::~RootWindow()
 {
+}
+
+void RootWindow::Init()
+{
+    if (!initialized)
+    {
+        sdlWindow = make_shared<SDLWindow>(windowTitle.c_str(), wPosX, wPosY, wWidth, wHeight);
+        sdlRenderer = make_shared<SDLRenderer>(sdlWindow);
+        TraverseWidgets(RendererRegistration);
+        initialized = true;
+    }
 }
 
 void RootWindow::ProcessEvent(SDL_Event ev)
@@ -22,7 +32,6 @@ void RootWindow::ProcessEvent(SDL_Event ev)
         {
         case SDL_WINDOWEVENT_ENTER:
             break;
-
         case SDL_WINDOWEVENT_LEAVE:
             break;
         case SDL_WINDOWEVENT_CLOSE:
@@ -46,7 +55,10 @@ void RootWindow::Render()
 void RootWindow::AddWidget(shared_ptr<Widget> widget)
 {
     rootWidget->AttachChild(widget);
-    widget->RegisterRenderer(sdlRenderer);
+    if (sdlRenderer)
+    {
+        widget->RegisterRenderer(sdlRenderer);
+    }
     widgetCount++;
 }
 
@@ -71,6 +83,9 @@ void RootWindow::TraverseWidgets(TraverseType ttype)
             break;
         case RootWindow::EventProcessing:
             iter->ProcessEvent(currentEvent);
+            break;
+        case RootWindow::RendererRegistration:
+            iter->RegisterRenderer(sdlRenderer);
             break;
         default:
             break;
