@@ -226,7 +226,7 @@ void Text::RenderText()
         TTF_SetFontOutline(font_handle, outline);
         TTF_SetFontKerning(font_handle, kerning);
         TTF_SetFontHinting(font_handle, hinting);
-        shared_ptr<SDLSurface> surfaceText = make_shared<SDLSurface>(TTF_RenderText_Blended_Wrapped(font_handle, GetText().c_str(), fgColor, GetW()));
+        shared_ptr<SDLSurface> surfaceText = make_shared<SDLSurface>(TTF_RenderUTF8_Blended_Wrapped(font_handle, GetText().c_str(), fgColor, GetW()));
         sdlTextureText = make_shared<SDLTexture>(sdlRenderer, surfaceText);
         if(!transparent)
         {
