@@ -27,30 +27,31 @@ void Image::Draw()
     lock_guard<mutex> lock(mxWidget);
     if (sdlRenderer)
     {
-        if (!cached) 
+        if (!cached)
         {
             RenderImage();
         }
-        dstImgRect.SetX(GetX());
-        dstImgRect.SetY(GetY());
-        sdlRenderer->Draw(sdlTexture, srcImgRect, dstImgRect);
+        if (sdlTexture)
+        {
+            int width = sdlTexture->GetWidth();
+            int height = sdlTexture->GetHeight();
+            srcImgRect.SetW(width);
+            srcImgRect.SetH(height);
+            if (autosize)
+            {
+                dstImgRect.SetW(width);
+                dstImgRect.SetH(height);
+            }
+
+            dstImgRect.SetX(GetX());
+            dstImgRect.SetY(GetY());
+            sdlRenderer->Draw(sdlTexture, srcImgRect, dstImgRect);
+        }
     }
 }
 
 void Image::RenderImage()
 {
     sdlTexture = make_shared<SDLTexture>(sdlRenderer, bitmap->GetSurface());
-    if (sdlTexture)
-    {
-        int width = sdlTexture->GetWidth();
-        int height = sdlTexture->GetHeight();
-        srcImgRect.SetW(width);
-        srcImgRect.SetH(height);
-        if (autosize) 
-        {
-            dstImgRect.SetW(width);
-            dstImgRect.SetH(height);
-        }
-        cached = true;
-    }
+    cached = true;
 }
