@@ -226,9 +226,11 @@ void Text::RenderText()
         TTF_SetFontOutline(font_handle, outline);
         TTF_SetFontKerning(font_handle, kerning);
         TTF_SetFontHinting(font_handle, hinting);
-        shared_ptr<SDLSurface> surfaceText = make_shared<SDLSurface>(TTF_RenderUTF8_Blended_Wrapped(font_handle, GetText().c_str(), fgColor, GetW()));
+        string renderedText = GetRenderedText();
+
+        shared_ptr<SDLSurface> surfaceText = make_shared<SDLSurface>(TTF_RenderUTF8_Blended(font_handle, renderedText.c_str(), fgColor));
         sdlTextureText = make_shared<SDLTexture>(sdlRenderer, surfaceText);
-        if(!transparent)
+        if (!transparent)
         {
             shared_ptr<SDLSurface> surfaceBackground = make_shared<SDLSurface>(SDL_CreateRGBSurface(0, GetW(), GetH(), 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000));
             surfaceBackground->SetBlendMode(SDL_BLENDMODE_BLEND);
@@ -242,10 +244,68 @@ void Text::RenderText()
 
         int width = sdlTextureText->GetWidth();
         int height = sdlTextureText->GetHeight();
-        dstTextRect.SetW(width);
+        if (width <= GetW())
+        {
+            dstTextRect.SetW(width);
+        }
+        else 
+        {
+            dstTextRect.SetW(GetW());
+        }
         dstTextRect.SetH(height);
-        srcTextRect.SetW(width);
-        srcTextRect.SetH(height);
+        srcTextRect.SetW(GetW());
+        srcTextRect.SetH(GetH());
         cached = true;
     }
+}
+
+string Text::GetRenderedText()
+{
+    string retVal = GetText();
+    int textWidth = 0;
+    int textHeight = 0;
+    bool searchUp = false;
+    bool finished = false;
+    TTF_Font * font_handle = fontRes->GetFontHandle();
+    size_t charCount = retVal.size();
+    size_t searchBegin = 0;
+    size_t searchEnd = charCount;
+    size_t middle;
+
+    TTF_SizeUTF8(font_handle, retVal.c_str(), &textWidth, &textHeight);
+    if (textWidth < GetW())
+    {
+        finished = true;
+    }
+
+    while(!finished)
+    {
+        middle = searchBegin + (searchEnd - searchBegin) / 2;
+        TTF_SizeUTF8(font_handle, retVal.substr(0,middle).c_str(), &textWidth, &textHeight);
+        if (textWidth < GetW())  // if we "fit" after one binary search iteration
+        {
+            TTF_SizeUTF8(font_handle, retVal.substr(0, middle+1).c_str(), &textWidth, &textHeight);
+            if (textWidth >= GetW()) // if we are one character over the width limit, we are just right
+            {
+                retVal = retVal.substr(0, middle + 1);
+                finished = true;
+            }
+            else 
+            {
+                searchBegin = middle; // we should look upper
+            }
+        }
+        else 
+        {
+            searchEnd = middle; // we should look lower
+        }
+        if (searchBegin == searchEnd) 
+        {
+            retVal = retVal.substr(0, searchBegin);
+            finished = true;
+        }
+    } 
+
+
+    return retVal;
 }

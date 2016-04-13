@@ -44,6 +44,7 @@ protected:
     void DeleteLastCharacter();
     void InsertNewLineCharacter();
     void RenderText();
+    std::string GetRenderedText();
 
     int sizePt;
     std::string internalTextBuffer;
