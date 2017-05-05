@@ -1,11 +1,11 @@
 #include <stack>
 #include "RootWindow.h"
-using namespace std;
+
 
 
 RootWindow::RootWindow(const char * title, int posX, int posY, int width, int height) : widgetCount(0), visible(true), initialized(false), wPosX(posX), wPosY(posY), wWidth(width), wHeight(height)
 {
-    rootWidget = make_shared<Widget>();
+    rootWidget = std::make_shared<Widget>();
 }
 
 RootWindow::~RootWindow()
@@ -16,8 +16,8 @@ void RootWindow::Init()
 {
     if (!initialized)
     {
-        sdlWindow = make_shared<SDLWindow>(windowTitle.c_str(), wPosX, wPosY, wWidth, wHeight);
-        sdlRenderer = make_shared<SDLRenderer>(sdlWindow);
+        sdlWindow = std::make_shared<SDLWindow>(windowTitle.c_str(), wPosX, wPosY, wWidth, wHeight);
+        sdlRenderer = std::make_shared<SDLRenderer>(sdlWindow);
         TraverseWidgets(RendererRegistration);
         initialized = true;
     }
@@ -52,7 +52,7 @@ void RootWindow::Render()
     }
 }
 
-void RootWindow::AddWidget(shared_ptr<Widget> widget)
+void RootWindow::AddWidget(std::shared_ptr<Widget> widget)
 {
     rootWidget->AttachChild(widget);
     if (sdlRenderer)
@@ -69,7 +69,7 @@ unsigned int RootWindow::GetWindowID()
 
 void RootWindow::TraverseWidgets(TraverseType ttype)
 {
-    stack<shared_ptr<Widget>> stackOfWidgets;
+    std::stack<std::shared_ptr<Widget>> stackOfWidgets;
     auto iter = rootWidget;
     auto iterChild = iter->GetFirstChild();
     auto iterSibling = iter->GetFirstChild();

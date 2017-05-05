@@ -1,9 +1,9 @@
 #include "TextResource.h"
 #include "pugixml.hpp"
-using namespace std;
+
 using namespace pugi;
 
-TextResource::TextResource(string path) : Resource(path)
+TextResource::TextResource(std::string path) : Resource(path)
 {
 }
 
@@ -22,9 +22,9 @@ void TextResource::Load()
         defaultLanguage = DefaultLanguage.attribute("Value").as_string();
         for (xml_node LocalizedString = textRes.child("LocalizedString"); LocalizedString; LocalizedString = LocalizedString.next_sibling())
         {
-            string Language = LocalizedString.attribute("Language").as_string();
-            string Value = LocalizedString.attribute("Value").as_string();
-            localizedData.insert(pair<string, string>(Language, Value));
+            std::string Language = LocalizedString.attribute("Language").as_string();
+            std::string Value = LocalizedString.attribute("Value").as_string();
+            localizedData.insert(std::pair<std::string, std::string>(Language, Value));
         }
     }
 }
@@ -50,14 +50,14 @@ void TextResource::AddString(std::string language, std::string str)
     localizedData[language] = str;
 }
 
-void TextResource::SetDefaultLanguage(string lang)
+void TextResource::SetDefaultLanguage(std::string lang)
 {
     defaultLanguage = lang;
 }
 
-string TextResource::GetString()
+std::string TextResource::GetString()
 {
-    string retVal = "";
+    std::string retVal = "";
 
     if (defaultLanguage.size() > 0) 
     {
@@ -67,9 +67,9 @@ string TextResource::GetString()
     return retVal;
 }
 
-string TextResource::GetString(string language)
+std::string TextResource::GetString(std::string language)
 {
-    string retVal = "";
+    std::string retVal = "";
 
     if (localizedData.find(language) != localizedData.end()) 
     {

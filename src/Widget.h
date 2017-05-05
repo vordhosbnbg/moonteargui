@@ -1,5 +1,5 @@
-#ifndef WIDGET_H
-#define WIDGET_H
+#pragma once
+
 #include <mutex>
 #include "SDLRenderer.h"
 
@@ -46,4 +46,3 @@ private:
     std::shared_ptr<Widget> nextSibling;
 };
 
-#endif // WIDGET_H

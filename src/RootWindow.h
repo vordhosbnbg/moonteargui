@@ -1,5 +1,5 @@
-#ifndef ROOTWINDOW_H
-#define ROOTWINDOW_H
+#pragma once
+
 #include <functional>
 #include "SDLWindow.h"
 #include "SDLRenderer.h"
@@ -44,4 +44,3 @@ private:
     int wHeight;
 };
 
-#endif // ROOTWINDOW_H

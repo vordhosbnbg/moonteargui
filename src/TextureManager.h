@@ -1,5 +1,4 @@
-#ifndef TEXTUREMANAGER_H
-#define TEXTUREMANAGER_H
+#pragma once
 
 #include <memory>
 #include <map>
@@ -18,4 +17,3 @@ private:
     std::shared_ptr<SDLTexture> LoadTexture(std::string filename);
     std::map<std::string, std::shared_ptr<SDLTexture>> mapOfTextures;
 };
-#endif // TEXTUREMANAGER_H

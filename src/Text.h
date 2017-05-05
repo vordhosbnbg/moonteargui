@@ -1,5 +1,5 @@
-#ifndef TEXT_H
-#define TEXT_H
+#pragma once
+
 #include "Widget.h"
 #include "TextResource.h"
 #include "FontResource.h"
@@ -62,7 +62,3 @@ protected:
     SDLRect srcBgRect;
     SDLRect dstBgRect;
 };
-
-
-
-#endif // TEXT_H

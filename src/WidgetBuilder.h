@@ -1,5 +1,4 @@
-#ifndef WIDGETBUILDER_H
-#define WIDGETBUILDER_H
+#pragma once
 
 #include <string>
 #include <memory>
@@ -17,5 +16,3 @@ public:
 
     SDLRenderer * renderer;
 };
-
-#endif // WIDGETBUILDER_H

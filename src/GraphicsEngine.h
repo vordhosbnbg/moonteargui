@@ -1,5 +1,5 @@
-#ifndef GRAPHICSENGINE_H
-#define GRAPHICSENGINE_H
+#pragma once
+
 #include <memory>
 #include <list>
 #include <atomic>
@@ -30,4 +30,3 @@ private:
     std::shared_ptr<Widget> widgetTreeRoot;
 };
 
-#endif //GRAPHICSENGINE_H

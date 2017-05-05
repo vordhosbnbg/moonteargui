@@ -1,7 +1,7 @@
 #include "ResourceManager.h"
-using namespace std;
 
-ResourceManager::ResourceManager() : textureManager(make_shared<TextureManager>())
+
+ResourceManager::ResourceManager() : textureManager(std::make_shared<TextureManager>())
 {
 
 }
@@ -10,7 +10,7 @@ ResourceManager::~ResourceManager()
 {
 }
 
-shared_ptr<SDLTexture> ResourceManager::GetTexture(string filename)
+std::shared_ptr<SDLTexture> ResourceManager::GetTexture(std::string filename)
 {
     return textureManager->GetTexture(filename);
 }

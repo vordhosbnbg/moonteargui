@@ -1,7 +1,7 @@
 #include "GraphicsEngine.h"
 #include "SDL2/SDL_image.h"
 #include "SDL2/SDL_ttf.h"
-using namespace std;
+
 
 
 GraphicsEngine::GraphicsEngine()
@@ -18,12 +18,12 @@ GraphicsEngine::~GraphicsEngine()
     mainThread->join();
 }
 
-shared_ptr<RootWindow> GraphicsEngine::CreateRootWindow(const char * title, int posX, int posY, int width, int height)
+std::shared_ptr<RootWindow> GraphicsEngine::CreateRootWindow(const char * title, int posX, int posY, int width, int height)
 {
-    return make_shared<RootWindow>(title, posX, posY, width, height);
+    return std::make_shared<RootWindow>(title, posX, posY, width, height);
 }
 
-void GraphicsEngine::AddWindow(shared_ptr<RootWindow> wnd)
+void GraphicsEngine::AddWindow(std::shared_ptr<RootWindow> wnd)
 {
     windowListToInit.push_back(wnd);
 }
@@ -32,7 +32,7 @@ void GraphicsEngine::AddWindow(shared_ptr<RootWindow> wnd)
 void GraphicsEngine::Start()
 {
     isRunning.test_and_set();
-    mainThread = make_shared<thread>(&GraphicsEngine::MainLoop, this);
+    mainThread = std::make_shared<std::thread>(&GraphicsEngine::MainLoop, this);
 }
 
 void GraphicsEngine::MainLoop()

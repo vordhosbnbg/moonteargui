@@ -1,5 +1,5 @@
 #include "TextureManager.h"
-using namespace std;
+
 
 
 TextureManager::TextureManager()
@@ -10,9 +10,9 @@ TextureManager::~TextureManager()
 {
 }
 
-shared_ptr<SDLTexture> TextureManager::GetTexture(string filename)
+std::shared_ptr<SDLTexture> TextureManager::GetTexture(std::string filename)
 {
-    shared_ptr<SDLTexture> retVal = nullptr;
+    std::shared_ptr<SDLTexture> retVal = nullptr;
     if (mapOfTextures.find(filename) != mapOfTextures.end()) 
     {
         retVal = mapOfTextures.at(filename);
@@ -22,14 +22,14 @@ shared_ptr<SDLTexture> TextureManager::GetTexture(string filename)
         retVal = LoadTexture(filename);
         if (retVal) 
         {
-            mapOfTextures.insert(pair<string, shared_ptr<SDLTexture>>(filename, retVal));
+            mapOfTextures.insert(std::pair<std::string, std::shared_ptr<SDLTexture>>(filename, retVal));
         }
     }
 
     return retVal;
 }
 
-shared_ptr<SDLTexture> TextureManager::LoadTexture(string filename)
+std::shared_ptr<SDLTexture> TextureManager::LoadTexture(std::string filename)
 {
-    return shared_ptr<SDLTexture>();
+    return std::shared_ptr<SDLTexture>();
 }

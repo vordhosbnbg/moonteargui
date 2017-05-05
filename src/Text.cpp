@@ -2,8 +2,8 @@
 #include "SDL2/SDL_ttf.h"
 
 #define DEFAULT_PT_SIZE 18
-using namespace std;
-Text::Text(shared_ptr<TextResource> defaultText, shared_ptr<FontResource> defaultFont) : sizePt(DEFAULT_PT_SIZE), fgColor({0xFF, 0xFF, 0xFF, 0xFF}), bgColor({ 0x00, 0x00, 0x00, 0x00 }), transparent(false), readOnly(true), useTextResource(true)
+
+Text::Text(std::shared_ptr<TextResource> defaultText, std::shared_ptr<FontResource> defaultFont) : sizePt(DEFAULT_PT_SIZE), fgColor({0xFF, 0xFF, 0xFF, 0xFF}), bgColor({ 0x00, 0x00, 0x00, 0x00 }), transparent(false), readOnly(true), useTextResource(true)
 {
     textRes = defaultText;
     fontRes = defaultFont;
@@ -15,7 +15,7 @@ Text::~Text()
 
 void Text::SetTextResource(std::shared_ptr<TextResource> text)
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     textRes = text;
     cached = false;
     useTextResource = true;
@@ -24,7 +24,7 @@ void Text::SetTextResource(std::shared_ptr<TextResource> text)
 
 std::shared_ptr<TextResource> Text::GetTextResource()
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     return textRes;
 }
 
@@ -48,7 +48,7 @@ void Text::AppendText(std::string text)
 
 std::string Text::GetText()
 {
-    string retVal;
+    std::string retVal;
     if (useTextResource) 
     {
         retVal = textRes->GetString();
@@ -62,53 +62,53 @@ std::string Text::GetText()
 
 void Text::SetFont(std::shared_ptr<FontResource> font)
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     fontRes = font;
     cached = false;
 }
 
 std::shared_ptr<FontResource> Text::GetFont()
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     return fontRes;
 }
 
 void Text::SetSizePt(int size)
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     sizePt = size;
     cached = false;
 }
 
 int Text::GetSizePt()
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     return sizePt;
 }
 
 void Text::SetFGColor(SDL_Color col)
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     fgColor = col;
     cached = false;
 }
 
 SDL_Color Text::GetFGColor()
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     return fgColor;
 }
 
 void Text::SetBGColor(SDL_Color col)
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     bgColor = col;
     cached = false;
 }
 
 SDL_Color Text::GetBGColor()
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     return bgColor;
 }
 
@@ -164,7 +164,7 @@ void Text::InsertNewLineCharacter()
 
 void Text::Draw()
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     if (sdlRenderer)
     {
         if (!cached)
@@ -226,16 +226,16 @@ void Text::RenderText()
         TTF_SetFontOutline(font_handle, outline);
         TTF_SetFontKerning(font_handle, kerning);
         TTF_SetFontHinting(font_handle, hinting);
-        string renderedText = GetRenderedText();
+        std::string renderedText = GetRenderedText();
 
-        shared_ptr<SDLSurface> surfaceText = make_shared<SDLSurface>(TTF_RenderUTF8_Blended(font_handle, renderedText.c_str(), fgColor));
-        sdlTextureText = make_shared<SDLTexture>(sdlRenderer, surfaceText);
+        std::shared_ptr<SDLSurface> surfaceText = std::make_shared<SDLSurface>(TTF_RenderUTF8_Blended(font_handle, renderedText.c_str(), fgColor));
+        sdlTextureText = std::make_shared<SDLTexture>(sdlRenderer, surfaceText);
         if (!transparent)
         {
-            shared_ptr<SDLSurface> surfaceBackground = make_shared<SDLSurface>(SDL_CreateRGBSurface(0, GetW(), GetH(), 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000));
+            std::shared_ptr<SDLSurface> surfaceBackground = std::make_shared<SDLSurface>(SDL_CreateRGBSurface(0, GetW(), GetH(), 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000));
             surfaceBackground->SetBlendMode(SDL_BLENDMODE_BLEND);
             surfaceBackground->Fill(bgColor);
-            sdlTextureBackground = make_shared<SDLTexture>(sdlRenderer, surfaceBackground);
+            sdlTextureBackground = std::make_shared<SDLTexture>(sdlRenderer, surfaceBackground);
         }
         srcBgRect.SetW(GetW());
         srcBgRect.SetH(GetH());
@@ -259,9 +259,9 @@ void Text::RenderText()
     }
 }
 
-string Text::GetRenderedText()
+std::string Text::GetRenderedText()
 {
-    string retVal = GetText();
+    std::string retVal = GetText();
     int textWidth = 0;
     int textHeight = 0;
     bool searchUp = false;

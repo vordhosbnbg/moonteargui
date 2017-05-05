@@ -1,5 +1,4 @@
-#ifndef IMAGE_H
-#define IMAGE_H
+#pragma once
 
 #include "Widget.h"
 #include "BitmapResource.h"
@@ -24,4 +23,3 @@ private:
     bool autosize;
 };
 
-#endif // IMAGE_H

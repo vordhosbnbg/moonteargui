@@ -1,7 +1,7 @@
 #include "SDLTexture.h"
-using namespace std;
 
-SDLTexture::SDLTexture(shared_ptr<SDLRenderer> renderer, shared_ptr<SDLSurface> surface) : texture_handle(SDL_CreateTextureFromSurface(renderer->GetRawHandle(), surface->GetRawHandle()), sdl_deleter())
+
+SDLTexture::SDLTexture(std::shared_ptr<SDLRenderer> renderer, std::shared_ptr<SDLSurface> surface) : texture_handle(SDL_CreateTextureFromSurface(renderer->GetRawHandle(), surface->GetRawHandle()), sdl_deleter())
 {
     sdlRenderer = renderer;
 }

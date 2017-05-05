@@ -1,5 +1,4 @@
-#ifndef RESOURCEIDS_H
-#define RESOURCEIDS_H
+#pragma once
 
 namespace ResType
 {
@@ -10,4 +9,3 @@ namespace ResType
         DefaultFont
     };
 }
-#endif // RESOURCEIDS_H

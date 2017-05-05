@@ -1,5 +1,5 @@
-#ifndef FONTRESOURCE_H
-#define FONTRESOURCE_H
+#pragma once
+
 #include <memory>
 #include "Resource.h"
 #include "TTFFont.h"
@@ -17,4 +17,3 @@ protected:
     std::shared_ptr<TTFFont> font;
     int size;
 };
-#endif // FONTRESOURCE_H

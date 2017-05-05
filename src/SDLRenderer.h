@@ -1,5 +1,5 @@
-#ifndef SDLRENDERER_H
-#define SDLRENDERER_H
+#pragma once
+
 #include <memory>
 #include "SDL2/SDL.h"
 #include "SDLDeleter.h"
@@ -25,4 +25,3 @@ private:
     std::shared_ptr<SDLWindow> sdlWindow;
 };
 
-#endif //SDLRENDERER_H

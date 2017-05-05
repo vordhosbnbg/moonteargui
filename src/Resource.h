@@ -1,5 +1,5 @@
-#ifndef RESOURCE_H
-#define RESOURCE_H
+#pragma once
+
 #include <string>
 #include "ResourceTypes.h"
 #include "ResourceManager.h"
@@ -17,4 +17,3 @@ protected:
     std::string path_to_resource;
 };
 
-#endif // RESOURCE_H

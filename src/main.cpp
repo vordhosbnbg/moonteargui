@@ -9,7 +9,7 @@
 #include "Text.h"
 #include "FontResource.h"
 
-using namespace std;
+
 
 void my_handler(int s){
            printf("Caught signal %d\n",s);
@@ -28,18 +28,18 @@ void Test()
     sigaction(SIGINT, &sigIntHandler, NULL);
     GraphicsEngine ge;
 
-    shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Saphire GUI", 50, 50, 1024, 768);
-    shared_ptr<BitmapResource> Res_lack_of_tests = make_shared<BitmapResource>("./res/img/lack_of_tests.jpg");
-    shared_ptr<BitmapResource> Res_trippy_colors = make_shared<BitmapResource>("./res/img/trippy-colors.png");
-    shared_ptr<TextResource> Res_TestText01 = make_shared<TextResource>("./res/txt/TestText01.xml");
-    shared_ptr<FontResource> Res_Hack_Regular = make_shared<FontResource>("./res/ttf/Hack-Regular.ttf", 34);
+    std::shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Saphire GUI", 50, 50, 1024, 768);
+    std::shared_ptr<BitmapResource> Res_lack_of_tests = std::make_shared<BitmapResource>("./res/img/lack_of_tests.jpg");
+    std::shared_ptr<BitmapResource> Res_trippy_colors = std::make_shared<BitmapResource>("./res/img/trippy-colors.png");
+    std::shared_ptr<TextResource> Res_TestText01 = std::make_shared<TextResource>("./res/txt/TestText01.xml");
+    std::shared_ptr<FontResource> Res_Hack_Regular = std::make_shared<FontResource>("./res/ttf/Hack-Regular.ttf", 34);
     Res_lack_of_tests->Load();
     Res_trippy_colors->Load();
     Res_TestText01->Load();
     Res_Hack_Regular->Load();
-    shared_ptr<Image> ImageWidget1 = make_shared<Image>(Res_lack_of_tests);
-    shared_ptr<Image> ImageWidget2 = make_shared<Image>(Res_trippy_colors);
-    shared_ptr<Text> TextWidet1 = make_shared<Text>(Res_TestText01, Res_Hack_Regular);
+    std::shared_ptr<Image> ImageWidget1 = std::make_shared<Image>(Res_lack_of_tests);
+    std::shared_ptr<Image> ImageWidget2 = std::make_shared<Image>(Res_trippy_colors);
+    std::shared_ptr<Text> TextWidet1 = std::make_shared<Text>(Res_TestText01, Res_Hack_Regular);
     ImageWidget1->SetX(20);
     ImageWidget1->SetY(300);
     ImageWidget2->SetX(500);

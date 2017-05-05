@@ -1,5 +1,5 @@
-#ifndef SDLTEXTURE_H
-#define SDLTEXTURE_H
+#pragma once
+
 #include <memory>
 #include "SDL2/SDL.h"
 #include "SDLDeleter.h"
@@ -21,4 +21,3 @@ private:
     std::unique_ptr<SDL_Texture, sdl_deleter> texture_handle;
     std::shared_ptr<SDLRenderer> sdlRenderer; // keep renderer alive, while texture is alive
 };
-#endif //SDLTEXTURE_H

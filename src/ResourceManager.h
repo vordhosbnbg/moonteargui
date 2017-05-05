@@ -1,5 +1,4 @@
-#ifndef RESOURCEMANAGER_H
-#define RESOURCEMANAGER_H
+#pragma once
 
 #include "TextureManager.h"
 
@@ -15,4 +14,3 @@ private:
     std::shared_ptr<TextureManager> textureManager;
 };
 
-#endif // RESOURCEMANAGER_H

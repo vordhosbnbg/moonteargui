@@ -1,5 +1,5 @@
-#ifndef BITMAPRESOURCE_H
-#define BITMAPRESOURCE_H
+#pragma once
+
 #include <memory>
 #include "Resource.h"
 #include "SDLTexture.h"
@@ -17,5 +17,3 @@ public:
 private:
     std::shared_ptr<SDLSurface> sdlSurface;
 };
-
-#endif // BITMAPRESOURCE_H

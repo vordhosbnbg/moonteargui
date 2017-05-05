@@ -1,7 +1,7 @@
 #include "Image.h"
-using namespace std;
 
-Image::Image(shared_ptr<BitmapResource> defaultBitmap) : autosize(true)
+
+Image::Image(std::shared_ptr<BitmapResource> defaultBitmap) : autosize(true)
 {
     bitmap = defaultBitmap;
 }
@@ -10,9 +10,9 @@ Image::~Image()
 {
 }
 
-void Image::SetBitmap(shared_ptr<BitmapResource> defaultBitmap)
+void Image::SetBitmap(std::shared_ptr<BitmapResource> defaultBitmap)
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     bitmap = defaultBitmap;
     cached = false;
 }
@@ -24,7 +24,7 @@ void Image::OnRegisterRenderer()
 
 void Image::Draw()
 {
-    lock_guard<mutex> lock(mxWidget);
+    std::lock_guard<std::mutex> lock(mxWidget);
     if (sdlRenderer)
     {
         if (!cached)
@@ -52,6 +52,6 @@ void Image::Draw()
 
 void Image::RenderImage()
 {
-    sdlTexture = make_shared<SDLTexture>(sdlRenderer, bitmap->GetSurface());
+    sdlTexture = std::make_shared<SDLTexture>(sdlRenderer, bitmap->GetSurface());
     cached = true;
 }

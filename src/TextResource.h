@@ -1,5 +1,5 @@
-#ifndef TEXTRESOURCE_H
-#define TEXTRESOURCE_H
+#pragma once
+
 #include <map>
 #include "Resource.h"
 
@@ -22,4 +22,3 @@ protected:
     std::string defaultLanguage;
     std::map<std::string, std::string> localizedData;
 };
-#endif // TEXTRESOURCE_H

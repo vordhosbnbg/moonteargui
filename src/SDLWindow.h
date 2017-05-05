@@ -1,5 +1,5 @@
-#ifndef SDLWINDOW_H
-#define SDLWINDOW_H
+#pragma once
+
 #include <memory>
 #include "SDL2/SDL.h"
 #include "SDLDeleter.h"
@@ -19,4 +19,3 @@ public:
 private:
     std::unique_ptr<SDL_Window, sdl_deleter> window_handle;
 };
-#endif //SDLWINDOW_H

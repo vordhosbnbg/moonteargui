@@ -1,5 +1,5 @@
-#ifndef TTFFONT_H
-#define TTFFONT_H
+#pragma once
+
 #include <memory>
 #include <string>
 #include "SDL2/SDL_ttf.h"
@@ -22,4 +22,3 @@ protected:
     std::unique_ptr<TTF_Font, TTF_Font_deleter> font_handle;
 };
 
-#endif // TTFFONT_H

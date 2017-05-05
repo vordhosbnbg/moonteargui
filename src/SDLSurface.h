@@ -1,5 +1,5 @@
-#ifndef SDLSURFACE_H
-#define SDLSURFACE_H
+#pragma once
+
 #include <memory>
 #include <string>
 #include "SDL2/SDL.h"
@@ -18,4 +18,3 @@ public:
 private:
     std::unique_ptr<SDL_Surface, sdl_deleter> surface_handle;
 };
-#endif //SDLSURFACE_H

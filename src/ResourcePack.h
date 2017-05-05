@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Resource.h"
 
 enum class ResID

@@ -1,5 +1,5 @@
-#ifndef SDLDELETER_H
-#define SDLDELETER_H
+#pragma once
+
 #include "SDL2/SDL.h"
 struct sdl_deleter
 {
@@ -9,4 +9,3 @@ struct sdl_deleter
     void operator()(SDL_Surface *p) const { SDL_FreeSurface(p); }
 };
 
-#endif // SDLDELETER_H

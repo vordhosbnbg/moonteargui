@@ -1,5 +1,5 @@
-#ifndef SDLRECT_H
-#define SDLRECT_H
+#pragma once
+
 #include "SDL2/SDL.h"
 
 class SDLRect 
@@ -23,4 +23,3 @@ public:
 private:
     SDL_Rect rawRect;
 };
-#endif // SDLRECT_H
