@@ -2,8 +2,8 @@
 #define SDLSURFACE_H
 #include <memory>
 #include <string>
-#include "SDL.h"
-#include "SdlDeleter.h"
+#include "SDL2/SDL.h"
+#include "SDLDeleter.h"
 
 class SDLSurface
 {

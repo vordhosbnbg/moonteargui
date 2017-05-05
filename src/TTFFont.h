@@ -2,7 +2,7 @@
 #define TTFFONT_H
 #include <memory>
 #include <string>
-#include "SDL_ttf.h"
+#include "SDL2/SDL_ttf.h"
 
 struct TTF_Font_deleter
 {

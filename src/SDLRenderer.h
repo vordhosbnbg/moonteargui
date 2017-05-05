@@ -1,8 +1,8 @@
 #ifndef SDLRENDERER_H
 #define SDLRENDERER_H
 #include <memory>
-#include "SDL.h"
-#include "SdlDeleter.h"
+#include "SDL2/SDL.h"
+#include "SDLDeleter.h"
 #include "SDLWindow.h"
 #include "SDLTexture.h"
 #include "SDLRect.h"

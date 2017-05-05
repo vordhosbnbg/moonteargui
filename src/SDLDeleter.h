@@ -1,6 +1,6 @@
 #ifndef SDLDELETER_H
 #define SDLDELETER_H
-#include "SDL.h"
+#include "SDL2/SDL.h"
 struct sdl_deleter
 {
     void operator()(SDL_Window *p) const { SDL_DestroyWindow(p); }

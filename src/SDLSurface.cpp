@@ -1,5 +1,6 @@
 #include "SDLSurface.h"
-#include "SDL_image.h"
+#include "SDL2/SDL_surface.h"
+#include "SDL2/SDL_image.h"
 using namespace std;
 
 SDLSurface::SDLSurface(string filename) : surface_handle(IMG_Load(filename.c_str()), sdl_deleter())

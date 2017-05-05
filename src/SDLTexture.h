@@ -1,8 +1,8 @@
 #ifndef SDLTEXTURE_H
 #define SDLTEXTURE_H
 #include <memory>
-#include "SDL.h"
-#include "SdlDeleter.h"
+#include "SDL2/SDL.h"
+#include "SDLDeleter.h"
 #include "SDLRenderer.h"
 #include "SDLSurface.h"
 

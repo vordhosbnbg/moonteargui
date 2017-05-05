@@ -2,6 +2,7 @@
 #define WIDGETBUILDER_H
 
 #include <string>
+#include <memory>
 #include "Widget.h"
 #include "ResourcePack.h"
 
@@ -12,7 +13,7 @@ public:
     WidgetBuilder(SDLRenderer & rnd);
     ~WidgetBuilder();
 
-    shared_ptr<Widget> BuildWidget(string widgetType, shared_ptr<ResourcePack> resourcePack);
+    std::shared_ptr<Widget> BuildWidget(std::string widgetType, std::shared_ptr<ResourcePack> resourcePack);
 
     SDLRenderer * renderer;
 };

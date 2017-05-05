@@ -1,8 +1,8 @@
 #ifndef SDLWINDOW_H
 #define SDLWINDOW_H
 #include <memory>
-#include "SDL.h"
-#include "SdlDeleter.h"
+#include "SDL2/SDL.h"
+#include "SDLDeleter.h"
 
 class SDLWindow 
 {
