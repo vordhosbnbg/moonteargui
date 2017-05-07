@@ -2,7 +2,6 @@
 #include "SDL2/SDL_main.h"
 #include "pugixml.hpp"
 #include "GraphicsEngine.h"
-#include "main.h"
 #include "BitmapResource.h"
 #include "Image.h"
 #include "TextResource.h"
