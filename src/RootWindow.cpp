@@ -3,7 +3,7 @@
 
 
 
-RootWindow::RootWindow(const char * title, int posX, int posY, int width, int height) : widgetCount(0), visible(true), initialized(false), wPosX(posX), wPosY(posY), wWidth(width), wHeight(height)
+RootWindow::RootWindow(const char * title, int posX, int posY, int width, int height) : windowTitle(title), widgetCount(0), visible(true), initialized(false), wPosX(posX), wPosY(posY), wWidth(width), wHeight(height)
 {
     rootWidget = std::make_shared<Widget>();
 }
