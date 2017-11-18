@@ -3,6 +3,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 project (saphiregui)
 
+find_package (Threads)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf REQUIRED)
@@ -10,7 +11,7 @@ find_package(PugiXML REQUIRED)
 
 file(GLOB_RECURSE Project_SOURCES "src/*.cpp")
 file(GLOB_RECURSE Project_HEADERS "src/*.h")
-
+set (Smoketest_SOURCES "test/smoketest.cpp")
 set (Project_INCLUDE_DIRS "")
 
 foreach (_headerFile ${Project_HEADERS})
@@ -26,11 +27,13 @@ include_directories(${Project_INCLUDE_DIRS}
                     ${SDL2_TTF_INCLUDE_DIR}
                     ${pugixml_DIR})
 
-add_executable (saphiregui ${Project_SOURCES} ${External_SOURCES})
+add_library (saphiregui SHARED ${Project_SOURCES})
+add_executable(smoketest ${Smoketest_SOURCES})
 
 set_property(TARGET saphiregui PROPERTY CXX_STANDARD 14)
-find_package (Threads)
-target_link_libraries (saphiregui 
+set_property(TARGET smoketest PROPERTY CXX_STANDARD 14)
+target_link_libraries (smoketest
+                       saphiregui
                        ${SDL2_LIBRARIES}
                        ${SDL2_IMAGE_LIBRARY}
                        ${SDL2_TTF_LIBRARY}
