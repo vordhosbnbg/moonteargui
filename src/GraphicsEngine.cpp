@@ -25,7 +25,7 @@ std::shared_ptr<RootWindow> GraphicsEngine::CreateRootWindow(const char * title,
 
 void GraphicsEngine::AddWindow(std::shared_ptr<RootWindow> wnd)
 {
-    windowListToInit.push_back(wnd);
+    windowListToInit.emplace_back(wnd);
 }
 
 
@@ -80,7 +80,7 @@ void GraphicsEngine::InitIfNecessary()
         while (iterWnd != windowListToInit.end())
         {
             (*iterWnd)->Init();
-            windowListActive.push_back(*iterWnd);
+            windowListActive.emplace_back(*iterWnd);
             iterWnd = windowListToInit.erase(iterWnd);
         }
     }
