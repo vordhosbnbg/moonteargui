@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.1)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
-project (saphiregui)
+project (moonteargui)
 
 find_package (Threads)
 find_package(SDL2 REQUIRED)
@@ -27,13 +27,13 @@ include_directories(${Project_INCLUDE_DIRS}
                     ${SDL2_TTF_INCLUDE_DIR}
                     ${pugixml_DIR})
 
-add_library (saphiregui SHARED ${Project_SOURCES})
+add_library (moonteargui SHARED ${Project_SOURCES})
 add_executable(smoketest ${Smoketest_SOURCES})
 
-set_property(TARGET saphiregui PROPERTY CXX_STANDARD 14)
+set_property(TARGET moonteargui PROPERTY CXX_STANDARD 14)
 set_property(TARGET smoketest PROPERTY CXX_STANDARD 14)
 target_link_libraries (smoketest
-                       saphiregui
+                       moonteargui
                        ${SDL2_LIBRARIES}
                        ${SDL2_IMAGE_LIBRARY}
                        ${SDL2_TTF_LIBRARY}

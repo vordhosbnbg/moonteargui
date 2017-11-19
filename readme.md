@@ -1,4 +1,4 @@
-#Saphire GUI
+#Moontear GUI
 
 Dependencies:
 * SDL2
