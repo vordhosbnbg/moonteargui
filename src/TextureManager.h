@@ -11,9 +11,9 @@ public:
     TextureManager();
     ~TextureManager();
 
-    std::shared_ptr<SDLTexture> GetTexture(std::string filename);
+    std::shared_ptr<SDLTexture> GetTexture(const std::string& filename);
 
 private:
-    std::shared_ptr<SDLTexture> LoadTexture(std::string filename);
+    std::shared_ptr<SDLTexture> LoadTexture(const std::string& filename);
     std::map<std::string, std::shared_ptr<SDLTexture>> mapOfTextures;
 };

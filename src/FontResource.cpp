@@ -1,7 +1,7 @@
 #include "FontResource.h"
 
 
-FontResource::FontResource(std::string path, int ptSize) : Resource(path), size(ptSize)
+FontResource::FontResource(const std::string& path, int ptSize) : Resource(path), size(ptSize)
 {
 }
 

@@ -2,7 +2,7 @@
 
 
 
-BitmapResource::BitmapResource(std::string path) : Resource(path)
+BitmapResource::BitmapResource(const std::string& path) : Resource(path), sdlSurface(nullptr)
 {
 }
 
@@ -17,6 +17,10 @@ void BitmapResource::Load()
 
 std::shared_ptr<SDLSurface> BitmapResource::GetSurface()
 {
+    if(sdlSurface == nullptr)
+    {
+        Load();
+    }
     return sdlSurface;
 }
 

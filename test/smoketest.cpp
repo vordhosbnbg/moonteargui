@@ -10,10 +10,10 @@
 
 
 
-void my_handler(int s){
-           printf("Caught signal %d\n",s);
-           exit(1);
-
+void my_handler(int s)
+{
+    printf("Caught signal %d\n",s);
+    exit(0);
 }
 
 void Test() 
@@ -24,7 +24,7 @@ void Test()
     sigemptyset(&sigIntHandler.sa_mask);
     sigIntHandler.sa_flags = 0;
 
-    sigaction(SIGINT, &sigIntHandler, NULL);
+    sigaction(SIGINT, &sigIntHandler, nullptr);
     GraphicsEngine ge;
 
     std::shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Saphire GUI", 50, 50, 1024, 768);

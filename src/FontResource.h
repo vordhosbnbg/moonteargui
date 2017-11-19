@@ -8,7 +8,7 @@
 class FontResource : public Resource 
 {
 public:
-    FontResource(std::string path, int ptSize);
+    FontResource(const std::string& path, int ptSize);
     ~FontResource();
 
     virtual void Load();

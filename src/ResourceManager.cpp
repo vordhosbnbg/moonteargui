@@ -10,7 +10,7 @@ ResourceManager::~ResourceManager()
 {
 }
 
-std::shared_ptr<SDLTexture> ResourceManager::GetTexture(std::string filename)
+std::shared_ptr<SDLTexture> ResourceManager::GetTexture(const std::string& filename)
 {
     return textureManager->GetTexture(filename);
 }

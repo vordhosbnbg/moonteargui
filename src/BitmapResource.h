@@ -7,7 +7,7 @@
 class BitmapResource : public Resource
 {
 public:
-    BitmapResource(std::string path);
+    BitmapResource(const std::string& path);
     ~BitmapResource();
     
     virtual void Load();

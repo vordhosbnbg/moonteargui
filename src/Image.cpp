@@ -33,14 +33,14 @@ void Image::Draw()
         }
         if (sdlTexture)
         {
-            int width = sdlTexture->GetWidth();
-            int height = sdlTexture->GetHeight();
-            srcImgRect.SetW(width);
-            srcImgRect.SetH(height);
+            int textureWidth = sdlTexture->GetWidth();
+            int textureHeight = sdlTexture->GetHeight();
+            srcImgRect.SetW(textureWidth);
+            srcImgRect.SetH(textureHeight);
             if (autosize)
             {
-                dstImgRect.SetW(width);
-                dstImgRect.SetH(height);
+                dstImgRect.SetW(textureWidth);
+                dstImgRect.SetH(textureHeight);
             }
 
             dstImgRect.SetX(GetX());

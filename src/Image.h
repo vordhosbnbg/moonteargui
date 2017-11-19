@@ -7,7 +7,7 @@ class Image : public Widget
 {
 public:
     Image(std::shared_ptr<BitmapResource> defaultBitmap);
-    ~Image();
+    virtual ~Image();
 
     void SetBitmap(std::shared_ptr<BitmapResource> defaultBitmap);
 

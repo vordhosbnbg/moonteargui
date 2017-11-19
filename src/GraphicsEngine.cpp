@@ -8,7 +8,7 @@ GraphicsEngine::GraphicsEngine()
 {
     SDL_Init(SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_EVENTS);
     int flags = IMG_INIT_JPG | IMG_INIT_PNG;
-    int initted = IMG_Init(flags);
+    int initstatus = IMG_Init(flags);
     TTF_Init();
 }
 

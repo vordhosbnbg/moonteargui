@@ -186,7 +186,7 @@ void Text::Draw()
     }
 }
 
-void Text::ProcessEvent(SDL_Event ev)
+void Text::ProcessEvent(const SDL_Event& ev)
 {
     switch (ev.type)
     {

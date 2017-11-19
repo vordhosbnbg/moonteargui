@@ -19,7 +19,7 @@ int SDLTexture::GetWidth()
 {
     int retVal = 0;
 
-    SDL_QueryTexture(texture_handle.get(), NULL, NULL, &retVal, NULL);
+    SDL_QueryTexture(texture_handle.get(), nullptr, nullptr, &retVal, nullptr);
     
     return retVal;
 }
@@ -28,7 +28,7 @@ int SDLTexture::GetHeight()
 {
     int retVal = 0;
 
-    SDL_QueryTexture(texture_handle.get(), NULL, NULL, NULL, &retVal);
+    SDL_QueryTexture(texture_handle.get(), nullptr, nullptr, nullptr, &retVal);
 
     return retVal;
 }

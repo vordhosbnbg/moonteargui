@@ -11,7 +11,7 @@ public:
     RootWindow(const char * title, int posX, int posY, int width, int height);
     ~RootWindow();
     void Init(); // must be called from the main GUI loop
-    void ProcessEvent(SDL_Event ev);
+    void ProcessEvent(const SDL_Event& ev);
     void Render();
     void AddWidget(std::shared_ptr<Widget> widget);
     unsigned int GetWindowID();

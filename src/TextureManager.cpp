@@ -10,7 +10,7 @@ TextureManager::~TextureManager()
 {
 }
 
-std::shared_ptr<SDLTexture> TextureManager::GetTexture(std::string filename)
+std::shared_ptr<SDLTexture> TextureManager::GetTexture(const std::string& filename)
 {
     std::shared_ptr<SDLTexture> retVal = nullptr;
     if (mapOfTextures.find(filename) != mapOfTextures.end()) 
@@ -29,7 +29,7 @@ std::shared_ptr<SDLTexture> TextureManager::GetTexture(std::string filename)
     return retVal;
 }
 
-std::shared_ptr<SDLTexture> TextureManager::LoadTexture(std::string filename)
+std::shared_ptr<SDLTexture> TextureManager::LoadTexture(const std::string& filename)
 {
     return std::shared_ptr<SDLTexture>();
 }

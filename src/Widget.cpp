@@ -22,7 +22,7 @@ void Widget::OnRegisterRenderer()
 {
 }
 
-void Widget::ProcessEvent(SDL_Event ev)
+void Widget::ProcessEvent(const SDL_Event& ev)
 {
 }
 

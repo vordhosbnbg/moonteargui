@@ -3,7 +3,7 @@
 
 using namespace pugi;
 
-TextResource::TextResource(std::string path) : Resource(path)
+TextResource::TextResource(const std::string& path) : Resource(path)
 {
 }
 
@@ -45,12 +45,12 @@ void TextResource::Save()
     doc.save_file(path_to_resource.c_str(), "    ", format_default, encoding_utf8);
 }
 
-void TextResource::AddString(std::string language, std::string str)
+void TextResource::AddString(const std::string& language, const std::string& str)
 {
     localizedData[language] = str;
 }
 
-void TextResource::SetDefaultLanguage(std::string lang)
+void TextResource::SetDefaultLanguage(const std::string& lang)
 {
     defaultLanguage = lang;
 }
@@ -67,7 +67,7 @@ std::string TextResource::GetString()
     return retVal;
 }
 
-std::string TextResource::GetString(std::string language)
+std::string TextResource::GetString(const std::string& language)
 {
     std::string retVal = "";
 

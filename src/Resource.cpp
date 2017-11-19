@@ -1,7 +1,7 @@
 #include "Resource.h"
 
 
-Resource::Resource(std::string path) : path_to_resource(path)
+Resource::Resource(const std::string& path) : path_to_resource(path)
 {
 }
 
@@ -13,7 +13,7 @@ void Resource::Load()
 {
 }
 
-void Resource::Save() 
+void Resource::Save()
 {
 
 }

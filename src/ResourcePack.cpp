@@ -14,5 +14,5 @@ ResourcePack::~ResourcePack()
 
 std::shared_ptr<Resource> ResourcePack::GetResource(ResID id)
 {
-
+    return nullptr;
 }

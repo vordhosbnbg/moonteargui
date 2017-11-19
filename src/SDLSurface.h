@@ -8,11 +8,11 @@
 class SDLSurface
 {
 public:
-    SDLSurface(std::string filename);
-    SDLSurface(SDL_Surface * surface);
+    SDLSurface(std::string& filename);
+    SDLSurface(SDL_Surface* surface);
     ~SDLSurface();
 
-    void Fill(SDL_Color color);
+    void Fill(const SDL_Color& color);
     void SetBlendMode(SDL_BlendMode mode);
     SDL_Surface * GetRawHandle();
 private:

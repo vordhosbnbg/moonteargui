@@ -14,7 +14,7 @@ struct TTF_Font_deleter
 class TTFFont 
 {
 public:
-    TTFFont(std::string filename, int sizePt);
+    TTFFont(const std::string& filename, int sizePt);
     ~TTFFont();
 
     TTF_Font * GetRawHandle();

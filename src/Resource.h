@@ -7,8 +7,8 @@
 class Resource 
 {
 public:
-    Resource(std::string path);
-    ~Resource();
+    Resource(const std::string& path);
+    virtual ~Resource();
 
     virtual void Load();
     virtual void Save();

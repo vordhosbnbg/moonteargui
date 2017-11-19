@@ -7,7 +7,7 @@ class Widget
 {
 public:
     Widget();
-    ~Widget();
+    virtual ~Widget();
 
     void RegisterRenderer(std::shared_ptr<SDLRenderer> rend);
     void AttachChild(std::shared_ptr<Widget> child);
@@ -27,7 +27,7 @@ public:
     bool IsFocused();
 
     virtual void Draw();
-    virtual void ProcessEvent(SDL_Event ev);
+    virtual void ProcessEvent(const SDL_Event& ev);
 
 
 protected:

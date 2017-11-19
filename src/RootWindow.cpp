@@ -3,7 +3,15 @@
 
 
 
-RootWindow::RootWindow(const char * title, int posX, int posY, int width, int height) : windowTitle(title), widgetCount(0), visible(true), initialized(false), wPosX(posX), wPosY(posY), wWidth(width), wHeight(height)
+RootWindow::RootWindow(const char * title, int posX, int posY, int width, int height) :
+    initialized(false),
+    widgetCount(0),
+    visible(true),
+    windowTitle(title),
+    wPosX(posX),
+    wPosY(posY),
+    wWidth(width),
+    wHeight(height)
 {
     rootWidget = std::make_shared<Widget>();
 }
@@ -23,7 +31,7 @@ void RootWindow::Init()
     }
 }
 
-void RootWindow::ProcessEvent(SDL_Event ev)
+void RootWindow::ProcessEvent(const SDL_Event& ev)
 {
     currentEvent = ev;
     if (ev.type == SDL_WINDOWEVENT)
@@ -86,8 +94,6 @@ void RootWindow::TraverseWidgets(TraverseType ttype)
             break;
         case RootWindow::RendererRegistration:
             iter->RegisterRenderer(sdlRenderer);
-            break;
-        default:
             break;
         }
         iterChild = iter->GetFirstChild();
