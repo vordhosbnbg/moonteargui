@@ -11,7 +11,6 @@ find_package(PugiXML REQUIRED)
 
 file(GLOB_RECURSE Project_SOURCES "src/*.cpp")
 file(GLOB_RECURSE Project_HEADERS "src/*.h")
-set (Smoketest_SOURCES "test/smoketest.cpp")
 set (Project_INCLUDE_DIRS "")
 
 foreach (_headerFile ${Project_HEADERS})
@@ -28,16 +27,31 @@ include_directories(${Project_INCLUDE_DIRS}
                     ${pugixml_DIR})
 
 add_library (moonteargui SHARED ${Project_SOURCES})
-add_executable(smoketest ${Smoketest_SOURCES})
+add_executable(smoketest
+    "test/smoketest.cpp"
+    )
+
+add_executable(bench_drawing
+    "test/bench_drawing.cpp"
+    )
 
 set_property(TARGET moonteargui PROPERTY CXX_STANDARD 14)
 set_property(TARGET smoketest PROPERTY CXX_STANDARD 14)
-target_link_libraries (smoketest
-                       moonteargui
+set_property(TARGET bench_drawing PROPERTY CXX_STANDARD 14)
+target_link_libraries (moonteargui
                        ${SDL2_LIBRARIES}
                        ${SDL2_IMAGE_LIBRARY}
                        ${SDL2_TTF_LIBRARY}
                        ${PUGIXML_LIBRARIES}
+                       ${CMAKE_THREAD_LIBS_INIT})
+
+
+target_link_libraries (smoketest
+                       moonteargui
+                       ${CMAKE_THREAD_LIBS_INIT})
+
+target_link_libraries (bench_drawing
+                       moonteargui
                        ${CMAKE_THREAD_LIBS_INIT})
 
 include(CheckCXXCompilerFlag)

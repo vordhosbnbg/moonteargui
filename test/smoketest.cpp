@@ -27,7 +27,7 @@ void Test()
     sigaction(SIGINT, &sigIntHandler, nullptr);
     GraphicsEngine ge;
 
-    std::shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Saphire GUI", 50, 50, 1024, 768);
+    std::shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Moontear GUI", 50, 50, 1024, 768);
     std::shared_ptr<BitmapResource> Res_lack_of_tests = std::make_shared<BitmapResource>("./res/img/lack_of_tests.jpg");
     std::shared_ptr<BitmapResource> Res_trippy_colors = std::make_shared<BitmapResource>("./res/img/trippy-colors.png");
     std::shared_ptr<TextResource> Res_TestText01 = std::make_shared<TextResource>("./res/txt/TestText01.xml");
