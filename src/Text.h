@@ -13,8 +13,8 @@ public:
     void SetTextResource(std::shared_ptr<TextResource> text);
     std::shared_ptr<TextResource> GetTextResource();
 
-    void SetText(std::string text);
-    void AppendText(std::string text);
+    void SetText(const std::string& text);
+    void AppendText(const std::string& text);
     std::string GetText();
 
     void SetFont(std::shared_ptr<FontResource> font);

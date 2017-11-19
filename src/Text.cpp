@@ -28,14 +28,14 @@ std::shared_ptr<TextResource> Text::GetTextResource()
     return textRes;
 }
 
-void Text::SetText(std::string text)
+void Text::SetText(const std::string& text)
 {
     internalTextBuffer = text;
     cached = false;
     useTextResource = false;
 }
 
-void Text::AppendText(std::string text)
+void Text::AppendText(const std::string& text)
 {
     cached = false;
     if (useTextResource) 
@@ -114,7 +114,7 @@ SDL_Color Text::GetBGColor()
 
 void Text::SetTransparent(bool val)
 {
-    transparent = true;
+    transparent = val;
 }
 
 bool Text::IsTransparent()
