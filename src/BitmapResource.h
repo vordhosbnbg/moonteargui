@@ -8,7 +8,7 @@ class BitmapResource : public Resource
 {
 public:
     BitmapResource(const std::string& path);
-    ~BitmapResource();
+    virtual ~BitmapResource();
     
     virtual void Load();
 

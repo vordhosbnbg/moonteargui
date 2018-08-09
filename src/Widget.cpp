@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Widget.h"
 
 
@@ -77,24 +79,28 @@ std::shared_ptr<Widget> Widget::GetNextSibling()
 void Widget::SetX(int x)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
+    std::cout << "Widget SetX - " << x << std::endl;
     widgetPosX = x;
 }
 
 void Widget::SetY(int y)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
+    std::cout << "Widget SetY - " << y << std::endl;
     widgetPosY = y;
 }
 
 void Widget::SetW(int w)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
+    std::cout << "Widget SetW - " << w << std::endl;
     widgetWidth = w;
 }
 
 void Widget::SetH(int h)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
+    std::cout << "Widget SetH - " << h << std::endl;
     widgetHeight = h;
 }
 

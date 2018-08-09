@@ -17,3 +17,8 @@ void Resource::Save()
 {
 
 }
+
+std::string& Resource::getFilePath()
+{
+    return path_to_resource;
+}

@@ -16,5 +16,13 @@ void FontResource::Load()
 
 TTF_Font * FontResource::GetFontHandle()
 {
-    return font->GetRawHandle();
+    if(font)
+        return font->GetRawHandle();
+
+    return nullptr;
+}
+
+int FontResource::GetSize() const
+{
+    return size;
 }

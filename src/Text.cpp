@@ -219,6 +219,12 @@ void Text::RenderText()
     int outline = 0;
     int hinting = TTF_HINTING_NORMAL;
     int kerning = 1;
+    if(fontRes->GetSize() != sizePt)
+    {
+        std::string path = fontRes->getFilePath();
+        fontRes = std::make_shared<FontResource>(path, sizePt);
+        fontRes->Load();
+    }
     TTF_Font * font_handle = fontRes->GetFontHandle();
     if (font_handle)
     {

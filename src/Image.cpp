@@ -39,12 +39,14 @@ void Image::Draw()
             srcImgRect.SetH(textureHeight);
             if (autosize)
             {
-                dstImgRect.SetW(textureWidth);
-                dstImgRect.SetH(textureHeight);
+                widgetWidth = textureWidth;
+                widgetHeight = textureHeight;
             }
 
             dstImgRect.SetX(GetX());
             dstImgRect.SetY(GetY());
+            dstImgRect.SetW(GetW());
+            dstImgRect.SetH(GetH());
             sdlRenderer->Draw(sdlTexture, srcImgRect, dstImgRect);
         }
     }

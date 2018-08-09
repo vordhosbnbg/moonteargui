@@ -13,6 +13,7 @@ public:
 
     virtual void Load();
     TTF_Font * GetFontHandle();
+    int GetSize() const;
 protected:
     std::shared_ptr<TTFFont> font;
     int size;

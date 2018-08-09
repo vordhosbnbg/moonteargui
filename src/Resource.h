@@ -12,6 +12,8 @@ public:
 
     virtual void Load();
     virtual void Save();
+
+    std::string& getFilePath();
 protected:
 
     std::string path_to_resource;

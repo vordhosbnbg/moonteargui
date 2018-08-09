@@ -58,7 +58,7 @@ void Test()
     TextWidet1->SetFGColor({0xFF,0xFF,0xFF,0xFF});
     TextWidet1->SetX(100);
     TextWidet1->SetY(800);
-    TextWidet1->SetW(600);
+    TextWidet1->SetW(900);
     TextWidet1->SetH(100);
     TextWidet1->SetText("Frame: 0");
 
