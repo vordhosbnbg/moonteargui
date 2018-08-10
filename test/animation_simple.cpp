@@ -99,7 +99,8 @@ void Test()
     int earthW = imageEarth->GetW();
     int earthH = imageEarth->GetH();
     ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetX, 900, 1300, 2000));
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetY, 900, 1300, 2000));
+    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetY, 100, 300, 2000));
+    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetRotation, 0, 720, 2000));
     ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetW, earthW, 0, 2000));
     ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetH, earthH, 0, 2000));
 

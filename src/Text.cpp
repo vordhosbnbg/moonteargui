@@ -181,7 +181,7 @@ void Text::Draw()
         }
         if (sdlTextureText) 
         {
-            sdlRenderer->Draw(sdlTextureText, srcTextRect, dstTextRect);
+            sdlRenderer->Draw(sdlTextureText, srcTextRect, dstTextRect, rotationAngle);
         }
     }
 }

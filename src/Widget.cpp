@@ -1,10 +1,17 @@
 #include <iostream>
 
 #include "Widget.h"
+#include "utils.h"
 
 
-
-Widget::Widget() : cached(false), focused(false), widgetPosX(0), widgetPosY(0), widgetWidth(0), widgetHeight(0)
+Widget::Widget() :
+    widgetPosX(0),
+    widgetPosY(0),
+    widgetWidth(0),
+    widgetHeight(0),
+    rotationAngle(0),
+    cached(false),
+    focused(false)
 {
 }
 
@@ -79,28 +86,28 @@ std::shared_ptr<Widget> Widget::GetNextSibling()
 void Widget::SetX(int x)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
-    std::cout << "Widget SetX - " << x << std::endl;
+    DBGPRINT("Widget SetX - " << x << std::endl);
     widgetPosX = x;
 }
 
 void Widget::SetY(int y)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
-    std::cout << "Widget SetY - " << y << std::endl;
+    DBGPRINT("Widget SetY - " << y << std::endl);
     widgetPosY = y;
 }
 
 void Widget::SetW(int w)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
-    std::cout << "Widget SetW - " << w << std::endl;
+    DBGPRINT("Widget SetW - " << w << std::endl);
     widgetWidth = w;
 }
 
 void Widget::SetH(int h)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
-    std::cout << "Widget SetH - " << h << std::endl;
+    DBGPRINT("Widget SetH - " << h << std::endl);
     widgetHeight = h;
 }
 
@@ -122,6 +129,16 @@ int Widget::GetW()
 int Widget::GetH()
 {
     return widgetHeight;
+}
+
+void Widget::SetRotation(int degree)
+{
+    rotationAngle = degree;
+}
+
+int Widget::GetRotation()
+{
+    return rotationAngle;
 }
 
 void Widget::SetFocused(bool val)

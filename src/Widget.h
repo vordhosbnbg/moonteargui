@@ -23,6 +23,10 @@ public:
     int GetY();
     int GetW();
     int GetH();
+
+    void SetRotation(int degree);
+    int GetRotation();
+
     void SetFocused(bool val);
     bool IsFocused();
 
@@ -36,6 +40,7 @@ protected:
     int widgetPosY;
     int widgetWidth;
     int widgetHeight;
+    int rotationAngle;
     std::shared_ptr<SDLRenderer> sdlRenderer;
     bool cached;
     bool focused;

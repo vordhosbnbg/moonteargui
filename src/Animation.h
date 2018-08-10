@@ -1,6 +1,7 @@
 #pragma once
 #include <functional>
 #include <iostream>
+#include "utils.h"
 
 
 class IAnimation
@@ -34,7 +35,7 @@ public:
 
     virtual bool InvokeSetter(unsigned int elapsedTimeInMs) override
     {
-        std::cout << "Animation::InvokeSetter() - " << elapsedTimeInMs << std::endl;
+        DBGPRINT("Animation::InvokeSetter() - " << elapsedTimeInMs << std::endl);
         bool retVal = true;
         if(isLooping)
         {
@@ -48,8 +49,8 @@ public:
         if(setterFunction && elapsedTimeInMs <= animationDuration)
         {
             AnimatedType valueToSet = animatedFrom + (animatedTo - animatedFrom) * (static_cast<double>(elapsedTimeInMs) / static_cast<double>(animationDuration));
-            std::cout << "animatedFrom: " << animatedFrom << ", animatedTo: " << animatedTo << ", elapsedTimeInMs: " << elapsedTimeInMs << ", animationDuration: " << animationDuration << std::endl;;
-            std::cout << "valueToSet: " << valueToSet << std::endl;
+            DBGPRINT("animatedFrom: " << animatedFrom << ", animatedTo: " << animatedTo << ", elapsedTimeInMs: " << elapsedTimeInMs << ", animationDuration: " << animationDuration << std::endl);
+            DBGPRINT("valueToSet: " << valueToSet << std::endl)
             setterFunction(animatedObject, valueToSet);
         }
 

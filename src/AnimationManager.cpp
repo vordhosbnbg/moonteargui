@@ -29,12 +29,20 @@ void AnimationManager::Tick()
     if(running)
     {
         auto timeNow = std::chrono::steady_clock::now();
-        std::cout << "AnimationManager::Tick()" << std::endl;
-        for(AnimationWithStartTime animPair : animationList)
+        DBGPRINT("AnimationManager::Tick()" << std::endl);
+        for(AnimationList::iterator animPairIt = animationList.begin(); animPairIt != animationList.end();)
         {
+            AnimationWithStartTime& animPair = *animPairIt;
             std::chrono::duration<double, std::milli> elapsedTime = timeNow - animPair.first;
-            std::cout << "Processing animation with elapsed time - " << elapsedTime.count() << std::endl;
-            animPair.second->InvokeSetter(static_cast<unsigned int>(elapsedTime.count()));
+            DBGPRINT("Processing animation with elapsed time - " << elapsedTime.count() << std::endl);
+            if(!animPair.second->InvokeSetter(static_cast<unsigned int>(elapsedTime.count())))
+            {
+                animPairIt = animationList.erase(animPairIt);
+            }
+            else
+            {
+                ++animPairIt;
+            }
         }
     }
 }

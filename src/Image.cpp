@@ -1,7 +1,9 @@
+#include <iostream>
 #include "Image.h"
+#include "utils.h"
 
 
-Image::Image(std::shared_ptr<BitmapResource> defaultBitmap) : autosize(true)
+Image::Image(std::shared_ptr<BitmapResource> defaultBitmap) : autosize(true), doAutosize(true)
 {
     bitmap = defaultBitmap;
 }
@@ -15,6 +17,10 @@ void Image::SetBitmap(std::shared_ptr<BitmapResource> defaultBitmap)
     std::lock_guard<std::mutex> lock(mxWidget);
     bitmap = defaultBitmap;
     cached = false;
+    if(autosize)
+    {
+        doAutosize = true;
+    }
 }
 
 void Image::OnRegisterRenderer()
@@ -37,8 +43,9 @@ void Image::Draw()
             int textureHeight = sdlTexture->GetHeight();
             srcImgRect.SetW(textureWidth);
             srcImgRect.SetH(textureHeight);
-            if (autosize)
+            if (doAutosize)
             {
+                doAutosize = false;
                 widgetWidth = textureWidth;
                 widgetHeight = textureHeight;
             }
@@ -47,7 +54,12 @@ void Image::Draw()
             dstImgRect.SetY(GetY());
             dstImgRect.SetW(GetW());
             dstImgRect.SetH(GetH());
-            sdlRenderer->Draw(sdlTexture, srcImgRect, dstImgRect);
+            DBGPRINT("Image::Draw() - dstImgRect:("
+                      << dstImgRect.GetX() << ","
+                      << dstImgRect.GetY() << ","
+                      << dstImgRect.GetW() << ","
+                      << dstImgRect.GetH() << ")" << std::endl);
+            sdlRenderer->Draw(sdlTexture, srcImgRect, dstImgRect, rotationAngle);
         }
     }
 }

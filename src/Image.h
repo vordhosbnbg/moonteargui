@@ -21,5 +21,6 @@ private:
     SDLRect srcImgRect;
     SDLRect dstImgRect;
     bool autosize;
+    bool doAutosize;
 };
 
