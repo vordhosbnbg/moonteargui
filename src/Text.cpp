@@ -9,10 +9,6 @@ Text::Text(std::shared_ptr<TextResource> defaultText, std::shared_ptr<FontResour
     fontRes = defaultFont;
 }
 
-Text::~Text()
-{
-}
-
 void Text::SetTextResource(std::shared_ptr<TextResource> text)
 {
     std::lock_guard<std::mutex> lock(mxWidget);

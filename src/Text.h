@@ -8,7 +8,7 @@ class Text : public Widget
 {
 public:
     Text(std::shared_ptr<TextResource> defaultText, std::shared_ptr<FontResource> defaultFont);
-    virtual ~Text() override;
+    ~Text() override = default;
 
     void SetTextResource(std::shared_ptr<TextResource> text);
     std::shared_ptr<TextResource> GetTextResource();
@@ -35,11 +35,11 @@ public:
     void SetReadOnly(bool val);
     bool IsReadOnly();
 
-    virtual void Draw() override;
-    virtual void ProcessEvent(const SDL_Event& ev) override;
+    void Draw() override;
+    void ProcessEvent(const SDL_Event& ev) override;
 protected:
 
-    virtual void OnRegisterRenderer() override;
+    void OnRegisterRenderer() override;
     void SyncInternalBuffer();
     void DeleteLastCharacter();
     void InsertNewLineCharacter();

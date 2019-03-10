@@ -7,14 +7,14 @@ class Image : public Widget
 {
 public:
     Image(std::shared_ptr<BitmapResource> defaultBitmap);
-    virtual ~Image();
+    ~Image() override;
 
     void SetBitmap(std::shared_ptr<BitmapResource> defaultBitmap);
 
-    virtual void Draw();
+    void Draw() override;
 
 private:
-    virtual void OnRegisterRenderer();
+    void OnRegisterRenderer() override;
     void RenderImage();
     std::shared_ptr<BitmapResource> bitmap;
     std::shared_ptr<SDLTexture> sdlTexture;
