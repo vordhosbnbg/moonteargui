@@ -38,16 +38,16 @@ add_executable(bench_drawing
 add_executable(animation_simple
     "test/animation_simple.cpp"
     )
-
+#[[
 add_executable(blend_simple
     "test/blend_simple.cpp"
     )
-
+]]
 set_property(TARGET moonteargui PROPERTY CXX_STANDARD 14)
 set_property(TARGET smoketest PROPERTY CXX_STANDARD 14)
 set_property(TARGET bench_drawing PROPERTY CXX_STANDARD 14)
 set_property(TARGET animation_simple PROPERTY CXX_STANDARD 14)
-set_property(TARGET blend_simple PROPERTY CXX_STANDARD 14)
+#set_property(TARGET blend_simple PROPERTY CXX_STANDARD 14)
 
 target_link_libraries (moonteargui
                        ${SDL2_LIBRARIES}
@@ -68,11 +68,11 @@ target_link_libraries (bench_drawing
 target_link_libraries (animation_simple
                        moonteargui
                        ${CMAKE_THREAD_LIBS_INIT})
-
+#[[
 target_link_libraries (blend_simple
                        moonteargui
                        ${CMAKE_THREAD_LIBS_INIT})
-
+]]
 
 include(CheckCXXCompilerFlag)
 

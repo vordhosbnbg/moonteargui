@@ -50,7 +50,7 @@ public:
         {
             AnimatedType valueToSet = animatedFrom + (animatedTo - animatedFrom) * (static_cast<double>(elapsedTimeInMs) / static_cast<double>(animationDuration));
             DBGPRINT("animatedFrom: " << animatedFrom << ", animatedTo: " << animatedTo << ", elapsedTimeInMs: " << elapsedTimeInMs << ", animationDuration: " << animationDuration << std::endl);
-            DBGPRINT("valueToSet: " << valueToSet << std::endl)
+            DBGPRINT("valueToSet: " << valueToSet << std::endl);
             setterFunction(animatedObject, valueToSet);
         }
 
