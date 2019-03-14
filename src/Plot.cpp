@@ -56,7 +56,7 @@ void Plot::Draw()
 {
     if(!cached)
     {
-        PreparePlotData();
+        RenderPlotToTexture();
     }
     if(plotTexture)
     {
@@ -76,8 +76,16 @@ void Plot::ProcessEvent(const SDL_Event& ev)
 
 }
 
-void Plot::PreparePlotData()
+void Plot::RenderPlotToTexture()
 {
+    if(boxed)
+    {
+        if(!plotTexture)
+        {
+            plotTexture = std::make_shared<SDLTexture>(sdlRenderer, GetW(), GetH());
+        }
+        sdlRenderer->DrawRectangleOnTexture(plotTexture, boxColor, 0, 0, GetW(), GetH());
+    }
     for(const std::pair<const std::string, Serie>& sDataPair : series)
     {
 

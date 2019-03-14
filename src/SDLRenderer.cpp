@@ -26,7 +26,25 @@ void SDLRenderer::DrawLineOnTexture(const std::shared_ptr<SDLTexture>& targetTex
     SDL_SetRenderTarget(renderer, targetTexture->GetRawHandle());
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
     SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
-    SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x0, 0);
+
+    // restore color and default render target
+    SDL_SetRenderDrawColor(renderer, prevColor.r, prevColor.g, prevColor.b, prevColor.a);
+    SDL_SetRenderTarget(renderer, nullptr);
+}
+
+void SDLRenderer::DrawRectangleOnTexture(const std::shared_ptr<SDLTexture>& targetTexture, const SDL_Color& color, int x1, int y1, int x2, int y2)
+{
+    SDL_Renderer * renderer = renderer_handle.get();
+    SDL_Color prevColor;
+
+    SDL_GetRenderDrawColor(renderer, &prevColor.r, &prevColor.g, &prevColor.b, &prevColor.a);
+    SDL_SetRenderTarget(renderer, targetTexture->GetRawHandle());
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+    SDL_Rect rect{x1, y1, x2, y2};
+    SDL_RenderDrawRect(renderer, &rect);
+
+    // restore color and default render target
+    SDL_SetRenderDrawColor(renderer, prevColor.r, prevColor.g, prevColor.b, prevColor.a);
     SDL_SetRenderTarget(renderer, nullptr);
 }
 

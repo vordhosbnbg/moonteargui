@@ -20,7 +20,7 @@ struct Serie
     double yMin{0};
     double yMax{0};
     bool autorange{true};
-    SDL_Color color{0xFF, 0xFF, 0xFF, 0xFF};
+    SDL_Color color{255,255,255,255};
 };
 
 class Plot : public Widget
@@ -39,10 +39,11 @@ public:
     void ProcessEvent(const SDL_Event& ev) override;
 
 private:
-    void PreparePlotData();
+    void RenderPlotToTexture();
 
 
     bool boxed{true};
+    SDL_Color boxColor{255,255,255,255};
     SDLRect srcPlotRect;
     SDLRect dstPlotRect;
 
