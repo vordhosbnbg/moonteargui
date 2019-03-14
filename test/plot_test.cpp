@@ -39,7 +39,7 @@ void Test()
     testPlot->AddSerieData("BTC/USD", 11, 11863);
     testPlot->AddSerieData("BTC/USD", 12, 12334);
     testPlot->getSeries("BTC/USD").SetXRange(1,12);
-    testPlot->getSeries("BTC/USD").SetYRange(0,13000);
+    testPlot->getSeries("BTC/USD").SetYRange(0,20000);
     testPlot->getSeries("BTC/USD").color = {230, 240, 120, 255};
 
     ge.AddWindow(RW_Window1);

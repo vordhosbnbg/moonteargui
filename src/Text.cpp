@@ -246,6 +246,10 @@ void Text::RenderText()
 
         int width = sdlTextureText->GetWidth();
         int height = sdlTextureText->GetHeight();
+        if(boxed)
+        {
+            sdlRenderer->DrawRectangleOnTexture(*sdlTextureBackground.get(), boxColor, 0, 0, width, height);
+        }
         if (width <= GetW())
         {
             dstTextRect.SetW(width);

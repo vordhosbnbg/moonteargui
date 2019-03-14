@@ -54,6 +54,8 @@ protected:
     std::shared_ptr<SDLTexture> sdlTextureText;
     SDL_Color fgColor;
     SDL_Color bgColor;
+    SDL_Color boxColor{255,255,255,255};
+    bool boxed{true};
     bool transparent;
     bool readOnly;
     bool useTextResource;

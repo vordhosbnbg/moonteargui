@@ -121,9 +121,9 @@ void Plot::RenderPlotToTexture()
                 sdlRenderer->DrawLineOnTexture(*plotTexture.get(),
                                                sData.color,
                                                static_cast<int>(x1Norm),
-                                               static_cast<int>(y1Norm),
+                                               static_cast<int>(GetH() - y1Norm),
                                                static_cast<int>(x2Norm),
-                                               static_cast<int>(y2Norm));
+                                               static_cast<int>(GetH() - y2Norm));
                 cached = true;
             }
         }
