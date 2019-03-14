@@ -56,7 +56,7 @@ void Image::Draw()
                       << dstImgRect.GetY() << ","
                       << dstImgRect.GetW() << ","
                       << dstImgRect.GetH() << ")" << std::endl);
-            sdlRenderer->Draw(sdlTexture, srcImgRect, dstImgRect, rotationAngle);
+            sdlRenderer->Draw(*sdlTexture.get(), srcImgRect, dstImgRect, rotationAngle);
         }
     }
 }

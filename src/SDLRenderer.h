@@ -15,15 +15,16 @@ public:
     ~SDLRenderer() = default;
 
     void Clear();
-    void Draw(std::shared_ptr<SDLTexture>& texture, SDLRect& srcRect, SDLRect& dstRect, double rotation = 0);
-    void DrawLineOnTexture(const std::shared_ptr<SDLTexture>& targetTexture,
+    void Clear(const SDL_Color& color);
+    void Draw(SDLTexture& texture, SDLRect& srcRect, SDLRect& dstRect, double rotation = 0);
+    void DrawLineOnTexture(SDLTexture& targetTexture,
                            const SDL_Color& color,
                            int x1,
                            int y1,
                            int x2,
                            int y2);
 
-    void DrawRectangleOnTexture(const std::shared_ptr<SDLTexture>& targetTexture,
+    void DrawRectangleOnTexture(SDLTexture& targetTexture,
                                 const SDL_Color& color,
                                 int x1,
                                 int y1,
@@ -32,6 +33,7 @@ public:
     void RenderPresent();
     SDL_Surface * GetRenderSurfaceRaw();
     SDL_Renderer * GetRawHandle();
+    void ClearTexture(const SDL_Color& color, SDLTexture& texture);
 
 private:
     std::unique_ptr<SDL_Renderer, sdl_deleter> renderer_handle;

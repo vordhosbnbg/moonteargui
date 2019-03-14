@@ -15,8 +15,10 @@ public:
     ~SDLTexture() = default;
 
     SDL_Texture * GetRawHandle();
+    const SDL_Texture * GetRawHandle() const;
     int GetWidth();
     int GetHeight();
+    void Clear(const SDL_Color& bgColor);
 
 private:
     std::unique_ptr<SDL_Texture, sdl_deleter> texture_handle;

@@ -67,7 +67,7 @@ void Plot::Draw()
         dstPlotRect.SetY(GetY());
         dstPlotRect.SetH(GetH());
         dstPlotRect.SetW(GetW());
-        sdlRenderer->Draw(plotTexture, srcPlotRect, dstPlotRect, rotationAngle);
+        sdlRenderer->Draw(*plotTexture.get(), srcPlotRect, dstPlotRect, rotationAngle);
     }
 }
 
@@ -78,14 +78,20 @@ void Plot::ProcessEvent(const SDL_Event& ev)
 
 void Plot::RenderPlotToTexture()
 {
+    if(!plotTexture)
+    {
+        plotTexture = std::make_shared<SDLTexture>(sdlRenderer, GetW(), GetH());
+    }
+    else
+    {
+        plotTexture->Clear(bgColor);
+    }
+
     if(boxed)
     {
-        if(!plotTexture)
-        {
-            plotTexture = std::make_shared<SDLTexture>(sdlRenderer, GetW(), GetH());
-        }
-        sdlRenderer->DrawRectangleOnTexture(plotTexture, boxColor, 0, 0, GetW(), GetH());
+        sdlRenderer->DrawRectangleOnTexture(*plotTexture.get(), boxColor, 0, 0, GetW(), GetH());
     }
+
     for(const std::pair<const std::string, Serie>& sDataPair : series)
     {
 
@@ -112,11 +118,7 @@ void Plot::RenderPlotToTexture()
                 yNorm.set(y2Val);
                 double y2Norm = yNorm.getNormalized();
 
-                if(!plotTexture)
-                {
-                    plotTexture = std::make_shared<SDLTexture>(sdlRenderer, GetW(), GetH());
-                }
-                sdlRenderer->DrawLineOnTexture(plotTexture,
+                sdlRenderer->DrawLineOnTexture(*plotTexture.get(),
                                                sData.color,
                                                static_cast<int>(x1Norm),
                                                static_cast<int>(y1Norm),

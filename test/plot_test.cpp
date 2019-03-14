@@ -46,6 +46,15 @@ void Test()
     RW_Window1->AddWidget(testPlot);
     ge.Start();
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    testPlot->AddSerieData("BTC/USD", 13, 12296);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    testPlot->AddSerieData("BTC/USD", 14, 15292);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    testPlot->AddSerieData("BTC/USD", 15, 16863);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    testPlot->AddSerieData("BTC/USD", 16, 18334);
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
     ge.Stop();
 }
 

@@ -20,6 +20,11 @@ SDL_Texture * SDLTexture::GetRawHandle()
     return texture_handle.get();
 }
 
+const SDL_Texture * SDLTexture::GetRawHandle() const
+{
+    return texture_handle.get();
+}
+
 int SDLTexture::GetWidth()
 {
     int retVal = 0;
@@ -36,5 +41,10 @@ int SDLTexture::GetHeight()
     SDL_QueryTexture(texture_handle.get(), nullptr, nullptr, nullptr, &retVal);
 
     return retVal;
+}
+
+void SDLTexture::Clear(const SDL_Color& bgColor)
+{
+    sdlRenderer->ClearTexture(bgColor, *this);
 }
 
