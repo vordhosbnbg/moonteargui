@@ -145,7 +145,7 @@ void Text::SyncInternalBuffer()
 void Text::DeleteLastCharacter()
 {
     SyncInternalBuffer();
-    if (internalTextBuffer.size() > 0)
+    if (!internalTextBuffer.empty())
     {
         internalTextBuffer.pop_back();
         cached = false;

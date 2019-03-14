@@ -7,11 +7,16 @@ class Widget
 {
 public:
     Widget();
-    virtual ~Widget();
+    Widget(const Widget& other);
+    Widget(const Widget&& other) noexcept;
+    Widget& operator=(const Widget& other);
+    Widget& operator=(Widget&& other) noexcept;
 
-    void RegisterRenderer(std::shared_ptr<SDLRenderer> rend);
-    void AttachChild(std::shared_ptr<Widget> child);
-    void AttachSibling(std::shared_ptr<Widget> sibling);
+    virtual ~Widget() = default;
+
+    void RegisterRenderer(const std::shared_ptr<SDLRenderer>& rend);
+    void AttachChild(const std::shared_ptr<Widget>& child);
+    void AttachSibling(const std::shared_ptr<Widget>& sibling);
     std::shared_ptr<Widget> GetFirstChild();
     std::shared_ptr<Widget> GetNextSibling();
 

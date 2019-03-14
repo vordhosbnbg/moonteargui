@@ -15,7 +15,8 @@ public:
     ~SDLRenderer();
 
     void Clear();
-    void Draw(std::shared_ptr<SDLTexture> texture, SDLRect& srcRect, SDLRect& dstRect, double rotation = 0);
+    void Draw(std::shared_ptr<SDLTexture>& texture, SDLRect& srcRect, SDLRect& dstRect, double rotation = 0);
+    void DrawLineOnTexture(std::shared_ptr<SDLTexture>& targetTexture, int x1, int y1, int x2, int y2);
     void RenderPresent();
     SDL_Surface * GetRenderSurfaceRaw();
     SDL_Renderer * GetRawHandle();

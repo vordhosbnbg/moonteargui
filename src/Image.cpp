@@ -3,16 +3,13 @@
 #include "utils.h"
 
 
-Image::Image(std::shared_ptr<BitmapResource> defaultBitmap) : autosize(true), doAutosize(true)
+Image::Image(std::shared_ptr<BitmapResource>& defaultBitmap) : autosize(true), doAutosize(true)
 {
     bitmap = defaultBitmap;
 }
 
-Image::~Image()
-{
-}
 
-void Image::SetBitmap(std::shared_ptr<BitmapResource> defaultBitmap)
+void Image::SetBitmap(const std::shared_ptr<BitmapResource>& defaultBitmap)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
     bitmap = defaultBitmap;

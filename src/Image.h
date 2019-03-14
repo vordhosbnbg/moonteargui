@@ -6,10 +6,10 @@
 class Image : public Widget
 {
 public:
-    Image(std::shared_ptr<BitmapResource> defaultBitmap);
-    ~Image() override;
+    Image(std::shared_ptr<BitmapResource>& defaultBitmap);
+    ~Image() override=default;
 
-    void SetBitmap(std::shared_ptr<BitmapResource> defaultBitmap);
+    void SetBitmap(const std::shared_ptr<BitmapResource>& defaultBitmap);
 
     void Draw() override;
 

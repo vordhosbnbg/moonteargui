@@ -10,8 +10,9 @@ class SDLRenderer;
 class SDLTexture
 {
 public:
-    SDLTexture(std::shared_ptr<SDLRenderer> renderer, std::shared_ptr<SDLSurface> surface);
-    ~SDLTexture();
+    SDLTexture(std::shared_ptr<SDLRenderer>& renderer, std::shared_ptr<SDLSurface> surface);
+    SDLTexture(std::shared_ptr<SDLRenderer>& renderer, int w, int h);
+    ~SDLTexture() = default;
 
     SDL_Texture * GetRawHandle();
     int GetWidth();

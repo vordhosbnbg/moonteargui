@@ -15,12 +15,56 @@ Widget::Widget() :
 {
 }
 
-
-Widget::~Widget()
+Widget::Widget(const Widget &other) :
+    widgetPosX(other.widgetPosX),
+    widgetPosY(other.widgetPosY),
+    widgetWidth(other.widgetWidth),
+    widgetHeight(other.widgetHeight),
+    rotationAngle(other.rotationAngle),
+    cached(other.cached),
+    focused(other.focused)
 {
 }
 
-void Widget::RegisterRenderer(std::shared_ptr<SDLRenderer> rend)
+Widget::Widget(const Widget&& other) noexcept :
+    widgetPosX(other.widgetPosX),
+    widgetPosY(other.widgetPosY),
+    widgetWidth(other.widgetWidth),
+    widgetHeight(other.widgetHeight),
+    rotationAngle(other.rotationAngle),
+    cached(other.cached),
+    focused(other.focused)
+{
+}
+
+Widget& Widget::operator=(const Widget& other)
+{
+    widgetPosX = other.widgetPosX;
+    widgetPosY = other.widgetPosY;
+    widgetWidth = other.widgetWidth;
+    widgetHeight = other.widgetHeight;
+    rotationAngle = other.rotationAngle;
+    cached = other.cached;
+    focused = other.focused;
+    return *this;
+}
+
+Widget& Widget::operator=(Widget&& other) noexcept
+{
+    widgetPosX = other.widgetPosX;
+    widgetPosY = other.widgetPosY;
+    widgetWidth = other.widgetWidth;
+    widgetHeight = other.widgetHeight;
+    rotationAngle = other.rotationAngle;
+    cached = other.cached;
+    focused = other.focused;
+    return *this;
+}
+
+
+
+
+void Widget::RegisterRenderer(const std::shared_ptr<SDLRenderer>& rend)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
     sdlRenderer = rend;
@@ -35,7 +79,7 @@ void Widget::ProcessEvent(const SDL_Event& ev)
 {
 }
 
-void Widget::AttachChild(std::shared_ptr<Widget> child)
+void Widget::AttachChild(const std::shared_ptr<Widget>& child)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
     if (!firstChild)
@@ -48,7 +92,7 @@ void Widget::AttachChild(std::shared_ptr<Widget> child)
     }
 }
 
-void Widget::AttachSibling(std::shared_ptr<Widget> sibling)
+void Widget::AttachSibling(const std::shared_ptr<Widget>& sibling)
 {
     std::lock_guard<std::mutex> lock(mxWidget);
     if (!nextSibling)
@@ -133,6 +177,7 @@ int Widget::GetH()
 
 void Widget::SetRotation(int degree)
 {
+    std::lock_guard<std::mutex> lock(mxWidget);
     rotationAngle = degree;
 }
 
