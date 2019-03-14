@@ -109,6 +109,7 @@ void Plot::PreparePlotData()
                     plotTexture = std::make_shared<SDLTexture>(sdlRenderer, GetW(), GetH());
                 }
                 sdlRenderer->DrawLineOnTexture(plotTexture,
+                                               sData.color,
                                                static_cast<int>(x1Norm),
                                                static_cast<int>(y1Norm),
                                                static_cast<int>(x2Norm),

@@ -7,10 +7,6 @@ SDLRenderer::SDLRenderer(std::shared_ptr<SDLWindow> window) : renderer_handle(SD
 }
 
 
-SDLRenderer::~SDLRenderer()
-{
-}
-
 void SDLRenderer::Clear()
 {
     SDL_RenderClear(renderer_handle.get());
@@ -21,13 +17,17 @@ void SDLRenderer::Draw(std::shared_ptr<SDLTexture>& texture, SDLRect& srcRect, S
     SDL_RenderCopyEx(renderer_handle.get(), texture->GetRawHandle(), srcRect.GetRawHandle(), dstRect.GetRawHandle(), rotation, nullptr, SDL_FLIP_NONE);
 }
 
-void SDLRenderer::DrawLineOnTexture(std::shared_ptr<SDLTexture>& targetTexture, int x1, int y1, int x2, int y2)
+void SDLRenderer::DrawLineOnTexture(const std::shared_ptr<SDLTexture>& targetTexture, const SDL_Color& color, int x1, int y1, int x2, int y2)
 {
-    SDL_SetRenderTarget(renderer_handle.get(), targetTexture->GetRawHandle());
-    SDL_SetRenderDrawColor(renderer_handle.get(), 0xFF, 0xFF, 0xFF, 0);
-    SDL_RenderDrawLine(renderer_handle.get(), x1, y1, x2, y2);
-    SDL_SetRenderDrawColor(renderer_handle.get(), 0x0, 0x0, 0x0, 0);
-    SDL_SetRenderTarget(renderer_handle.get(), nullptr);
+    SDL_Renderer * renderer = renderer_handle.get();
+    SDL_Color prevColor;
+
+    SDL_GetRenderDrawColor(renderer, &prevColor.r, &prevColor.g, &prevColor.b, &prevColor.a);
+    SDL_SetRenderTarget(renderer, targetTexture->GetRawHandle());
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+    SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+    SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x0, 0);
+    SDL_SetRenderTarget(renderer, nullptr);
 }
 
 void SDLRenderer::RenderPresent()

@@ -20,6 +20,7 @@ struct Serie
     double yMin{0};
     double yMax{0};
     bool autorange{true};
+    SDL_Color color{0xFF, 0xFF, 0xFF, 0xFF};
 };
 
 class Plot : public Widget
@@ -40,10 +41,11 @@ public:
 private:
     void PreparePlotData();
 
+
+    bool boxed{true};
     SDLRect srcPlotRect;
     SDLRect dstPlotRect;
 
-    //using Serie = std::pair<std::string, SerieData>;
     std::unordered_map<std::string, Serie> series;
     std::unordered_map<std::string, std::pair<double, double>> seriesRanges;
     std::vector<double> xValues;

@@ -2,15 +2,15 @@
 
 
 SDLTexture::SDLTexture(std::shared_ptr<SDLRenderer>& renderer, std::shared_ptr<SDLSurface> surface) :
-    texture_handle(SDL_CreateTextureFromSurface(renderer->GetRawHandle(), surface->GetRawHandle()), sdl_deleter())
+    texture_handle(SDL_CreateTextureFromSurface(renderer->GetRawHandle(), surface->GetRawHandle()), sdl_deleter()),
+    sdlRenderer(renderer)
 {
-    sdlRenderer = renderer;
 }
 
-SDLTexture::SDLTexture(std::shared_ptr<SDLRenderer>& renderer, int w, int h)
+SDLTexture::SDLTexture(std::shared_ptr<SDLRenderer>& renderer, int w, int h) :
+    texture_handle(SDL_CreateTexture(renderer->GetRawHandle(), SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, w, h)),
+    sdlRenderer(renderer)
 {
-    SDL_CreateTexture(renderer->GetRawHandle(), SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, w, h);
-    sdlRenderer = renderer;
 }
 
 

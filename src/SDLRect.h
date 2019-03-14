@@ -6,8 +6,12 @@ class SDLRect
 {
 public:
     SDLRect();
+    SDLRect(const SDLRect& other) = default;
+    SDLRect(SDLRect&& other) = default;
     SDLRect(int x, int y, int w, int h);
-    ~SDLRect();
+    SDLRect& operator=(const SDLRect& other) = default;
+    SDLRect& operator=(SDLRect&& other) = default;
+    ~SDLRect() = default;
 
     void SetX(int x);
     void SetY(int y);

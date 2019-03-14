@@ -1,24 +1,13 @@
 #include "SDLRect.h"
 
-SDLRect::SDLRect()
+SDLRect::SDLRect() : rawRect{0,0,0,0}
 {
-    rawRect.x = 0;
-    rawRect.y = 0;
-    rawRect.w = 0;
-    rawRect.h = 0;
 }
 
-SDLRect::SDLRect(int x, int y, int w, int h)
+SDLRect::SDLRect(int x, int y, int w, int h) : rawRect{x,y,w,h}
 {
-    rawRect.x = x;
-    rawRect.y = y;
-    rawRect.w = w;
-    rawRect.h = h;
 }
 
-SDLRect::~SDLRect()
-{
-}
 
 void SDLRect::SetX(int x)
 {
