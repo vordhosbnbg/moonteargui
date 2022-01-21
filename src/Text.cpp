@@ -1,5 +1,5 @@
 #include "Text.h"
-#include "SDL2/SDL_ttf.h"
+#include "SDL_ttf.h"
 
 #define DEFAULT_PT_SIZE 18
 

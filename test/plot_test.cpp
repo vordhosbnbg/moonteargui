@@ -20,7 +20,6 @@ void Test()
     sigaction(SIGINT, &sigIntHandler, nullptr);
     GraphicsEngine ge;
 
-    std::shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Plot test", 50, 50, 1700, 900);
     std::shared_ptr<Plot> testPlot = std::make_shared<Plot>();
     testPlot->SetX(20);
     testPlot->SetY(20);
@@ -42,20 +41,23 @@ void Test()
     testPlot->getSeries("BTC/USD").SetYRange(0,20000);
     testPlot->getSeries("BTC/USD").color = {230, 240, 120, 255};
 
+    std::shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Plot test", 50, 50, 1700, 900);
     ge.AddWindow(RW_Window1);
     RW_Window1->AddWidget(testPlot);
+    std::thread controlThread([&]()
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        testPlot->AddSerieData("BTC/USD", 13, 12296);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        testPlot->AddSerieData("BTC/USD", 14, 15292);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        testPlot->AddSerieData("BTC/USD", 15, 16863);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        testPlot->AddSerieData("BTC/USD", 16, 18334);
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        ge.Stop();
+    });
     ge.Start();
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-    testPlot->AddSerieData("BTC/USD", 13, 12296);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    testPlot->AddSerieData("BTC/USD", 14, 15292);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    testPlot->AddSerieData("BTC/USD", 15, 16863);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    testPlot->AddSerieData("BTC/USD", 16, 18334);
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-
-    ge.Stop();
 }
 
 int main(int argc, char *argv[])

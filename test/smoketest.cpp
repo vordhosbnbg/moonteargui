@@ -1,6 +1,4 @@
 #include <signal.h>
-#include "SDL2/SDL_main.h"
-#include "pugixml.hpp"
 #include "GraphicsEngine.h"
 #include "BitmapResource.h"
 #include "Image.h"
@@ -53,22 +51,26 @@ void Test()
     RW_Window1->AddWidget(ImageWidget2);
     RW_Window1->AddWidget(TextWidet1);
     ge.AddWindow(RW_Window1);
+    std::thread controlThread([&]()
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        ImageWidget1->SetX(50);
+        ImageWidget1->SetY(220);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        ImageWidget2->SetX(400);
+        ImageWidget2->SetY(100);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        TextWidet1->SetX(10);
+        TextWidet1->SetY(10);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        TextWidet1->SetBGColor({ 0xFF,0xFF,0xFF,0x80 });
+        TextWidet1->SetFGColor({ 0x1F,0x60,0x00,0x00 });
+        TextWidet1->SetFocused(true);
+        std::this_thread::sleep_for(std::chrono::milliseconds(20000));
+        ge.Stop();
+    });
+    controlThread.join();
     ge.Start();
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-    ImageWidget1->SetX(50);
-    ImageWidget1->SetY(220);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    ImageWidget2->SetX(400);
-    ImageWidget2->SetY(100);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    TextWidet1->SetX(10);
-    TextWidet1->SetY(10);
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-    TextWidet1->SetBGColor({ 0xFF,0xFF,0xFF,0x80 });
-    TextWidet1->SetFGColor({ 0x1F,0x60,0x00,0x00 });
-    TextWidet1->SetFocused(true);
-    std::this_thread::sleep_for(std::chrono::milliseconds(20000));
-    ge.Stop();
 }
 
 int main(int argc, char *argv[]) 

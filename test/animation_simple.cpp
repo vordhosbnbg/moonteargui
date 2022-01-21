@@ -1,6 +1,4 @@
 #include <signal.h>
-#include "SDL2/SDL_main.h"
-#include "pugixml.hpp"
 #include "GraphicsEngine.h"
 #include "BitmapResource.h"
 #include "Image.h"
@@ -78,35 +76,38 @@ void Test()
     RW_Window1->AddWidget(imageMars);
     RW_Window1->AddWidget(textDescription);
     ge.AddWindow(RW_Window1);
+    std::thread controlThread([&]()
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+        textDescription->SetText("Mercury animation started - Y from 100 to 200 for 2000 ms");
+        ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageMercury, &Image::SetY, 100, 200, 2000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+        textDescription->SetText("Venus animation started - X (500->100) for 5000 ms");
+        ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageVenus, &Image::SetX, 500, 100, 5000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+        textDescription->SetText("Mars two animation start - X (1300->500) and Y (100->300) for 2000 ms");
+        ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageMars, &Image::SetX, 1300, 500, 2000));
+        ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageMars, &Image::SetY, 100, 300, 2000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+        textDescription->SetText("Earth, three animations, X (900->1300) and Y (100->300) and size from 100% to 0 for 2000 ms");
+
+        int earthW = imageEarth->GetW();
+        int earthH = imageEarth->GetH();
+        ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetX, 900, 1300, 2000));
+        ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetY, 100, 300, 2000));
+        ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetRotation, 0, 720, 2000));
+        ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetW, earthW, 0, 2000));
+        ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetH, earthH, 0, 2000));
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+        ge.Stop();
+    });
     ge.Start();
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-
-    textDescription->SetText("Mercury animation started - Y from 100 to 200 for 2000 ms");
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageMercury, &Image::SetY, 100, 200, 2000));
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-
-    textDescription->SetText("Venus animation started - X (500->100) for 5000 ms");
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageVenus, &Image::SetX, 500, 100, 5000));
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-
-    textDescription->SetText("Mars two animation start - X (1300->500) and Y (100->300) for 2000 ms");
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageMars, &Image::SetX, 1300, 500, 2000));
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageMars, &Image::SetY, 100, 300, 2000));
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-
-    textDescription->SetText("Earth, three animations, X (900->1300) and Y (100->300) and size from 100% to 0 for 2000 ms");
-
-    int earthW = imageEarth->GetW();
-    int earthH = imageEarth->GetH();
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetX, 900, 1300, 2000));
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetY, 100, 300, 2000));
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetRotation, 0, 720, 2000));
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetW, earthW, 0, 2000));
-    ge.AddAnimation(std::make_shared<Animation<int, Image>>(*imageEarth, &Image::SetH, earthH, 0, 2000));
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-
-    ge.Stop();
 }
 
 int main(int argc, char *argv[])

@@ -5,9 +5,9 @@ project (moonteargui)
 
 find_package (Threads)
 find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_ttf REQUIRED)
-find_package(PugiXML REQUIRED)
+find_package(SDL2_IMAGE REQUIRED)
+find_package(SDL2_TTF REQUIRED)
+find_package(pugixml REQUIRED)
 
 file(GLOB_RECURSE Project_SOURCES "src/*.cpp")
 file(GLOB_RECURSE Project_HEADERS "src/*.h")
@@ -24,7 +24,7 @@ include_directories(${Project_INCLUDE_DIRS}
                     ${SDL2_INCLUDE_DIR}
                     ${SDL2_IMAGE_INCLUDE_DIR}
                     ${SDL2_TTF_INCLUDE_DIR}
-                    ${pugixml_DIR})
+                    ${PUGIXML_INCLUDE_DIR})
 
 add_library (moonteargui SHARED ${Project_SOURCES})
 add_executable(smoketest
@@ -88,7 +88,7 @@ include(CheckCXXCompilerFlag)
 
 CHECK_CXX_COMPILER_FLAG("-march=native" HAS_FLAG_MARCH_NATIVE)
 if (HAS_FLAG_MARCH_NATIVE)
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
+    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
 endif()
 
 CHECK_CXX_COMPILER_FLAG("-mtune=native" HAS_FLAG_MTUNE_NATIVE)
@@ -99,4 +99,12 @@ endif()
 CHECK_CXX_COMPILER_FLAG("-pthread" HAS_FLAG_PTHREAD)
 if (HAS_FLAG_PTHREAD)
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -pthread")
+endif()
+
+
+if (APPLE)
+    CHECK_CXX_COMPILER_FLAG("-mmacosx-version-min=10.6" HAS_FLAG_MACOSX_VERSION_MIN)
+    if (HAS_FLAG_MACOSX_VERSION_MIN)
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mmacosx-version-min=10.6")
+    endif()
 endif()

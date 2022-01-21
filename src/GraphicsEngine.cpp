@@ -1,6 +1,6 @@
 #include "GraphicsEngine.h"
-#include "SDL2/SDL_image.h"
-#include "SDL2/SDL_ttf.h"
+#include "SDL_image.h"
+#include "SDL_ttf.h"
 
 
 
@@ -39,15 +39,19 @@ void GraphicsEngine::AddAnimation(std::shared_ptr<IAnimation> anim)
 
 void GraphicsEngine::Start()
 {
-    isRunning.test_and_set();
+    isRunning = true;
     animationManager->Start();
+#ifdef __APPLE__
+    MainLoop();
+#else
     mainThread = std::make_shared<std::thread>(&GraphicsEngine::MainLoop, this);
+#endif
 }
 
 void GraphicsEngine::MainLoop()
 {
     SDL_Event ev;
-    while (isRunning.test_and_set())
+    while (isRunning)
     {
         InitIfNecessary();
         animationManager->Tick();
@@ -79,8 +83,12 @@ void GraphicsEngine::MainLoop()
 
 void GraphicsEngine::Stop()
 {
-    animationManager->Stop();
-    isRunning.clear();
+    if(isRunning)
+    {
+        animationManager->Stop();
+        isRunning = false;
+        SDL_Quit();
+    }
 }
 
 void GraphicsEngine::InitIfNecessary()

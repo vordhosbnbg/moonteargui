@@ -26,7 +26,7 @@ public:
     void Stop();
 private:
     void InitIfNecessary();
-    std::atomic_flag isRunning;
+    std::atomic<bool> isRunning{false};
     std::shared_ptr<std::thread> mainThread;
     std::shared_ptr<std::thread> inputThread;
     std::list<std::shared_ptr<RootWindow>> windowListActive;

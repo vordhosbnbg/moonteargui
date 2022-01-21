@@ -10,7 +10,7 @@ void AnimationManager::Start()
     if(!running)
     {
         auto elapsedTime = std::chrono::steady_clock::now() - stopTime;
-        for(AnimationWithStartTime animPair : animationList)
+        for(AnimationWithStartTime& animPair : animationList)
         {
             animPair.first += elapsedTime;
         }
