@@ -69,8 +69,8 @@ void Test()
         std::this_thread::sleep_for(std::chrono::milliseconds(20000));
         ge.Stop();
     });
-    controlThread.join();
     ge.Start();
+    controlThread.join();
 }
 
 int main(int argc, char *argv[]) 

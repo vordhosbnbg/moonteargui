@@ -15,7 +15,10 @@ GraphicsEngine::GraphicsEngine() : animationManager(std::make_shared<AnimationMa
 GraphicsEngine::~GraphicsEngine()
 {
     Stop();
+    SDL_Quit();
+#ifndef __APPLE__
     mainThread->join();
+#endif
 }
 
 std::shared_ptr<RootWindow> GraphicsEngine::CreateRootWindow(const char * title, int posX, int posY, int width, int height)
@@ -63,7 +66,7 @@ void GraphicsEngine::MainLoop()
                 {
                 case SDL_QUIT:
                     Stop();
-                    break;
+                    return;
                 case SDL_WINDOWEVENT:
                     if (ev.window.windowID == (*iterWnd)->GetWindowID())
                     {
@@ -87,7 +90,6 @@ void GraphicsEngine::Stop()
     {
         animationManager->Stop();
         isRunning = false;
-        SDL_Quit();
     }
 }
 

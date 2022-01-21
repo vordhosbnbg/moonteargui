@@ -148,6 +148,7 @@ void Test()
         ge.Stop();
     });
     ge.Start();
+    controlThread.join();
 }
 
 int main(int argc, char *argv[])
