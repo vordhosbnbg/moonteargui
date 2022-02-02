@@ -5,8 +5,8 @@ project (moonteargui)
 
 find_package (Threads)
 find_package(SDL2 REQUIRED)
-find_package(SDL2_IMAGE REQUIRED)
-find_package(SDL2_TTF REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_ttf REQUIRED)
 find_package(pugixml REQUIRED)
 
 file(GLOB_RECURSE Project_SOURCES "src/*.cpp")
@@ -38,28 +38,18 @@ add_executable(bench_drawing
 add_executable(animation_simple
     "test/animation_simple.cpp"
     )
-#[[
-add_executable(blend_simple
-    "test/blend_simple.cpp"
-    )
-]]
 
 add_executable(plot_test
     "test/plot_test.cpp"
     )
 
-set_property(TARGET moonteargui PROPERTY CXX_STANDARD 14)
-set_property(TARGET smoketest PROPERTY CXX_STANDARD 14)
-set_property(TARGET bench_drawing PROPERTY CXX_STANDARD 14)
-set_property(TARGET animation_simple PROPERTY CXX_STANDARD 14)
-#set_property(TARGET blend_simple PROPERTY CXX_STANDARD 14)
-set_property(TARGET plot_test PROPERTY CXX_STANDARD 14)
+set_property(GLOBAL PROPERTY CXX_STANDARD 20)
 
 target_link_libraries (moonteargui
-                       ${SDL2_LIBRARIES}
-                       ${SDL2_IMAGE_LIBRARY}
-                       ${SDL2_TTF_LIBRARY}
-                       ${PUGIXML_LIBRARIES}
+                       pugixml
+                       SDL2
+                       SDL2_image
+                       SDL2_ttf
                        ${CMAKE_THREAD_LIBS_INIT})
 
 
@@ -74,11 +64,6 @@ target_link_libraries (bench_drawing
 target_link_libraries (animation_simple
                        moonteargui
                        ${CMAKE_THREAD_LIBS_INIT})
-#[[
-target_link_libraries (blend_simple
-                       moonteargui
-                       ${CMAKE_THREAD_LIBS_INIT})
-]]
 
 target_link_libraries (plot_test
                        moonteargui
