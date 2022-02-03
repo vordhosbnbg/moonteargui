@@ -19,7 +19,7 @@ private:
     std::shared_ptr<BitmapResource> bitmap;
     std::shared_ptr<SDLTexture> sdlTexture;
     SDLRect srcImgRect;
-    SDLRect dstImgRect;
+    SDLFRect dstImgRect;
     bool autosize;
     bool doAutosize;
 };

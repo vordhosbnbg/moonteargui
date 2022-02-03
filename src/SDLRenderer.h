@@ -6,6 +6,7 @@
 #include "SDLWindow.h"
 #include "SDLTexture.h"
 #include "SDLRect.h"
+#include "SDLFRect.h"
 
 class SDLTexture;
 class SDLRenderer
@@ -17,6 +18,7 @@ public:
     void Clear();
     void Clear(const SDL_Color& color);
     void Draw(SDLTexture& texture, SDLRect& srcRect, SDLRect& dstRect, double rotation = 0);
+    void DrawF(SDLTexture& texture, SDLRect& srcRect, SDLFRect& dstRect, double rotation = 0);
     void DrawLineOnTexture(SDLTexture& targetTexture,
                            const SDL_Color& color,
                            int x1,
@@ -24,12 +26,26 @@ public:
                            int x2,
                            int y2);
 
+    void DrawLineOnTextureF(SDLTexture& targetTexture,
+                            const SDL_Color& color,
+                            float x1,
+                            float y1,
+                            float x2,
+                            float y2);
+
     void DrawRectangleOnTexture(SDLTexture& targetTexture,
                                 const SDL_Color& color,
                                 int x1,
                                 int y1,
                                 int x2,
                                 int y2);
+
+    void DrawRectangleOnTextureF(SDLTexture& targetTexture,
+                                 const SDL_Color& color,
+                                 float x1,
+                                 float y1,
+                                 float x2,
+                                 float y2);
     void RenderPresent();
     SDL_Surface * GetRenderSurfaceRaw();
     SDL_Renderer * GetRawHandle();

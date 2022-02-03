@@ -46,7 +46,7 @@ private:
     SDL_Color boxColor{255,255,255,255};
     SDL_Color bgColor{0,0,0,255};
     SDLRect srcPlotRect;
-    SDLRect dstPlotRect;
+    SDLFRect dstPlotRect;
 
     std::unordered_map<std::string, Serie> series;
     std::unordered_map<std::string, std::pair<double, double>> seriesRanges;

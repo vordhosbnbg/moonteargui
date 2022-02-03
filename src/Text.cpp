@@ -173,11 +173,11 @@ void Text::Draw()
         dstBgRect.SetY(GetY());
         if ((!transparent) && (sdlTextureBackground))
         {
-            sdlRenderer->Draw(*sdlTextureBackground.get(), srcBgRect, dstBgRect);
+            sdlRenderer->DrawF(*sdlTextureBackground.get(), srcBgRect, dstBgRect);
         }
         if (sdlTextureText) 
         {
-            sdlRenderer->Draw(*sdlTextureText.get(), srcTextRect, dstTextRect, rotationAngle);
+            sdlRenderer->DrawF(*sdlTextureText.get(), srcTextRect, dstTextRect, rotationAngle);
         }
     }
 }

@@ -127,65 +127,6 @@ std::shared_ptr<Widget> Widget::GetNextSibling()
     return nextSibling;
 }
 
-void Widget::SetX(int x)
-{
-    std::lock_guard<std::mutex> lock(mxWidget);
-    DBGPRINT("Widget SetX - " << x << std::endl);
-    widgetPosX = x;
-}
-
-void Widget::SetY(int y)
-{
-    std::lock_guard<std::mutex> lock(mxWidget);
-    DBGPRINT("Widget SetY - " << y << std::endl);
-    widgetPosY = y;
-}
-
-void Widget::SetW(int w)
-{
-    std::lock_guard<std::mutex> lock(mxWidget);
-    DBGPRINT("Widget SetW - " << w << std::endl);
-    widgetWidth = w;
-}
-
-void Widget::SetH(int h)
-{
-    std::lock_guard<std::mutex> lock(mxWidget);
-    DBGPRINT("Widget SetH - " << h << std::endl);
-    widgetHeight = h;
-}
-
-int Widget::GetX()
-{
-    return widgetPosX;
-}
-
-int Widget::GetY()
-{
-    return widgetPosY;
-}
-
-int Widget::GetW()
-{
-    return widgetWidth;
-}
-
-int Widget::GetH()
-{
-    return widgetHeight;
-}
-
-void Widget::SetRotation(int degree)
-{
-    std::lock_guard<std::mutex> lock(mxWidget);
-    rotationAngle = degree;
-}
-
-int Widget::GetRotation()
-{
-    return rotationAngle;
-}
-
 void Widget::SetFocused(bool val)
 {
     std::lock_guard<std::mutex> lock(mxWidget);

@@ -60,7 +60,7 @@ protected:
     bool readOnly;
     bool useTextResource;
     SDLRect srcTextRect;
-    SDLRect dstTextRect;
+    SDLFRect dstTextRect;
     SDLRect srcBgRect;
-    SDLRect dstBgRect;
+    SDLFRect dstBgRect;
 };

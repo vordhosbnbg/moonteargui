@@ -68,7 +68,7 @@ void Plot::Draw()
         dstPlotRect.SetY(GetY());
         dstPlotRect.SetH(GetH());
         dstPlotRect.SetW(GetW());
-        sdlRenderer->Draw(*plotTexture.get(), srcPlotRect, dstPlotRect, rotationAngle);
+        sdlRenderer->DrawF(*plotTexture.get(), srcPlotRect, dstPlotRect, rotationAngle);
     }
 }
 
@@ -90,7 +90,7 @@ void Plot::RenderPlotToTexture()
 
     if(boxed)
     {
-        sdlRenderer->DrawRectangleOnTexture(*plotTexture.get(), boxColor, 0, 0, GetW(), GetH());
+        sdlRenderer->DrawRectangleOnTextureF(*plotTexture.get(), boxColor, 0, 0, GetW(), GetH());
     }
 
     for(const std::pair<const std::string, Serie>& sDataPair : series)
@@ -108,23 +108,23 @@ void Plot::RenderPlotToTexture()
                 const double& y1Val = point.second;
                 const double& x2Val = nextPoint.first;
                 const double& y2Val = nextPoint.second;
-                NormalizedValue<double> xNorm(sData.xMin, sData.xMax, 0, static_cast<double>(GetW()));
-                NormalizedValue<double> yNorm(sData.yMin, sData.yMax, 0, static_cast<double>(GetH()));
+                NormalizedValue<float> xNorm(sData.xMin, sData.xMax, 0, GetW());
+                NormalizedValue<float> yNorm(sData.yMin, sData.yMax, 0, GetH());
                 xNorm.set(x1Val);
-                double x1Norm = xNorm.getNormalized();
+                float x1Norm = xNorm.getNormalized();
                 xNorm.set(x2Val);
-                double x2Norm = xNorm.getNormalized();
+                float x2Norm = xNorm.getNormalized();
                 yNorm.set(y1Val);
-                double y1Norm = yNorm.getNormalized();
+                float y1Norm = yNorm.getNormalized();
                 yNorm.set(y2Val);
-                double y2Norm = yNorm.getNormalized();
+                float y2Norm = yNorm.getNormalized();
 
-                sdlRenderer->DrawLineOnTexture(*plotTexture.get(),
-                                               sData.color,
-                                               static_cast<int>(x1Norm),
-                                               static_cast<int>(GetH() - y1Norm),
-                                               static_cast<int>(x2Norm),
-                                               static_cast<int>(GetH() - y2Norm));
+                sdlRenderer->DrawLineOnTextureF(*plotTexture.get(),
+                                                sData.color,
+                                                x1Norm,
+                                                GetH() - y1Norm,
+                                                x2Norm,
+                                                GetH() - y2Norm);
                 cached = true;
             }
         }

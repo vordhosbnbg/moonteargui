@@ -2,6 +2,7 @@
 
 #include <mutex>
 #include "SDLRenderer.h"
+#include "utils.h"
 
 class Widget
 {
@@ -20,17 +21,56 @@ public:
     std::shared_ptr<Widget> GetFirstChild();
     std::shared_ptr<Widget> GetNextSibling();
 
-    void SetX(int x);
-    void SetY(int y);
-    void SetW(int w);
-    void SetH(int h);
-    int GetX();
-    int GetY();
-    int GetW();
-    int GetH();
+    void SetX(float x)
+    {
+        std::lock_guard<std::mutex> lock(mxWidget);
+        DBGPRINT("Widget SetX - " << x << std::endl);
+        widgetPosX = x;
+    }
+    void SetY(float y)
+    {
+        std::lock_guard<std::mutex> lock(mxWidget);
+        DBGPRINT("Widget SetY - " << y << std::endl);
+        widgetPosY = y;
+    }
+    void SetW(float w)
+    {
+        std::lock_guard<std::mutex> lock(mxWidget);
+        DBGPRINT("Widget SetW - " << w << std::endl);
+        widgetWidth = w;
+    }
+    void SetH(float h)
+    {
+        std::lock_guard<std::mutex> lock(mxWidget);
+        DBGPRINT("Widget SetH - " << h << std::endl);
+        widgetHeight = h;
+    }
+    float GetX()
+    {
+        return widgetPosX;
+    }
+    float GetY()
+    {
+        return widgetPosY;
+    }
+    float GetW()
+    {
+        return widgetWidth;
+    }
+    float GetH()
+    {
+        return widgetHeight;
+    }
 
-    void SetRotation(int degree);
-    int GetRotation();
+    void SetRotation(int degree)
+    {
+        std::lock_guard<std::mutex> lock(mxWidget);
+        rotationAngle = degree;
+    }
+    double GetRotation()
+    {
+        return rotationAngle;
+    }
 
     void SetFocused(bool val);
     bool IsFocused();
@@ -41,11 +81,11 @@ public:
 
 protected:
     virtual void OnRegisterRenderer();
-    int widgetPosX;
-    int widgetPosY;
-    int widgetWidth;
-    int widgetHeight;
-    int rotationAngle;
+    float widgetPosX;
+    float widgetPosY;
+    float widgetWidth;
+    float widgetHeight;
+    double rotationAngle;
     std::shared_ptr<SDLRenderer> sdlRenderer;
     bool cached;
     bool focused;
