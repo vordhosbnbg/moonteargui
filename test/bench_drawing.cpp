@@ -93,7 +93,7 @@ void Test()
         int w4xEnd = 100;
 
         constexpr int durationSeconds = 10;
-        constexpr int fps = 60;
+        constexpr int fps = 120;
         constexpr int totalFrames = durationSeconds * fps;
         for (int frame = 0; frame < totalFrames; ++frame)
         {

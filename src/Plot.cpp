@@ -39,6 +39,7 @@ void Serie::SetYRange(double min, double max)
 
 void Plot::AddSerieData(const std::string& seriesName, double xVal, double yVal)
 {
+    std::lock_guard<std::mutex> lock(mxWidget);
     Serie& serie = series[seriesName];
     serie.AddData(xVal, yVal);
 
