@@ -1,5 +1,7 @@
 cmake_minimum_required (VERSION 3.1)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project (moonteargui)
 
@@ -47,13 +49,12 @@ add_executable(pixmap_test
     "test/pixmap_test.cpp"
     )
 
-set_property(GLOBAL PROPERTY CXX_STANDARD 20)
 
 target_link_libraries (moonteargui
                        pugixml
-                       SDL2
-                       SDL2_image
-                       SDL2_ttf
+                       SDL2::SDL2
+                       ${SDL2_IMAGE_LIBRARIES}
+                       ${SDL2_TTF_LIBRARIES}
                        ${CMAKE_THREAD_LIBS_INIT})
 
 
