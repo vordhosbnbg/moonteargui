@@ -52,7 +52,7 @@ add_executable(pixmap_test
 
 target_link_libraries (moonteargui
                        pugixml
-                       SDL2::SDL2
+                       ${SDL2_LIBRARIES}
                        ${SDL2_IMAGE_LIBRARIES}
                        ${SDL2_TTF_LIBRARIES}
                        ${CMAKE_THREAD_LIBS_INIT})
