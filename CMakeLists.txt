@@ -43,6 +43,10 @@ add_executable(plot_test
     "test/plot_test.cpp"
     )
 
+add_executable(pixmap_test
+    "test/pixmap_test.cpp"
+    )
+
 set_property(GLOBAL PROPERTY CXX_STANDARD 20)
 
 target_link_libraries (moonteargui
@@ -66,6 +70,10 @@ target_link_libraries (animation_simple
                        ${CMAKE_THREAD_LIBS_INIT})
 
 target_link_libraries (plot_test
+                       moonteargui
+                       ${CMAKE_THREAD_LIBS_INIT})
+
+target_link_libraries (pixmap_test
                        moonteargui
                        ${CMAKE_THREAD_LIBS_INIT})
 

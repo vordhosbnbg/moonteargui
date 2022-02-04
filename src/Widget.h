@@ -90,6 +90,7 @@ protected:
     bool cached;
     bool focused;
     std::mutex mxWidget;
+    std::mutex mxTexture;
 
 private:
     std::shared_ptr<Widget> firstChild;

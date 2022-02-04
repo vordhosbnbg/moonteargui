@@ -1,12 +1,14 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "SDL.h"
 #include "SDLDeleter.h"
 #include "SDLWindow.h"
 #include "SDLTexture.h"
 #include "SDLRect.h"
 #include "SDLFRect.h"
+#include "ColorPoint.h"
 
 class SDLTexture;
 class SDLRenderer
@@ -46,6 +48,13 @@ public:
                                  float y1,
                                  float x2,
                                  float y2);
+
+    void DrawPointsOnTextureF(SDLTexture& targetTexture,
+                              float xOffset,
+                              float yOffset,
+                              float width,
+                              float height,
+                              const std::vector<SDL_Color>& points);
     void RenderPresent();
     SDL_Surface * GetRenderSurfaceRaw();
     SDL_Renderer * GetRawHandle();

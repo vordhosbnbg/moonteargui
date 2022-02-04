@@ -97,6 +97,28 @@ void SDLRenderer::DrawRectangleOnTextureF(SDLTexture& targetTexture, const SDL_C
     SDL_SetRenderTarget(renderer, nullptr);
 }
 
+void SDLRenderer::DrawPointsOnTextureF(SDLTexture& targetTexture, float xOffset, float yOffset, float width, float height, const std::vector<SDL_Color>& points)
+{
+    SDL_Renderer * renderer = renderer_handle.get();
+    SDL_Color prevColor;
+
+    SDL_GetRenderDrawColor(renderer, &prevColor.r, &prevColor.g, &prevColor.b, &prevColor.a);
+    SDL_SetRenderTarget(renderer, targetTexture.GetRawHandle());
+    for(int x = 0; x < width; ++x)
+    {
+        for(int y = 0; y < height; ++y)
+        {
+            const SDL_Color point = points[y*x];
+            SDL_SetRenderDrawColor(renderer, point.r, point.g, point.b, point.a);
+            SDL_RenderDrawPoint(renderer, x, y);
+        }
+    }
+
+    // restore color and default render target
+    SDL_SetRenderDrawColor(renderer, prevColor.r, prevColor.g, prevColor.b, prevColor.a);
+    SDL_SetRenderTarget(renderer, nullptr);
+}
+
 void SDLRenderer::RenderPresent()
 {
     SDL_RenderPresent(renderer_handle.get());
