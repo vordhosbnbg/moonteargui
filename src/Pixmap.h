@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 #include "Widget.h"
 
 class Pixmap : public Widget
@@ -18,16 +19,19 @@ public:
         resizeBuffer();
     }
 
-    inline bool PutPixel(float x, float y, SDL_Color col)
+    inline bool PutPixel(unsigned int x, unsigned int y, SDL_Color col)
     {
-        if(x*y < pointBuffer.size())
+        if(y*pixmapWidth + x < pointBuffer.size())
         {
+//            std::cout << "PutPixel: " << y*pixmapWidth + x << std::endl;
             pointBuffer[y*pixmapWidth + x] = col;
             cached = false;
         }
 
         return false;
     }
+
+    void saveToPNG(const char* filename);
 
     void Draw() override;
     void ProcessEvent(const SDL_Event& ev) override;

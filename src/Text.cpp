@@ -173,10 +173,12 @@ void Text::Draw()
         dstBgRect.SetY(GetY());
         if ((!transparent) && (sdlTextureBackground))
         {
+            std::lock_guard lock(mxTexture);
             sdlRenderer->DrawF(*sdlTextureBackground.get(), srcBgRect, dstBgRect);
         }
         if (sdlTextureText) 
         {
+            std::lock_guard lock(mxTexture);
             sdlRenderer->DrawF(*sdlTextureText.get(), srcTextRect, dstTextRect, rotationAngle);
         }
     }
@@ -231,7 +233,10 @@ void Text::RenderText()
         std::string renderedText = GetRenderedText();
 
         std::shared_ptr<SDLSurface> surfaceText = std::make_shared<SDLSurface>(TTF_RenderUTF8_Blended(font_handle, renderedText.c_str(), fgColor));
-        sdlTextureText = std::make_shared<SDLTexture>(sdlRenderer, surfaceText);
+        {
+            std::lock_guard lock(mxTexture);
+            sdlTextureText = std::make_shared<SDLTexture>(sdlRenderer, surfaceText);
+        }
         if (!transparent)
         {
             std::shared_ptr<SDLSurface> surfaceBackground = std::make_shared<SDLSurface>(SDL_CreateRGBSurface(0, GetW(), GetH(), 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000));
@@ -244,8 +249,8 @@ void Text::RenderText()
         dstBgRect.SetW(GetW());
         dstBgRect.SetH(GetH());
 
-        int width = sdlTextureText->GetWidth();
-        int height = sdlTextureText->GetHeight();
+        int width = surfaceText->GetRawHandle()->w;
+        int height = surfaceText->GetRawHandle()->h;
         if(boxed)
         {
             sdlRenderer->DrawRectangleOnTexture(*sdlTextureBackground.get(), boxColor, 0, 0, width, height);
@@ -270,7 +275,6 @@ std::string Text::GetRenderedText()
     std::string retVal = GetText();
     int textWidth = 0;
     int textHeight = 0;
-    bool searchUp = false;
     bool finished = false;
     TTF_Font * font_handle = fontRes->GetFontHandle();
     size_t charCount = retVal.size();

@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "SDLDeleter.h"
 #include "SDLWindow.h"
+#include "SDLSurface.h"
 #include "SDLTexture.h"
 #include "SDLRect.h"
 #include "SDLFRect.h"
@@ -49,12 +50,12 @@ public:
                                  float x2,
                                  float y2);
 
-    void DrawPointsOnTextureF(SDLTexture& targetTexture,
-                              float xOffset,
-                              float yOffset,
-                              float width,
-                              float height,
+    void DrawPointsOnTexture(SDLTexture& targetTexture,
+                              int width,
+                              int height,
                               const std::vector<SDL_Color>& points);
+
+    SDLSurface getSurfaceFromTexture(SDLTexture& sourceTexture);
     void RenderPresent();
     SDL_Surface * GetRenderSurfaceRaw();
     SDL_Renderer * GetRawHandle();

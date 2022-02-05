@@ -22,25 +22,32 @@ void Test()
     sigaction(SIGINT, &sigIntHandler, nullptr);
     GraphicsEngine ge;
 
-    std::shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Pixmap test", 50, 50, 1000, 1000);
-    std::shared_ptr<Pixmap> pixmap = std::make_shared<Pixmap>();
-    constexpr int width = 1000;
+    constexpr int width = 1600;
     constexpr int height = 1000;
+    std::shared_ptr<RootWindow> RW_Window1 = ge.CreateRootWindow("Pixmap test", 50, 50, width, height);
+    std::shared_ptr<Pixmap> pixmap = std::make_shared<Pixmap>();
     pixmap->SetSize(width, height);
     RW_Window1->AddWidget(pixmap);
     ge.AddWindow(RW_Window1);
     std::thread controlThread([&]()
     {
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         std::random_device rd;
         std::mt19937_64 gen(rd());
         std::uniform_int_distribution<int> distW(0, width);
         std::uniform_int_distribution<int> distH(0, height);
         std::uniform_int_distribution<unsigned char> distC(0, 255);
-        for(int tick = 0 ; tick < 100000000; ++tick)
+        for(int tick = 0 ; tick < 100000; ++tick)
         {
-            pixmap->PutPixel(distW(gen), distH(gen), {distC(gen), distC(gen), distC(gen), 255});
+            int x = distW(gen);
+            int y = distH(gen);
+            SDL_Color c = {distC(gen), distC(gen), distC(gen), SDL_ALPHA_OPAQUE};
+//            std::cout << "Tick: " << tick << " x: " << x << " y:" << y << std::endl;
+            pixmap->PutPixel(x, y, c);
             //std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        pixmap->saveToPNG("pixmap.png");
         std::this_thread::sleep_for(std::chrono::milliseconds(6000));
 
         ge.Stop();

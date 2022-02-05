@@ -1,7 +1,20 @@
+#include <iostream>
 #include "SDLSurface.h"
 #include "SDL_surface.h"
 #include "SDL_image.h"
 
+
+SDLSurface::SDLSurface(int w, int h) :
+    surface_handle(
+        SDL_CreateRGBSurface(0, w, h, 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000)
+        )
+{
+}
+
+SDLSurface::SDLSurface(SDLSurface&& other) : surface_handle(other.surface_handle.release())
+{
+
+}
 
 SDLSurface::SDLSurface(std::string& filename) : surface_handle(IMG_Load(filename.c_str()), sdl_deleter())
 {
@@ -28,4 +41,12 @@ void SDLSurface::SetBlendMode(SDL_BlendMode mode)
 SDL_Surface * SDLSurface::GetRawHandle()
 {
     return surface_handle.get();
+}
+
+void SDLSurface::SaveToPNG(const char* filename)
+{
+    if(IMG_SavePNG(surface_handle.get(), filename))
+    {
+        std::cout << SDL_GetError() << std::endl;
+    }
 }

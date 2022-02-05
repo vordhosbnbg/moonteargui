@@ -1,8 +1,16 @@
 #include "Pixmap.h"
 
 
+void Pixmap::saveToPNG(const char* filename)
+{
+    std::lock_guard lock(mxTexture);
+    SDLSurface surface = sdlRenderer->getSurfaceFromTexture(*pixmapTexture.get());
+    surface.SaveToPNG(filename);
+}
+
 void Pixmap::Draw()
 {
+    std::lock_guard lock(mxTexture);
 
     if(!cached)
     {
@@ -29,7 +37,7 @@ void Pixmap::ProcessEvent(const SDL_Event& ev)
 
 void Pixmap::resizeBuffer()
 {
-    pointBuffer.resize(pixmapWidth * pixmapHeight, {0, 0, 0, 255});
+    pointBuffer.resize(pixmapWidth * pixmapHeight, {0, 0, 0, SDL_ALPHA_OPAQUE});
 }
 
 void Pixmap::RenderPixmapToTexture()
@@ -43,7 +51,7 @@ void Pixmap::RenderPixmapToTexture()
         pixmapTexture->Clear(bgColor);
     }
 
-    sdlRenderer->DrawPointsOnTextureF(*pixmapTexture.get(), 0, 0, pixmapWidth, pixmapHeight, pointBuffer);
+    sdlRenderer->DrawPointsOnTexture(*pixmapTexture.get(), pixmapWidth, pixmapHeight, pointBuffer);
 
     cached = true;
 }

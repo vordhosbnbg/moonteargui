@@ -36,6 +36,7 @@ void Image::Draw()
         }
         if (sdlTexture)
         {
+            std::lock_guard lock(mxTexture);
             int textureWidth = sdlTexture->GetWidth();
             int textureHeight = sdlTexture->GetHeight();
             srcImgRect.SetW(textureWidth);
@@ -63,6 +64,7 @@ void Image::Draw()
 
 void Image::RenderImage()
 {
+    std::lock_guard lock(mxTexture);
     sdlTexture = std::make_shared<SDLTexture>(sdlRenderer, bitmap->GetSurface());
     cached = true;
 }
