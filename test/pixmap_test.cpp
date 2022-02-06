@@ -37,7 +37,7 @@ void Test()
         std::uniform_int_distribution<int> distW(0, width);
         std::uniform_int_distribution<int> distH(0, height);
         std::uniform_int_distribution<unsigned char> distC(0, 255);
-        for(int tick = 0 ; tick < 100000; ++tick)
+        for(int tick = 0 ; tick < 1000; ++tick)
         {
             int x = distW(gen);
             int y = distH(gen);

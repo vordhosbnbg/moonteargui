@@ -124,7 +124,7 @@ SDLSurface SDLRenderer::getSurfaceFromTexture(SDLTexture& sourceTexture)
     SDL_Texture * prevTarget = SDL_GetRenderTarget(renderer_handle.get());
 
     SDLSurface surface(sourceTexture.GetWidth(), sourceTexture.GetHeight());
-    SDL_SetRenderTarget(renderer_handle.get(), sourceTexture.GetRawHandle());
+    SDL_SetRenderTarget(renderer_handle.get(), nullptr);
     SDL_RenderReadPixels(renderer_handle.get(),
                          nullptr,
                          surface.GetRawHandle()->format->format,

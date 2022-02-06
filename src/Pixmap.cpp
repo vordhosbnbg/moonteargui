@@ -25,7 +25,9 @@ void Pixmap::Draw()
         dstRect.SetY(GetY());
         dstRect.SetH(GetH());
         dstRect.SetW(GetW());
+        pixmapTexture->Unlock();
         sdlRenderer->DrawF(*pixmapTexture.get(), srcRect, dstRect, rotationAngle);
+        pixmapTexture->Lock();
     }
 
 }
@@ -44,14 +46,15 @@ void Pixmap::RenderPixmapToTexture()
 {
     if(!pixmapTexture)
     {
-        pixmapTexture = std::make_shared<SDLTexture>(sdlRenderer, GetW(), GetH());
+        pixmapTexture = std::make_shared<SDLTexture>(sdlRenderer, GetW(), GetH(), SDL_TEXTUREACCESS_STREAMING);
     }
     else
     {
         pixmapTexture->Clear(bgColor);
     }
 
-    sdlRenderer->DrawPointsOnTexture(*pixmapTexture.get(), pixmapWidth, pixmapHeight, pointBuffer);
+    pixmapTexture->CopyPixelData(pointBuffer);
+    //sdlRenderer->DrawPointsOnTexture(*pixmapTexture.get(), pixmapWidth, pixmapHeight, pointBuffer);
 
     cached = true;
 }

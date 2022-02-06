@@ -6,7 +6,7 @@
 
 SDLSurface::SDLSurface(int w, int h) :
     surface_handle(
-        SDL_CreateRGBSurface(0, w, h, 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000)
+        SDL_CreateRGBSurface(0, w, h, 24, 0x00FF0000, 0x0000FF00, 0x000000FF, 0x00000000)
         )
 {
 }
